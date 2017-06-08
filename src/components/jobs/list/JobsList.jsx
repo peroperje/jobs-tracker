@@ -11,7 +11,7 @@ import JobsTableRow from './table/JobsTableRow';
 import FilterLinks from './FilterLinks';
 import SearchBar from './SearchBar';
 import DialogBox from './DialogBox';
-import JobForm from './../single/JobForm';
+import JobForm from './JobForm';
 import AddJobButton from './AddJobButton';
 
 /**

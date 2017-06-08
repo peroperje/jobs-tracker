@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 
 // component
 import JobsListContainer from '../jobs/list/JobsListContainer';
+import LogIn from './../auth/LogIn';
 
 /**
  * @class App
@@ -22,6 +23,7 @@ class App extends Component {
    */
   render() {
     return <JobsListContainer/>;
+    //return <LogIn/>;
   }
 }
 

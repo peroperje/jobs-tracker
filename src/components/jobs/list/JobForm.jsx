@@ -5,9 +5,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import isUrl from 'is-url-superb';
+
+import InputText from '../../form-utils/InputText';
 
 /**
  * @description PropTypes for JobForm
@@ -42,30 +43,6 @@ const validate = values => {
  */
 class JobForm extends Component {
 
-  handleSu = (data) => {
-    console.log('da li handluje');
-  }
-
-  /**
-   * @description Render Input filed
-   * @param {String} input Input type
-   * @param {String} label Label string
-   * @param {Function | String } touched handler Function for click or touch
-   * @param {String} error Error string
-   * @param {Object} custom Custom property for text field
-   * @return {Object} JSX HTML
-   */
-  renderTextField = ({input, label, meta: {touched, error}, ...custom}) => (
-    <TextField
-      hintText={label}
-      floatingLabelText={label}
-      errorText={touched && error}
-      fullWidth={true}
-      {...input}
-      {...custom}
-    />
-  );
-
   /**
    * @description render
    * @memberOf jobsingle.JobForm
@@ -78,35 +55,35 @@ class JobForm extends Component {
         <div>
           <Field
             name="title"
-            component={this.renderTextField}
+            component={InputText}
             label="Job Title"
           />
         </div>
         <div>
           <Field
             name="URL"
-            component={this.renderTextField}
+            component={InputText}
             label="Job URL"
           />
         </div>
         <div>
           <Field
             name="clientLocation"
-            component={this.renderTextField}
+            component={InputText}
             label="Client Location"
           />
         </div>
         <div>
           <Field
             name="jobLocation"
-            component={this.renderTextField}
+            component={InputText}
             label="Job location"
           />
         </div>
         <div>
           <Field
             name="comment"
-            component={this.renderTextField}
+            component={InputText}
             label="Comment"
             multiLine={true}
           />

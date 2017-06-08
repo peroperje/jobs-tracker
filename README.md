@@ -10,4 +10,4 @@ A simple app for tracking offers of jobs based on [react](https://facebook.githu
 
 ## Test
 
-- yarn test 
+- yarn test
