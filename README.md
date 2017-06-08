@@ -1,1 +1,1 @@
-A simple app for tracking offers of jobs based on react redux
+A simple app for tracking offers of jobs based on [react](https://facebook.github.io/react/) and [redux](http://redux.js.org/)
