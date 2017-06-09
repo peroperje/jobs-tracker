@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.17.2",
     "bootstrap": "4.0.0-alpha.6",
+    "express": "^4.15.3",
     "is-url-superb": "^2.0.0",
     "material-ui": "^0.18.1",
     "prop-types": "^15.5.10",
