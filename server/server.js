@@ -1,3 +1,4 @@
+require('./config/config');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -6,7 +7,7 @@ const jobs = require('./routes/jobs.routes');
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../build')));
