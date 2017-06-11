@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const jobs = require('./routes/jobs.routes');
+const jobs = require('./jobs/jobs.routes');
 
 
 const app = express();

@@ -16,28 +16,31 @@ const getJobs = (req, res) => {
 
 /**
  * @descriptin Return single object by id
- * @param {} req
- * @param res
+ * @param {Object} req express request object
+ * @param {Object} res express response object
  */
 const getJob = (req, res) => {
   const id = req.params.id;
   if (!ObjectId.isValid(id)) {
-    res.status(404).send('Not Found');
+   return  res.status(404).send('Not Found');
   }
-  console.log(id);
   Job.findOne({
     _id: id
   })
     .then(job => {
       if (!job) {
-        res.status(400).send();
+        return res.status(400).send();
       }
       res.send({job});
     })
     .catch(err => res.status(400).send(err));
 };
 
-
+/**
+ * @description Add  new job
+ * @param {Object} req express request object
+ * @param {Object} res express response object
+ */
 const addJob = (req, res) => {
   const job = new Job(req.body);
   job.save()
@@ -46,11 +49,48 @@ const addJob = (req, res) => {
 };
 
 const updateJob = (req, res) => {
-  res.send({});
+  const id = req.params.id;
+  const body = req.body;
+  if (!ObjectId.isValid(id)) {
+    return res.status(400).send('Not found');
+  }
+  Job.findOneAndUpdate({
+    _id: id
+  }, {
+    $set: body
+  }, {
+    new: true
+  })
+    .then(job=>{
+      if (!job) {
+        return res.status(400).send('Not found');
+      }
+      res.send(job);
+    })
+    .catch(err => res.status(400).send(err));
 };
 
+/**
+ * @description Delete job
+ * @param {Object} req express request object
+ * @param {Object} res express response object
+ */
 const deleteJob = (req, res) => {
-  res.send({});
+  const id = req.params.id;
+
+  if (!ObjectId.isValid(id)) {
+    return res.status(400).send('Not Found');
+  }
+  Job.findOneAndRemove({
+    _id: id
+  })
+    .then(job => {
+      if (!job) {
+        return res.status(400).send('Not found');
+      }
+      res.send({job});
+    })
+    .catch(err => res.status(400).send(err));
 };
 
 module.exports = {
