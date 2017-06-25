@@ -32,11 +32,14 @@ class JobsList extends Component {
 
     this.state = {
       openDialog: false,
-      job: {}
+      job: {},
+      search: ''
     };
     this.handleOpenFormDialog = this.handleOpenFormDialog.bind(this);
     this.handleJobFormSubmit = this.handleJobFormSubmit.bind(this);
     this.handleCloseFormDialog = this.handleCloseFormDialog.bind(this);
+    this.handleSerachChange = this.handleSerachChange.bind(this);
+    this.handleClearSearch = this.handleClearSearch.bind(this);
   }
 
   /**
@@ -51,7 +54,7 @@ class JobsList extends Component {
 
   /**
    * @description Handle close dialog
-   * @memberOf joblist.JobsList
+   * @memberOf jobslist.JobsList
    */
   handleCloseFormDialog() {
     this.setState({openDialog: false, job: {}});
@@ -62,9 +65,34 @@ class JobsList extends Component {
    * @param {Object} data Job data
    */
   handleJobFormSubmit(data) {
-
     this.props.handleSubmitJobForm(data);
     this.setState({openDialog: false, job: {}});
+  }
+
+  /**
+   *@description Handle search change
+   * @param {String} search search data
+   */
+  handleSerachChange(search) {
+    this.setState({search});
+  }
+
+  /**
+   * @description Handle clear search
+   */
+  handleClearSearch() {
+    this.setState({search: ''});
+  };
+
+  filterJobsBySearch() {
+    const {search} = this.state;
+    const {jobs} = this.props;
+    return jobs.filter((job) => (
+      job.title.toUpperCase().indexOf(search.toUpperCase()) !== -1 ||
+      job.clientLocation.toUpperCase().indexOf(search.toUpperCase()) !== -1 ||
+      job.jobLocation.toUpperCase().indexOf(search.toUpperCase()) !== -1 ||
+      job.comment.toUpperCase().indexOf(search.toUpperCase()) !== -1
+    ));
   }
 
   /**
@@ -78,7 +106,8 @@ class JobsList extends Component {
       textAlign: 'center',
       display: 'inline-block'
     };
-    const rows = this.props.jobs.map((job) => (<JobsTableRow
+    const jobsFilteredBySearch = this.filterJobsBySearch();
+    const rows = jobsFilteredBySearch.map((job) => (<JobsTableRow
       key={job.id}
       {...job}
       onClickDelete={this.props.onClickDelete}
@@ -88,14 +117,18 @@ class JobsList extends Component {
     return (
       <Paper style={paperStyle} zDepth={5}>
         <FilterLinks onClickFilter={this.props.onClickFilterLink}/>
-        <SearchBar/>
+        <SearchBar
+          search={this.state.search}
+          handleSerachChange={this.handleSerachChange}
+          handleClearSearch={this.handleClearSearch}
+        />
         <DialogBox openDialog={this.state.openDialog} closeDialog={this.handleCloseFormDialog}>
           <JobForm onSubmit={this.handleJobFormSubmit} initialValues={this.state.job}/>
         </DialogBox>
         <JobTable>
           {rows}
         </JobTable>
-        <AddJobButton clickToOpenDialog={this.handleOpenFormDialog} />
+        <AddJobButton clickToOpenDialog={this.handleOpenFormDialog}/>
       </Paper>
     );
   }

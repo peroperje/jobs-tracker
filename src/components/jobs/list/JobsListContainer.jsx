@@ -2,7 +2,7 @@
  *@namespace jobslist
  */
 
-import React, {Component} from 'react';
+
 import {connect} from 'react-redux';
 import uniqid from 'uniqid';
 
@@ -30,6 +30,7 @@ const filterByStatus = (jobs, jobVisibilityFilter) => {
 
   }
 };
+
 
 /**
  * @description Map state to property
