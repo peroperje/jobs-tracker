@@ -10,7 +10,7 @@ import Archive from 'material-ui/svg-icons/content/archive';
 import Unarchive from 'material-ui/svg-icons/content/unarchive';
 import DeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
-import {blue500, red500, red200, green500} from 'material-ui/styles/colors';
+import {red500, red200, green500} from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 
 /**
@@ -76,8 +76,6 @@ class JobsTableRow extends Component {
 
   /**
    * @description Render Archive Icon Button
-   * @param {Number} id Id of job
-   * @param {Boolean} isActive is job active
    * @return {XML} JSX HTML Content
    */
   renderArchiveIcon() {

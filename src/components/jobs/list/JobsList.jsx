@@ -22,69 +22,55 @@ import AddJobButton from './AddJobButton';
  */
 class JobsList extends Component {
 
-  /**
-   * @description Joblist component
-   * @memberOf jobslist.JobsList
-   * @param {Object} props The component properties
-   */
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      openDialog: false,
-      job: {},
-      search: ''
-    };
-    this.handleOpenFormDialog = this.handleOpenFormDialog.bind(this);
-    this.handleJobFormSubmit = this.handleJobFormSubmit.bind(this);
-    this.handleCloseFormDialog = this.handleCloseFormDialog.bind(this);
-    this.handleSerachChange = this.handleSerachChange.bind(this);
-    this.handleClearSearch = this.handleClearSearch.bind(this);
-  }
+  state = {
+    openDialog: false,
+    job: {},
+    search: ''
+  };
 
   /**
    * @description Handle open dialog click
    * @memberOf jobslist.JobsList
    * @param {Boolean | String} jobID Job ID if open edit form
    */
-  handleOpenFormDialog(jobID = false) {
+  handleOpenFormDialog = (jobID = false) => {
     const job = jobID ? this.props.jobs.find(j => j.id === jobID) : {};
     this.setState({openDialog: true, job: job});
-  }
+  };
 
   /**
    * @description Handle close dialog
    * @memberOf jobslist.JobsList
    */
-  handleCloseFormDialog() {
+  handleCloseFormDialog = () => {
     this.setState({openDialog: false, job: {}});
-  }
+  };
 
   /**
    * @description Handle Job Form submit
    * @param {Object} data Job data
    */
-  handleJobFormSubmit(data) {
+  handleJobFormSubmit = (data) => {
     this.props.handleSubmitJobForm(data);
     this.setState({openDialog: false, job: {}});
-  }
+  };
 
   /**
    *@description Handle search change
    * @param {String} search search data
    */
-  handleSerachChange(search) {
+  handleSerachChange = (search) => {
     this.setState({search});
-  }
+  };
 
   /**
    * @description Handle clear search
    */
-  handleClearSearch() {
+  handleClearSearch = () => {
     this.setState({search: ''});
   };
 
-  filterJobsBySearch() {
+  filterJobsBySearch = () => {
     const {search} = this.state;
     const {jobs} = this.props;
     return jobs.filter((job) => (
@@ -93,7 +79,7 @@ class JobsList extends Component {
       job.jobLocation.toUpperCase().indexOf(search.toUpperCase()) !== -1 ||
       job.comment.toUpperCase().indexOf(search.toUpperCase()) !== -1
     ));
-  }
+  };
 
   /**
    * @description render
@@ -137,7 +123,9 @@ class JobsList extends Component {
 JobsList.propTypes = {
   jobs: PropTypes.array.isRequired,
   onClickFilterLink: PropTypes.func.isRequired,
-  onClickArchive: PropTypes.func.isRequired
+  onClickArchive: PropTypes.func.isRequired,
+  onClickDelete: PropTypes.func.isRequired,
+  handleSubmitJobForm: PropTypes.func.isRequired
 };
 
 export default JobsList;
