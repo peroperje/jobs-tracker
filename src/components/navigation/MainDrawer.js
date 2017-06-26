@@ -27,7 +27,6 @@ class MainDrawer extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
-    console.log(this.props.location.pathname);
     return (
       <div>
         <AppBar

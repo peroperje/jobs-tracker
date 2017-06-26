@@ -87,6 +87,7 @@ class JobsList extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
+    console.log('rendering jobslist');
     const paperStyle = {
       margin: 20,
       textAlign: 'center',
