@@ -13,7 +13,8 @@ import React from 'react';
 function Home(props) {
   return (
     <div>
-      <h1>Jobs tracker</h1>
+      <h1 style={{textAlign: 'center'}}>Jobs tracker</h1>
+      <p> Jobs tracker is simple application based on React.js Redux.js</p>
     </div>
   );
 }

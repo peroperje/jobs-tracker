@@ -3,15 +3,14 @@
  */
 
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+
 
 // component
 import JobsListContainer from '../jobs/list/JobsListContainer';
 import Home from '../static/Home';
 import About from '../static/About';
+import MainDrawer from '../navigation/MainDrawer';
 
 
 /**
@@ -21,13 +20,6 @@ import About from '../static/About';
  * @description Render FilterLinks
  */
 class App extends Component {
-  state = {
-    openDrawer: false
-  };
-
-  toggleDrawer = () => {
-    this.setState(prevState => ({openDrawer: !prevState.openDrawer}));
-  };
 
   /**
    * @description render
@@ -38,21 +30,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <AppBar
-            title="Jobs Tracker"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-            onLeftIconButtonTouchTap={this.toggleDrawer}
-          />
-          <Drawer
-            docked={false}
-            open={this.state.openDrawer}
-            onRequestChange={this.toggleDrawer}
-          >
-            <Link to="/"><MenuItem onTouchTap={this.toggleDrawer}>Home</MenuItem></Link>
-            <Link to="/jobs"><MenuItem onTouchTap={this.toggleDrawer}>Jobs Tracking</MenuItem></Link>
-            <Link to="/about"><MenuItem onTouchTap={this.toggleDrawer}>Jobs Tracking</MenuItem></Link>
-          </Drawer>
-
+          <Route path="/" component={MainDrawer}/>
           <Route exact path="/" component={Home}/>
           <Route path="/jobs" component={JobsListContainer}/>
           <Route path="/about" component={About}/>
