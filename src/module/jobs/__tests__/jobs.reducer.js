@@ -1,7 +1,7 @@
 import uniqid from 'uniqid';
-import {ADD_JOB, UPDATE_JOB, DELETE_JOB, CHANGE_STATUS, SET_VISIBILITY_FILTER, jobsFilter} from './jobs.constant';
-import {jobs, jobsVisibilityFilter} from './jobs.reducer';
-import initialStore from './../../store/initialStore';
+import {ADD_JOB, UPDATE_JOB, DELETE_JOB, CHANGE_STATUS, SET_VISIBILITY_FILTER, jobsFilter} from '../jobs.constant';
+import {jobs, jobsVisibilityFilter} from '../jobs.reducer';
+import initialStore from '../../../store/initialStore';
 
 describe('Jobs Reducer', () => {
   let state;

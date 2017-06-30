@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const jobs = require('./jobs/jobs.routes');
+const users = require('./users/users.routers');
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.use('/api', jobs);
+app.use('/api', users);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));

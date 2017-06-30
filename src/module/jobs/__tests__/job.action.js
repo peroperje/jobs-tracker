@@ -1,6 +1,6 @@
-import * as job from './jobs.action';
-import {ADD_JOB, UPDATE_JOB, DELETE_JOB, CHANGE_STATUS, SET_VISIBILITY_FILTER} from './jobs.constant';
-import initialState from './../../store/initialStore';
+import * as job from '../jobs.action';
+import {ADD_JOB, UPDATE_JOB, DELETE_JOB, CHANGE_STATUS, SET_VISIBILITY_FILTER} from '../jobs.constant';
+import initialState from '../../../store/initialStore';
 
 describe('Job Atction', () => {
   let state;

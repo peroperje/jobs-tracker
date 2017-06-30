@@ -30,7 +30,14 @@ const initState = {
       active: false
     }
   ],
-  jobsVisibilityFilter: null
+  jobsVisibilityFilter: null,
+  user: {
+    _id: null,
+    firstName: null,
+    surName: null,
+    isFetching: false,
+    errorFetching: null
+  }
 };
 
 export default initState;
