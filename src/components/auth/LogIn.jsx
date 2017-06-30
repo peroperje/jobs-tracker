@@ -3,9 +3,49 @@
  */
 
 import React, {Component} from 'react';
-import Paper from 'material-ui/Paper';
-import InputText from './../form-utils/InputText';
 import {Field, reduxForm} from 'redux-form';
+import {Link} from 'react-router-dom';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
+import validator from 'validator';
+
+
+import InputText from './../form-utils/InputText';
+
+const validate = values => {
+  const error = {};
+  const fieldToValidate = ['email','password'];
+  fieldToValidate.forEach((key) => {
+    if (!values[key]) {
+      error[key] = 'Requried';
+    }
+  });
+
+  if (values.email && !validator.isEmail(values.email + '')) {
+    error.email = 'Email is not valid';
+  }
+
+  return error;
+};
+
+/**
+ * @description Style for Login Page
+ * @type {}
+ */
+const style = {
+  paper: {
+    width: 500,
+    height: 400,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    margin: 'auto',
+    overflow: 'auto',
+    padding: '3%'
+  }
+};
 
 /**
  * @class LogIn
@@ -15,29 +55,47 @@ import {Field, reduxForm} from 'redux-form';
  */
 class LogIn extends Component {
 
+
   /**
    * @description render
    * @memberOf auth.LogIn
    * @return {Object} JSX HTML Content
    */
   render() {
-    const style = {
-      width: 400,
-      height: 400,
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-      margin: 'auto',
-      overflow: 'auto'
-    };
+    const {handleSubmit} = this.props;
     return (
-      <Paper style={style} zDepth={5}>
-
+      <Paper style={style.paper} zDepth={5}>
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit(this.props.handleSubmitLogin)}>
+          <div>
+            <Field
+              name="email"
+              autoComplete="new-email"
+              component={InputText}
+              value=" "
+              type="text"
+              label="Email"
+            />
+          </div>
+          <div>
+            <Field
+              name="password"
+              autoComplete="new-password"
+              component={InputText}
+              type="password"
+              label="password"
+            />
+          </div>
+          <div>
+            <RaisedButton label="Login" type="submit" primary={true} />
+            <Link to="/forgot-password" >Forgot password?</Link>
+          </div>
+        </form>
       </Paper>
     );
   }
 }
-
-export default LogIn;
+export default reduxForm({
+  form: 'login-form',
+  validate
+})(LogIn);

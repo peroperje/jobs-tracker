@@ -96,9 +96,8 @@ class JobForm extends Component {
 
 JobForm.propTypes = propTypes;
 
-JobForm = reduxForm({
-  form: 'JobForm', // a unique name for this form
+export default reduxForm({
+  form: 'JobForm',
   validate
 })(JobForm);
 
-export default JobForm;

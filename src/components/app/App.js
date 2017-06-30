@@ -11,6 +11,7 @@ import JobsListContainer from '../jobs/list/JobsListContainer';
 import Home from '../static/Home';
 import About from '../static/About';
 import MainDrawer from '../navigation/MainDrawer';
+import LoginContainer from '../auth/LoginContainer';
 
 
 /**
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path="/" component={Home}/>
           <Route path="/jobs" component={JobsListContainer}/>
           <Route path="/about" component={About}/>
+          <Route path="/login" component={LoginContainer}/>
         </div>
       </Router>
     );
