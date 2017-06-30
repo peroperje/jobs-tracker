@@ -90,7 +90,6 @@ class LogIn extends Component {
             <div>
               <p>
                 Are you new here. <Link to="signup">Create Account</Link>
-                <Link to="/forgot-password" style={{float:'right'}}>Forgot password?</Link>
               </p>
             </div>
           </div>
