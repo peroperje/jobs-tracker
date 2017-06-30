@@ -9,12 +9,12 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import validator from 'validator';
 
-
+// component
 import InputText from './../form-utils/InputText';
 
 const validate = values => {
   const error = {};
-  const fieldToValidate = ['email','password'];
+  const fieldToValidate = ['email', 'password'];
   fieldToValidate.forEach((key) => {
     if (!values[key]) {
       error[key] = 'Requried';
@@ -30,7 +30,7 @@ const validate = values => {
 
 /**
  * @description Style for Login Page
- * @type {}
+ * @type {Object}
  */
 const style = {
   paper: {
@@ -72,8 +72,7 @@ class LogIn extends Component {
               name="email"
               autoComplete="new-email"
               component={InputText}
-              value=" "
-              type="text"
+              type="email"
               label="Email"
             />
           </div>
@@ -87,8 +86,13 @@ class LogIn extends Component {
             />
           </div>
           <div>
-            <RaisedButton label="Login" type="submit" primary={true} />
-            <Link to="/forgot-password" >Forgot password?</Link>
+            <RaisedButton label="Login" type="submit" primary={true}/>
+            <div>
+              <p>
+                Are you new here. <Link to="signup">Create Account</Link>
+                <Link to="/forgot-password" style={{float:'right'}}>Forgot password?</Link>
+              </p>
+            </div>
           </div>
         </form>
       </Paper>

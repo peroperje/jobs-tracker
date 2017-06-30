@@ -12,6 +12,7 @@ import Home from '../static/Home';
 import About from '../static/About';
 import MainDrawer from '../navigation/MainDrawer';
 import LoginContainer from '../auth/LoginContainer';
+import SignUpContainer from '../auth/SignUpContainer';
 
 
 /**
@@ -36,6 +37,7 @@ class App extends Component {
           <Route path="/jobs" component={JobsListContainer}/>
           <Route path="/about" component={About}/>
           <Route path="/login" component={LoginContainer}/>
+          <Route path="/signup" component={SignUpContainer}/>
         </div>
       </Router>
     );
