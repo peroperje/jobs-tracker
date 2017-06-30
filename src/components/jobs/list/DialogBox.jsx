@@ -21,7 +21,6 @@ class DialogBox extends Component {
   render() {
     return (
       <Dialog
-        title="Dialog With Custom Width"
         open={this.props.openDialog}
         autoScrollBodyContent={true}
         modal={false}

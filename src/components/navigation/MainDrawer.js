@@ -48,6 +48,12 @@ class MainDrawer extends Component {
           <Link to="/about" style={{textDecoration: 'none'}}>
             <MenuItem onTouchTap={this.toggleDrawer}>About me</MenuItem>
           </Link>
+          <Link to="/login" style={{textDecoration: 'none'}}>
+            <MenuItem onTouchTap={this.toggleDrawer}>Login</MenuItem>
+          </Link>
+          <Link to="/signup" style={{textDecoration: 'none'}}>
+            <MenuItem onTouchTap={this.toggleDrawer}>SignUp</MenuItem>
+          </Link>
         </Drawer>
       </div>
     );
