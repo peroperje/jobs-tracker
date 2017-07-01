@@ -1,9 +1,13 @@
-import {takeLatest,put,call} from 'redux-saga/effects';
+import {takeLatest, put, call} from 'redux-saga/effects';
 
 import {signup} from './users.service';
-import {fetchSignUpSuccess,fetchSignUpFailure} from './users.action';
+import {fetchSignUpSuccess, fetchSignUpFailure} from './users.action';
 import {FETCH_SIGNUP_REQUSET} from './users.constant';
 
+/**
+ * @description worker for Signup action
+ * @param {Object} action Action object
+ */
 export function* signUp(action) {
   try {
     const userData = yield call(signup, action.payload.data);
@@ -13,7 +17,10 @@ export function* signUp(action) {
   }
 }
 
+/**
+ * @description watcher for SignUp action
+ */
 export function* watchSignUp() {
-  yield takeLatest(FETCH_SIGNUP_REQUSET,signUp);
+  yield takeLatest(FETCH_SIGNUP_REQUSET, signUp);
 }
 
