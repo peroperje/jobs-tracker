@@ -1,13 +1,14 @@
 import {connect} from 'react-redux';
-import {signup} from '../../module/users/users.service'
+import {fetchSignUp} from '../../module/users/users.actions';
 
 import SignUp from './SignUp';
 
+const mapStateToProp = (state) => ({isFetching: state.user.isFetching});
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
   handleSubmitSingUp: data => {
-    console.log('Submitted SingUp form', data);
-    signup(data).then(res=>console.log(res));
+    dispatch(fetchSignUp(data));
   }
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProp, mapDispatchToProps)(SignUp);

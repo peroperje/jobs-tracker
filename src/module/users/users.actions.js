@@ -7,10 +7,14 @@ import {
 /**
  * @description Fetch sign up
  * @function fetchSignUp
+ * @param {Object} data User form data
  * @return {Object} the redux action
  */
-const fetchSignUp = () => ({
-  type: FETCH_SIGNUP_REQUSET
+const fetchSignUp = (data) => ({
+  type: FETCH_SIGNUP_REQUSET,
+  payload:{
+    data:data
+  }
 });
 
 /**

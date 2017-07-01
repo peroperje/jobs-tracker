@@ -3,6 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import {Link} from 'react-router-dom';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import InputText from './../form-utils/InputText';
 
@@ -37,9 +38,9 @@ class SignUp extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
-    const {handleSubmit} = this.props;
-    return (
-      <Paper style={style.paper} zDepth={5}>
+    const {handleSubmit,isFetching} = this.props;
+    if (!isFetching) {
+      return (<Paper style={style.paper} zDepth={5}>
         <h2>SignUp</h2>
         <form onSubmit={handleSubmit(this.props.handleSubmitSingUp)}>
           <div>
@@ -83,8 +84,16 @@ class SignUp extends Component {
             <p>Already member? <Link to="/login">Login here</Link></p>
           </div>
         </form>
-      </Paper>
-    );
+      </Paper>);
+    } else {
+      return (
+        <div style={{textAlign: 'center'}}>
+          <CircularProgress size={80} thickness={5}/>
+        </div>
+      );
+    }
+
+
   }
 }
 
