@@ -1,20 +1,17 @@
-/**
- * @namespace component
- */
-
 import React from 'react';
 
+
+import './About.css';
 /**
  * @function About
- * @param props
- * @returns {XML}
+ * @param {Object} props property object
  * @constructor
  */
 function About(props) {
   return (
-    <div>
-      <h1 style={{textAlign:'center'}}>About page</h1>
-    </div>
+
+        <h1 style={{textAlign: 'center'}}>About page</h1>
+
   );
 }
 
