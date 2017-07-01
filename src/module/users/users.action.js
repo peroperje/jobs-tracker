@@ -12,8 +12,8 @@ import {
  */
 const fetchSignUp = (data) => ({
   type: FETCH_SIGNUP_REQUSET,
-  payload:{
-    data:data
+  payload: {
+    data: data
   }
 });
 

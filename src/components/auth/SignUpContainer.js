@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {fetchSignUp} from '../../module/users/users.actions';
+import {fetchSignUp} from '../../module/users/users.action';
 
 import SignUp from './SignUp';
 

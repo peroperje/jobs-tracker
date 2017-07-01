@@ -1,7 +1,7 @@
 import {takeLatest,put,call} from 'redux-saga/effects';
 
 import {signup} from './users.service';
-import {fetchSignUpSuccess,fetchSignUpFailure} from './users.actions';
+import {fetchSignUpSuccess,fetchSignUpFailure} from './users.action';
 import {FETCH_SIGNUP_REQUSET} from './users.constant';
 
 export function* signUp(action) {
