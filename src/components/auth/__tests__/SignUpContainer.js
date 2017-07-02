@@ -40,7 +40,7 @@ describe('Test SignUpContainer', () => {
     });
 
     it('Should handleSubmitSingUp dispatch action', () => {
-      const data = {email:'peroperje@ta.com'};
+      const data = {email: 'peroperje@ta.com'};
       const action = fetchSignUp(data);
       wrapper.prop('handleSubmitSingUp')(data);
       expect(store.dispatch).toBeCalledWith(action);
