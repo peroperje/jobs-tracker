@@ -20,14 +20,14 @@ const propTypes = {
  * @param {Array} values from fields
  * @return {Object} error object
  */
-const validate = values => {
-  const error = {};
+export const validate = values => {
   const fieldToValidate = ['firstName', 'surName', 'email', 'password'];
-  fieldToValidate.forEach((key) => {
-    if (!values[key]) {
-      error[key] = 'Required';
+  const error = fieldToValidate.reduce((e, field) => {
+    if (!values[field]) {
+      return {...e, ...{[field]: 'Required'}};
     }
-  });
+    return e;
+  }, {});
 
   if (values.email && !validator.isEmail(`${values.email}`)) {
     error.email = 'Email is not valid';
@@ -60,7 +60,7 @@ const style = {
  * @extends React.Component
  * @description Render component
  */
-class SignUp extends Component {
+export class SignUp extends Component {
 
   /**
    * @description render
@@ -124,6 +124,7 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = propTypes;
+
 
 export default reduxForm({
   form: 'signUp-form',
