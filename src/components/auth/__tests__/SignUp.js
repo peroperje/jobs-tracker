@@ -1,5 +1,5 @@
-import React from 'react';
-import {shallow,mount} from 'enzyme';
+import React, {Component} from 'react';
+import {shallow, mount} from 'enzyme';
 
 import {SignUp, validate} from '../SignUp';
 
@@ -9,7 +9,8 @@ describe('SignUp component', () => {
       isFetching={false}
       handleSubmit={jest.fn()}
       handleSubmitSingUp={jest.fn()}
-    />);
+    />
+  );
 
   describe('Form Header', () => {
     const element = wrapper.find('h2');
@@ -38,32 +39,22 @@ describe('SignUp component', () => {
        * @param {Function} reducer logic for object creation
        * @return {*}
        */
-      const getFieldObject = (reducer) => {
-        return inputField.reduce(reducer, {});
-      };
+      const getFieldObject = (reducer) => inputField.reduce(reducer, {});
 
       /**
        * @description create expected error object
        * @param {Function} reducer function contians logic for object creation
        * @return {*}
        */
-      const getErrorObject = (reducer) => {
-        return inputField.reduce(reducer, {});
-      };
+      const getErrorObject = (reducer) => inputField.reduce(reducer, {});
 
       it('Should empty fields fail validation', () => {
-        const fields = getFieldObject((o, filed) => {
-          return {...o, ...{[filed]: ''}};
-        });
-        const error = getErrorObject((obj, item) => {
-          return {...obj, ...{[item]: 'Required'}};
-        });
+        const fields = getFieldObject((o, filed) => ({...o, ...{[filed]: ''}}));
+        const error = getErrorObject((obj, item) => ({...obj, ...{[item]: 'Required'}}));
         expect(validate(fields)).toEqual(error);
       });
       it('Should invalid email failes validation', () => {
-        const fields = getFieldObject((obj, item) => {
-          return {...obj, ...{[item]: 'Some value'}};
-        });
+        const fields = getFieldObject((obj, item) => ({...obj, ...{[item]: 'Some value'}}));
         const error = getErrorObject((obj, item) => {
           if (item === 'email') {
             return {...obj, ...{email: 'Email is not valid'}};
@@ -87,5 +78,4 @@ describe('SignUp component', () => {
       });
     });
   });
-
 });
