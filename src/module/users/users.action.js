@@ -1,7 +1,10 @@
 import {
   FETCH_SIGNUP_REQUEST,
   FETCH_SIGNUP_SUCCESS,
-  FETCH_SIGNUP_FAILURE
+  FETCH_SIGNUP_FAILURE,
+  FETCH_LOGIN_REQUEST,
+  FETCH_LOGIN_SUCCESS,
+  FETCH_LOGIN_FAILURE
 } from './users.constant';
 
 /**
@@ -43,8 +46,47 @@ const fetchSignUpFailure = (err) => ({
   }
 });
 
+/**
+ * @description Action creatot for fetch login request
+ * @param {Object} data login data
+ * @return {Object} action
+ */
+const fetchLoginRequest = (data) => ({
+  type: FETCH_LOGIN_REQUEST,
+  payload: data
+});
+
+/**
+ * @description fetch login success
+ * @param {Object} data returned data from server
+ * @return {Object} action
+ */
+const fetchLoginSuccess = (data) => ({
+  type: FETCH_LOGIN_SUCCESS,
+  payload: {
+    _id: data._id,
+    firstName: data.firstName,
+    surName: data.surName
+  }
+});
+
+/**
+ * @description action creator fetch login failure
+ * @param {String} err error message
+ * @return {Object} action
+ */
+const fetchLoginFailure = (err) => ({
+  type: FETCH_LOGIN_FAILURE,
+  payload: {
+    errorFetching: err
+  }
+});
+
 export {
   fetchSignUp,
   fetchSignUpSuccess,
-  fetchSignUpFailure
+  fetchSignUpFailure,
+  fetchLoginRequest,
+  fetchLoginSuccess,
+  fetchLoginFailure
 };
