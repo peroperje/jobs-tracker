@@ -28,9 +28,13 @@
     "validator": "^7.2.0"
   },
   "devDependencies": {
+    "enzyme": "^2.9.1",
+    "jest-enzyme": "^3.4.0",
     "jsdoc": "^3.4.3",
     "minami": "^1.2.3",
     "react-scripts": "1.0.7",
+    "react-test-renderer": "^15.6.1",
+    "redux-mock-store": "^1.2.3",
     "uniqid": "^4.1.1"
   },
   "scripts": {
