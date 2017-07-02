@@ -14,6 +14,21 @@ const createUser = (req, res) => {
     .catch(err => res.status(400).send(err));
 };
 
+const login = (req,res)=>{
+  const body = {email,password} = req.body ;
+  User.findByCredentials(body.email,body.password)
+    .then((user) => {
+      return user.genereateAuthToken()
+        .then((token) => {
+          res.header('x-auth',token).send(user);
+        })
+    })
+    .catch((err) => {
+      res.status(400).send(err.message);
+    })
+};
+
 module.exports = {
-  createUser
+  createUser,
+  login
 };

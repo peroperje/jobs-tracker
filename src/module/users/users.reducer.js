@@ -1,5 +1,5 @@
 import {
-  FETCH_SIGNUP_REQUSET,
+  FETCH_SIGNUP_REQUEST,
   FETCH_SIGNUP_SUCCESS,
   FETCH_SIGNUP_FAILURE
 } from './users.constant';
@@ -13,7 +13,7 @@ import {
 function user(state = {}, action) {
   const {type, payload} = action;
   switch (type) {
-    case FETCH_SIGNUP_REQUSET:
+    case FETCH_SIGNUP_REQUEST:
       return {
         ...state,
         ...{

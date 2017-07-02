@@ -1,5 +1,5 @@
 import {
-  FETCH_SIGNUP_REQUSET,
+  FETCH_SIGNUP_REQUEST,
   FETCH_SIGNUP_SUCCESS,
   FETCH_SIGNUP_FAILURE
 } from '../users.constant';
@@ -22,7 +22,7 @@ describe('Users Actions', () => {
     const action = fetchSignUp(data);
 
     it('Test fetch Sign Up type', () => {
-      expect(action.type).toBe(FETCH_SIGNUP_REQUSET);
+      expect(action.type).toBe(FETCH_SIGNUP_REQUEST);
     });
 
     it('Test payload structure', () => {

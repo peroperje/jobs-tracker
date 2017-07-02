@@ -1,5 +1,5 @@
 import {
-  FETCH_SIGNUP_REQUSET,
+  FETCH_SIGNUP_REQUEST,
   FETCH_SIGNUP_SUCCESS,
   FETCH_SIGNUP_FAILURE
 } from './users.constant';
@@ -11,7 +11,7 @@ import {
  * @return {Object} the redux action
  */
 const fetchSignUp = (data) => ({
-  type: FETCH_SIGNUP_REQUSET,
+  type: FETCH_SIGNUP_REQUEST,
   payload: {
     data: data
   }

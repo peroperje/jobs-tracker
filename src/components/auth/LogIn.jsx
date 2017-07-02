@@ -12,6 +12,7 @@ import validator from 'validator';
 // component
 import InputText from './../form-utils/InputText';
 
+//Todo refactoring validation
 const validate = values => {
   const error = {};
   const fieldToValidate = ['email', 'password'];

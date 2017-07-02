@@ -65,7 +65,7 @@ describe('User Reducer', () => {
     isErrorFetchingDefined(obj);
   };
 
-  describe('Test state when action is FETCH_SIGNUP_REQUSET ', () => {
+  describe('Test state when action is FETCH_SIGNUP_REQUEST ', () => {
     const initState = userState();
     const action = fetchSignUp({});
     const state = user(initState, action);
