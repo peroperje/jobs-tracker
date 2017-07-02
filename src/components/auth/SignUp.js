@@ -4,8 +4,25 @@ import {Link} from 'react-router-dom';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
+import validator from 'validator';
 
 import InputText from './../form-utils/InputText';
+
+const validate = values => {
+  const error = {};
+  const fieldToValidate = ['firstName','surName','email', 'password'];
+  fieldToValidate.forEach((key) => {
+    if (!values[key]) {
+      error[key] = 'Requried';
+    }
+  });
+
+  if (values.email && !validator.isEmail(values.email + '')) {
+    error.email = 'Email is not valid';
+  }
+
+  return error;
+};
 
 /**
  * @description Style for Login Page
@@ -38,7 +55,7 @@ class SignUp extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
-    const {handleSubmit,isFetching} = this.props;
+    const {handleSubmit, isFetching} = this.props;
     if (!isFetching) {
       return (<Paper style={style.paper} zDepth={5}>
         <h2>SignUp</h2>
@@ -85,18 +102,18 @@ class SignUp extends Component {
           </div>
         </form>
       </Paper>);
-    } else {
-      return (
-        <div style={{textAlign: 'center'}}>
-          <CircularProgress size={80} thickness={5}/>
-        </div>
-      );
     }
+    return (
+      <div style={{textAlign: 'center'}}>
+        <CircularProgress size={80} thickness={5}/>
+      </div>
+    );
 
 
   }
 }
 
 export default reduxForm({
-  form: 'signUp-form'
+  form: 'signUp-form',
+  validate
 })(SignUp);

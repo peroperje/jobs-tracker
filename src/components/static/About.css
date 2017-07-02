@@ -1,6 +1,5 @@
 .fade-appear {
     opacity: 0.01;
-    z-index: 1;
 }
 
 .fade-appear-active {
@@ -14,6 +13,6 @@
 
 .fade-leave-active {
     opacity: 0.01;
-    transition: opacity 600ms ease-in;
+    transition: opacity 300ms ease-in;
 
 }

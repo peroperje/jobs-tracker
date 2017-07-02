@@ -37,9 +37,9 @@ class App extends Component {
             <Route path="/" key={'/'} component={MainDrawer}/>
             <CSSTransitionGroup
               transitionEnterTimeout={600}
-              transitionLeaveTimeout={600}
+              transitionLeaveTimeout={300}
               transitionAppear={true}
-              transitionAppearTimeout={600}
+              transitionAppearTimeout={300}
               transitionName="fade"
             >
               <Switch key={location.key} location={location}>
