@@ -18,8 +18,13 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <h3>A simple application for tracking your activity in a job quest </h3>
-        <Link to="/login"><RaisedButton label="Get Started" secondary={true} /></Link>
+        <h3>A simple application for tracking your activity in a job quest</h3>
+        <Link to="/login">
+          <RaisedButton
+            label="Get Started"
+            secondary={true}
+          />
+        </Link>
       </div>
     );
   }
