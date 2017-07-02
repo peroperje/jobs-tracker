@@ -5,19 +5,31 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import validator from 'validator';
+import PropTypes from 'prop-types';
 
 import InputText from './../form-utils/InputText';
 
+const propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleSubmitSingUp: PropTypes.func.isRequired
+};
+
+/**
+ * @description The form validation
+ * @param {Array} values from fields
+ * @return {Object} error object
+ */
 const validate = values => {
   const error = {};
-  const fieldToValidate = ['firstName','surName','email', 'password'];
+  const fieldToValidate = ['firstName', 'surName', 'email', 'password'];
   fieldToValidate.forEach((key) => {
     if (!values[key]) {
-      error[key] = 'Requried';
+      error[key] = 'Required';
     }
   });
 
-  if (values.email && !validator.isEmail(values.email + '')) {
+  if (values.email && !validator.isEmail(`${values.email}`)) {
     error.email = 'Email is not valid';
   }
 
@@ -108,10 +120,10 @@ class SignUp extends Component {
         <CircularProgress size={80} thickness={5}/>
       </div>
     );
-
-
   }
 }
+
+SignUp.propTypes = propTypes;
 
 export default reduxForm({
   form: 'signUp-form',

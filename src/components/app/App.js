@@ -6,8 +6,6 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {CSSTransitionGroup} from 'react-transition-group';
 
-import '../static/About.css';
-
 // component
 import JobsListContainer from '../jobs/list/JobsListContainer';
 import Home from '../static/Home';
@@ -15,6 +13,7 @@ import About from '../static/About';
 import MainDrawer from '../navigation/MainDrawer';
 import LoginContainer from '../auth/LoginContainer';
 import SignUpContainer from '../auth/SignUpContainer';
+import './App.css';
 
 /**
  * @class App
@@ -36,7 +35,7 @@ class App extends Component {
           <div>
             <Route path="/" key={'/'} component={MainDrawer}/>
             <CSSTransitionGroup
-              transitionEnterTimeout={600}
+              transitionEnterTimeout={300}
               transitionLeaveTimeout={300}
               transitionAppear={true}
               transitionAppearTimeout={300}

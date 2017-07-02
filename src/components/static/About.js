@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import './About.css';
+
 /**
  * @function About
  * @param {Object} props property object
