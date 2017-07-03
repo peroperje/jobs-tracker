@@ -2,7 +2,10 @@ import {user} from '../users.reducer';
 import {
   fetchSignUp,
   fetchSignUpSuccess,
-  fetchSignUpFailure
+  fetchSignUpFailure,
+  fetchLoginRequest,
+  fetchLoginSuccess,
+  fetchLoginFailure
 } from '../users.action';
 
 describe('User Reducer', () => {
@@ -64,77 +67,111 @@ describe('User Reducer', () => {
     isIsFetchingDefined(obj);
     isErrorFetchingDefined(obj);
   };
+  describe('User Reducer', () => {
+    describe('SignUp', () => {
+      describe('Test state when action is FETCH_SIGNUP_REQUEST ', () => {
+        const initState = userState();
+        const action = fetchSignUp({});
+        const state = user(initState, action);
 
-  describe('Test state when action is FETCH_SIGNUP_REQUEST ', () => {
-    const initState = userState();
-    const action = fetchSignUp({});
-    const state = user(initState, action);
+        it('Value of isFetching property should be  true', () => {
+          expect(state.isFetching).toBe(true);
+        });
 
-    it('Value of isFetching property should be  true', () => {
-      expect(state.isFetching).toBe(true);
+        it('Value of errorFetching should be null ', () => {
+          expect(state.errorFetching).toBe(null);
+        });
+        // check structure of state object after tests
+        isDefined(state);
+
+
+      });
+      describe('Test state when action is FETCH_SIGNUP_SUCCESS ', () => {
+
+        const initSate = userState({
+          isFetching: true,
+          errorFetching: 'some error'
+        });
+        const fetchedData = {
+          _id: '123456',
+          firstName: 'petar',
+          surName: 'borovcanin'
+        };
+        const action = fetchSignUpSuccess(fetchedData);
+        const state = user(initSate, action);
+
+        it('State _id should be as payload _id', () => {
+          expect(state._id).toBe(action.payload._id);
+        });
+
+        it('State firstName should be as payload firstName', () => {
+          expect(state.firstName).toBe(action.payload.firstName);
+        });
+
+        it('State surName should be same as payload surName', () => {
+          expect(state.surName).toBe(action.payload.surName);
+        });
+
+        it('State isFetching should be false', () => {
+          expect(state.isFetching).toBe(false);
+        });
+
+        it('State errorFetching should be null', () => {
+          expect(state.errorFetching).toBe(null);
+        });
+
+        isDefined(state);
+      });
+      describe('Test state when action is FETCH_SIGNUP_FAILURE ', () => {
+        const initState = userState({
+          isFetching: true
+        });
+        const errMessage = 'Error message';
+        const action = fetchSignUpFailure(errMessage);
+        const state = user(initState, action);
+        it('isFetching should be false', () => {
+          expect(state.isFetching).toBe(false);
+        });
+
+        it('errorFetching should has error message', () => {
+          expect(state.errorFetching).toBe(errMessage);
+        });
+
+        isDefined(state);
+      });
     });
+    describe('Login', () => {
+      describe('Fetch Login Request', () => {
+        it('Should has is Fetching true', () => {
+          const initState = userState();
+          const action = fetchLoginRequest({})
+          const state = user(initState, action);
+          expect(state.isFetching).toBeTruthy()
+        });
+      });
+      describe('Fetch Login Success', () => {
+        it('Should have user data', () => {
+          const initState = userState();
+          const action = {
+            _id: '4445465',
+            firstName: 'Petar',
+            surName: 'Borovcanin'
+          };
+          const expectedState = userState(action);
+          const state = user(initState, fetchLoginSuccess(action));
+          expect(state).toEqual(expectedState);
+        });
+      });
+      describe('Fetch Login Failure', () => {
+        it('Should have error message', () => {
+          const initState = userState();
+          const action = 'Something is wrong';
+          const expectedState = userState({errorFetching: action});
+          const state = user(initState, fetchLoginFailure(action));
+          expect(state).toEqual(expectedState);
 
-    it('Value of errorFetching should be null ', () => {
-      expect(state.errorFetching).toBe(null);
+        });
+      });
     });
-    // check structure of state object after tests
-    isDefined(state);
-
-
-  });
-
-  describe('Test state when action is FETCH_SIGNUP_SUCCESS ', () => {
-
-    const initSate = userState({
-      isFetching: true,
-      errorFetching: 'some error'
-    });
-    const fetchedData = {
-      _id: '123456',
-      firstName: 'petar',
-      surName: 'borovcanin'
-    };
-    const action = fetchSignUpSuccess(fetchedData);
-    const state = user(initSate, action);
-
-    it('State _id should be as payload _id', () => {
-      expect(state._id).toBe(action.payload._id);
-    });
-
-    it('State firstName should be as payload firstName', () => {
-      expect(state.firstName).toBe(action.payload.firstName);
-    });
-
-    it('State surName should be same as payload surName', () => {
-      expect(state.surName).toBe(action.payload.surName);
-    });
-
-    it('State isFetching should be false', () => {
-      expect(state.isFetching).toBe(false);
-    });
-
-    it('State errorFetching should be null', () => {
-      expect(state.errorFetching).toBe(null);
-    });
-
-    isDefined(state);
-  });
-
-  describe('Test state when action is FETCH_SIGNUP_FAILURE ', () => {
-    const initState = userState({
-      isFetching: true
-    });
-    const errMessage = 'Error message';
-    const action = fetchSignUpFailure(errMessage);
-    const state = user(initState, action);
-    it('isFetching should be false', () => {
-      expect(state.isFetching).toBe(false);
-    });
-
-    it('errorFetching should has error message', () => {
-      expect(state.errorFetching).toBe(errMessage);
-    });
-
-    isDefined(state);
   });
 });
