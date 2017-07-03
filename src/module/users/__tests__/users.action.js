@@ -1,18 +1,16 @@
 import {
   FETCH_SIGNUP_REQUEST,
   FETCH_SIGNUP_SUCCESS,
-  FETCH_SIGNUP_FAILURE,
   FETCH_LOGIN_REQUEST,
   FETCH_LOGIN_SUCCESS,
-  FETCH_LOGIN_FAILURE
+  FETCH_FAILURE
 } from '../users.constant';
 import {
   fetchSignUp,
   fetchSignUpSuccess,
-  fetchSignUpFailure,
   fetchLoginRequest,
   fetchLoginSuccess,
-  fetchLoginFailure
+  fetchFailure
 } from '../users.action';
 
 describe('Users Actions', () => {
@@ -71,23 +69,6 @@ describe('Users Actions', () => {
         expect(action.payload).toEqual(data);
       });
     });
-    describe('Fetch Sign Up Failure', () => {
-
-      const data = 'Some error message';
-      const action = fetchSignUpFailure(data);
-
-      it('Should be same type', () => {
-        expect(action.type).toBe(FETCH_SIGNUP_FAILURE);
-      });
-
-      it('Should has errorFetching property', () => {
-        expect(action.payload.errorFetching).toBeDefined();
-      });
-
-      it('Should be same error message in payload as passed in param', () => {
-        expect(action.payload.errorFetching).toBe(data);
-      });
-    });
   });
 
   describe('Login', () => {
@@ -118,17 +99,18 @@ describe('Users Actions', () => {
         expect(fetchLoginSuccess(data)).toEqual(action);
       });
     });
-    describe('Fetch login failure', () => {
-      it('Should create login failure action', () => {
-        const err = 'Something is wrong';
-        const action = {
-          type: FETCH_LOGIN_FAILURE,
-          payload: {
-            errorFetching: err
-          }
-        };
-        expect(fetchLoginFailure(err)).toEqual(action);
-      });
+
+  });
+  describe('Fetch failure', () => {
+    it('Should create fetch failure action', () => {
+      const err = 'Something is wrong';
+      const action = {
+        type: FETCH_FAILURE,
+        payload: {
+          errorFetching: err
+        }
+      };
+      expect(fetchFailure(err)).toEqual(action);
     });
   });
 });

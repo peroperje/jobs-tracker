@@ -11,9 +11,7 @@ describe('Test users constants', () => {
       expect(uCosnt.FETCH_SIGNUP_SUCCESS).toBeDefined();
     });
 
-    it('Constant FETCH_SIGNUP_FAILURE should be defined', () => {
-      expect(uCosnt.FETCH_SIGNUP_FAILURE).toBeDefined();
-    });
+
   });
   describe('LOGIN CONSTANT', () => {
     it('Constant FETCH_LOGIN_REQUEST should be defined', () => {
@@ -24,8 +22,12 @@ describe('Test users constants', () => {
       expect(uCosnt.FETCH_LOGIN_SUCCESS).toBeDefined();
     });
 
-    it('Constant FETCH_LOGIN_FAILURE should be defined', () => {
-      expect(uCosnt.FETCH_LOGIN_FAILURE).toBeDefined();
+
+
+    describe('Fetch Failure', () => {
+      it('Constant FETCH_FAILURE should be defined', () => {
+        expect(uCosnt.FETCH_FAILURE).toBeDefined();
+      });
     });
 
   });

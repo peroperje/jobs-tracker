@@ -1,7 +1,7 @@
 import {takeLatest, put, call} from 'redux-saga/effects';
 
 import {signup} from './users.service';
-import {fetchSignUpSuccess, fetchSignUpFailure} from './users.action';
+import {fetchSignUpSuccess, fetchFailure} from './users.action';
 import {FETCH_SIGNUP_REQUEST} from './users.constant';
 
 /**
@@ -13,7 +13,7 @@ export function* signUp(action) {
     const userData = yield call(signup, action.payload.data);
     yield put(fetchSignUpSuccess(userData));
   } catch (e) {
-    yield put(fetchSignUpFailure(e.message));
+    yield put(fetchFailure(e.message));
   }
 }
 

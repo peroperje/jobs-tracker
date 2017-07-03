@@ -1,6 +1,6 @@
 import {call, put} from 'redux-saga/effects';
 
-import {fetchSignUpSuccess, fetchSignUpFailure} from '../users.action';
+import {fetchSignUpSuccess, fetchFailure} from '../users.action';
 import {signUp} from '../users.saga';
 import {signup} from '../users.service';
 
@@ -38,7 +38,7 @@ describe('User Saga', () => {
       const gen = signUp({});
       const err = new Error('Cannot read property \'data\' of undefined');
       it('Should put fetch sign up failure action', () => {
-        expect(gen.next().value).toEqual(put(fetchSignUpFailure(err.message)));
+        expect(gen.next().value).toEqual(put(fetchFailure(err.message)));
       });
     });
   });

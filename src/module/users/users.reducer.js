@@ -1,10 +1,9 @@
 import {
   FETCH_SIGNUP_REQUEST,
   FETCH_SIGNUP_SUCCESS,
-  FETCH_SIGNUP_FAILURE,
   FETCH_LOGIN_REQUEST,
   FETCH_LOGIN_SUCCESS,
-  FETCH_LOGIN_FAILURE
+  FETCH_FAILURE
 } from './users.constant';
 
 /**
@@ -35,15 +34,6 @@ function user(state = {}, action) {
           errorFetching: null
         }
       };
-      //Todo merge in FETCH_FAILURE
-    case FETCH_SIGNUP_FAILURE:
-      return {
-        ...state,
-        ...{
-          isFetching: false,
-          errorFetching: payload.errorFetching
-        }
-      };
     case FETCH_LOGIN_REQUEST:
       return {
         ...state,
@@ -63,8 +53,7 @@ function user(state = {}, action) {
           errorFetching: null
         }
       };
-      //Todo : merge in FETCH_FAILURE
-    case FETCH_LOGIN_FAILURE:
+    case FETCH_FAILURE:
       return {
         ...state,
         ...{

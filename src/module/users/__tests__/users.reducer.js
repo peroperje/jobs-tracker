@@ -2,10 +2,9 @@ import {user} from '../users.reducer';
 import {
   fetchSignUp,
   fetchSignUpSuccess,
-  fetchSignUpFailure,
   fetchLoginRequest,
   fetchLoginSuccess,
-  fetchLoginFailure
+  fetchFailure
 } from '../users.action';
 
 describe('User Reducer', () => {
@@ -122,23 +121,7 @@ describe('User Reducer', () => {
 
         isDefined(state);
       });
-      describe('Test state when action is FETCH_SIGNUP_FAILURE ', () => {
-        const initState = userState({
-          isFetching: true
-        });
-        const errMessage = 'Error message';
-        const action = fetchSignUpFailure(errMessage);
-        const state = user(initState, action);
-        it('isFetching should be false', () => {
-          expect(state.isFetching).toBe(false);
-        });
 
-        it('errorFetching should has error message', () => {
-          expect(state.errorFetching).toBe(errMessage);
-        });
-
-        isDefined(state);
-      });
     });
     describe('Login', () => {
       describe('Fetch Login Request', () => {
@@ -162,16 +145,23 @@ describe('User Reducer', () => {
           expect(state).toEqual(expectedState);
         });
       });
-      describe('Fetch Login Failure', () => {
-        it('Should have error message', () => {
-          const initState = userState();
-          const action = 'Something is wrong';
-          const expectedState = userState({errorFetching: action});
-          const state = user(initState, fetchLoginFailure(action));
-          expect(state).toEqual(expectedState);
-
-        });
+    });
+    describe('Test state when action is FETCH_FAILURE ', () => {
+      const initState = userState({
+        isFetching: true
       });
+      const errMessage = 'Error message';
+      const action = fetchFailure(errMessage);
+      const state = user(initState, action);
+      it('isFetching should be false', () => {
+        expect(state.isFetching).toBe(false);
+      });
+
+      it('errorFetching should has error message', () => {
+        expect(state.errorFetching).toBe(errMessage);
+      });
+
+      isDefined(state);
     });
   });
 });
