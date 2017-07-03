@@ -63,7 +63,7 @@ const style = {
  * @extends React.Component
  * @description Render component
  */
-class LogIn extends Component {
+export class LogIn extends Component {
 
   /**
    * @description render
