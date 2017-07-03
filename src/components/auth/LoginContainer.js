@@ -1,14 +1,16 @@
 import {connect} from 'react-redux';
 
+import {fetchLoginRequest} from '../../module/users/users.action';
 import LogIn from './LogIn';
 
+const mapStateToProp = (state) => ({isFetching: state.user.isFetching});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
   handleSubmitLogin: data => {
 
-    console.log('this is login data', data);
+    dispatch(fetchLoginRequest(data));
   }
 });
-export default connect(null, mapDispatchToProps)(LogIn);
+export default connect(mapStateToProp, mapDispatchToProps)(LogIn);
 

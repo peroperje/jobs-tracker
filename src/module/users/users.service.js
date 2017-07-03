@@ -18,7 +18,7 @@ const signup = (data) => request({
  * @return {Promise}
  */
 const login = (data) => request({
-  url: 'login',
+  url: 'users/login',
   method: 'POST',
   data: data
 }).then(res => res.data).catch(e => e);
