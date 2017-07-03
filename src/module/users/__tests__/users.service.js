@@ -21,7 +21,7 @@ describe('Login', () => {
         surName: 'bot',
         password: '46545665'
       };
-      signup(data).then((res)=>{
+      signup(data).then((res) => {
         expect(res).toEqual({
           url: 'users/',
           method: 'POST',
