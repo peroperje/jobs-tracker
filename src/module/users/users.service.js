@@ -12,7 +12,18 @@ const signup = (data) => request({
 }).then(res => res.data)
   .catch(err => err);
 
+/**
+ * @description Makes api call for login user
+ * @param {Object} data user login data
+ * @return {Promise}
+ */
+const login = (data) => request({
+  url: 'login',
+  method: 'POST',
+  data: data
+}).then(res => res.data).catch(e => e);
 
 export {
-  signup
+  signup,
+  login
 };

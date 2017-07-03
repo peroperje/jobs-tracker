@@ -1,12 +1,12 @@
 import {call, put} from 'redux-saga/effects';
 
-import {fetchSignUpSuccess, fetchFailure} from '../users.action';
-import {signUp} from '../users.saga';
-import {signup} from '../users.service';
+import {fetchSignUpSuccess, fetchLoginSuccess, fetchFailure} from '../users.action';
+import {signUp, logIn} from '../users.saga';
+import {signup, login} from '../users.service';
 
 
 describe('User Saga', () => {
-  describe('Test saga signUp worker', () => {
+  describe('SignUp', () => {
     const action = {
       payload: {
         data: {
@@ -39,6 +39,35 @@ describe('User Saga', () => {
       const err = new Error('Cannot read property \'data\' of undefined');
       it('Should put fetch sign up failure action', () => {
         expect(gen.next().value).toEqual(put(fetchFailure(err.message)));
+      });
+    });
+  });
+  describe('Login', () => {
+    describe('Saga login worker success', () => {
+      const action = {
+        payload: {
+          email: 'rope@ptt.yu',
+          password: '45546465'
+        }
+      };
+      const gen = logIn(action);
+      it('Should call login service success', () => {
+        expect(gen.next().value).toEqual(call(login, action.payload));
+      });
+      it('Should dispatch success action', () => {
+        const returnedData = {
+          _id: '45465',
+          firstName: 'petar',
+          surName: 'borovcanin'
+        };
+        expect(gen.next(returnedData).value).toEqual(put(fetchLoginSuccess(returnedData)));
+      });
+    });
+    describe('Saga login worker failure', () => {
+      it('Should dispatch failure action', () => {
+        const gen = logIn();
+        const err = 'Cannot read property \'payload\' of undefined';
+        expect(gen.next().value).toEqual(put(fetchFailure(err)));
       });
     });
   });
