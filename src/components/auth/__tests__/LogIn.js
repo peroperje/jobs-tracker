@@ -1,6 +1,7 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import {shallow,mount} from 'enzyme';
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import {LogIn, validate} from '../LogIn';
 import FormHeader from '../../form-utils/FormHeader';
@@ -38,19 +39,23 @@ describe('Login', () => {
     });
   });
   describe('Input fields', () => {
+
     const fields = ['email', 'password'];
+
     /**
      * @description create Object from array property
      * @param {Function} reducer logic for object creation
      * @return {*}
      */
     const getFieldObject = (reducer) => fields.reduce(reducer, {});
+
     /**
      * @description create expected error object
      * @param {Function} reducer function contians logic for object creation
      * @return {*}
      */
     const getErrorObject = (reducer) => fields.reduce(reducer, {});
+
     describe('Rendering', () => {
       fields.forEach((field) => {
         it(`Should be defined ${field}`, () => {
@@ -58,6 +63,7 @@ describe('Login', () => {
         });
       });
     });
+
     describe('Validation', () => {
       it('Should empty fields fail validation', () => {
         const fields = getFieldObject((o, filed) => ({...o, ...{[filed]: ''}}));
@@ -76,24 +82,32 @@ describe('Login', () => {
       });
     });
   });
+
   describe('Submit button', () => {
+
+    const ButtonElement = wrapper.find(RaisedButton);
+
     describe('Rendering', () => {
-      xit('Should be defined', () => {
-
+      it('Should be defined', () => {
+        expect(ButtonElement.exists()).toBeTruthy();
       });
-      xit('Shoud has text LOGIN', () => {
-
+      it('Shoud has text Login', () => {
+        expect(wrapper.find({label: 'Login'}).exists()).toBeTruthy();
+      });
+      it('Should has property primary', () => {
+        expect(wrapper.find({primary: true}).exists()).toBeTruthy();
+      });
+      it('Should be type submit', () => {
+        expect(wrapper.find({type: 'submit'}).exists()).toBeTruthy();
       });
     });
   });
   describe('Footer', () => {
     describe('Rendering', () => {
-      xit('Should contains create account link ', () => {
-
+      it('Should contains create account link ', () => {
+        expect(wrapper.find({to: 'signup'}).exists()).toBeTruthy();
       });
-      xit('Should contain "are you new" text', () => {
 
-      });
     });
   });
 });
