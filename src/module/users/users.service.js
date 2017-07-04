@@ -1,4 +1,6 @@
 import request from '../../service/request';
+import jwtStorage from '../../store/jwtStorage';
+
 
 /**
  * @description Makes api call for sign up
@@ -9,7 +11,13 @@ const signup = (data) => request({
   url: 'users/',
   method: 'POST',
   data: data
-}).then(res => res.data)
+}).then(res => {
+//todo move this to saga
+  if (typeof res.headers !== 'undefined') {
+    jwtStorage.setJWT(res.headers['x-auth']);
+  }
+  return res.data;
+})
   .catch(err => err);
 
 /**
@@ -21,7 +29,13 @@ const login = (data) => request({
   url: 'users/login',
   method: 'POST',
   data: data
-}).then(res => res.data).catch(e => e);
+}).then(res => {
+  //todo move this to saga
+  if (typeof res.headers !== 'undefined') {
+    jwtStorage.setJWT(res.headers['x-auth']);
+  }
+  return res.data;
+}).catch(e => e);
 
 export {
   signup,

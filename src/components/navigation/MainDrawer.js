@@ -3,6 +3,11 @@ import {Link} from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  isLogged: PropTypes.bool.isRequired
+};
 
 /**
  * @class MainDrawer
@@ -22,11 +27,33 @@ class MainDrawer extends Component {
     this.setState(prevState => ({openDrawer: !prevState.openDrawer}));
   };
 
+  renderLogged = ()=>{
+    return (
+      <Link to="/jobs" style={{textDecoration: 'none'}}>
+        <MenuItem onTouchTap={this.toggleDrawer}>Jobs</MenuItem>
+      </Link>
+    );
+  };
+
+  renderNonLogged = ()=>{
+    return (
+      <div>
+    <Link to="/login" style={{textDecoration: 'none'}}>
+      <MenuItem onTouchTap={this.toggleDrawer}>Login</MenuItem>
+    </Link>
+    <Link to="/signup" style={{textDecoration: 'none'}}>
+      <MenuItem onTouchTap={this.toggleDrawer}>SignUp</MenuItem>
+    </Link>
+      </div>
+    );
+  };
+
   /**
    * @description render
    * @return {Object} JSX HTML Content
    */
   render() {
+    const {isLogged} = this.props;
     return (
       <div>
         <AppBar
@@ -42,22 +69,16 @@ class MainDrawer extends Component {
           <Link to="/" style={{textDecoration: 'none'}}>
             <MenuItem onTouchTap={this.toggleDrawer}>Home</MenuItem>
           </Link>
-          <Link to="/jobs" style={{textDecoration: 'none'}}>
-            <MenuItem onTouchTap={this.toggleDrawer}>Jobs</MenuItem>
-          </Link>
           <Link to="/about" style={{textDecoration: 'none'}}>
             <MenuItem onTouchTap={this.toggleDrawer}>About me</MenuItem>
           </Link>
-          <Link to="/login" style={{textDecoration: 'none'}}>
-            <MenuItem onTouchTap={this.toggleDrawer}>Login</MenuItem>
-          </Link>
-          <Link to="/signup" style={{textDecoration: 'none'}}>
-            <MenuItem onTouchTap={this.toggleDrawer}>SignUp</MenuItem>
-          </Link>
+          {isLogged && this.renderLogged()}
+          {!isLogged && this.renderNonLogged()}
         </Drawer>
       </div>
     );
   }
 }
+MainDrawer.propTypes = propTypes;
 
 export default MainDrawer;

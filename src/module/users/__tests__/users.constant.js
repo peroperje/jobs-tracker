@@ -1,6 +1,6 @@
 import * as uCosnt from '../users.constant';
 
-describe('Test users constants', () => {
+describe('Users constants', () => {
 
   describe('SIGNUP CONST', () => {
     it('Constant FETCH_SIGNUP_REQUEST should be defined', () => {
@@ -14,6 +14,7 @@ describe('Test users constants', () => {
 
   });
   describe('LOGIN CONSTANT', () => {
+
     it('Constant FETCH_LOGIN_REQUEST should be defined', () => {
       expect(uCosnt.FETCH_LOGIN_REQUEST).toBeDefined();
     });
@@ -22,14 +23,24 @@ describe('Test users constants', () => {
       expect(uCosnt.FETCH_LOGIN_SUCCESS).toBeDefined();
     });
 
+  });
+  describe('Fetch Failure', () => {
 
-
-    describe('Fetch Failure', () => {
-      it('Constant FETCH_FAILURE should be defined', () => {
-        expect(uCosnt.FETCH_FAILURE).toBeDefined();
-      });
+    it('Constant FETCH_FAILURE should be defined', () => {
+      expect(uCosnt.FETCH_FAILURE).toBeDefined();
     });
 
+  });
+  describe('Check is logged constants', () => {
+
+    it('Should be defined CHECK_IS_LOGGED_REQUEST', () => {
+      expect(uCosnt.CHECK_IS_LOGGED_REQUEST).toBeDefined();
+    });
+
+    it('Should defined CHECK_IS_LOGGED_SUCCESS', () => {
+      expect(uCosnt.CHECK_IS_LOGGED_SUCCESS).toBeDefined();
+    });
+    
   });
 
 });

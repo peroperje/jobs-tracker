@@ -28,6 +28,20 @@ const FETCH_LOGIN_REQUEST = 'FETCH_LOGIN_REQUEST';
 const FETCH_LOGIN_SUCCESS = 'FETCH_LOGIN_SUCCESS';
 
 /**
+ * @description Const CHECK_IS_LOGGED_REQUEST
+ * @const {string}
+ * @default
+ */
+const CHECK_IS_LOGGED_REQUEST = 'CHECK_IS_LOGGED_REQUEST';
+
+/**
+ * @description CHECK_IS_LOGGED_SUCCESS
+ * @const {string}
+ * @default
+ */
+const CHECK_IS_LOGGED_SUCCESS = 'CHECK_IS_LOGGED_SUCCESS';
+
+/**
  * @description const FETC_LOGIN_FAILURE
  * @const {string}
  * @default
@@ -39,6 +53,8 @@ export {
   FETCH_SIGNUP_SUCCESS,
   FETCH_LOGIN_REQUEST,
   FETCH_LOGIN_SUCCESS,
+  CHECK_IS_LOGGED_REQUEST,
+  CHECK_IS_LOGGED_SUCCESS,
   FETCH_FAILURE
 };
 

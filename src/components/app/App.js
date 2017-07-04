@@ -1,10 +1,7 @@
-/**
- * @namespace App
- */
-
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {CSSTransitionGroup} from 'react-transition-group';
+import PropTypes from 'prop-types';
 
 // component
 import AuthRoute from '../../HoCs/AuthRoute';
@@ -16,6 +13,12 @@ import LoginContainer from '../auth/LoginContainer';
 import SignUpContainer from '../auth/SignUpContainer';
 import './App.css';
 
+const propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  shouldCheckIsLogged: PropTypes.bool.isRequired,
+  checkIsLogged: PropTypes.func.isRequired
+};
+
 /**
  * @class App
  * @memberOf App
@@ -25,17 +28,26 @@ import './App.css';
 class App extends Component {
 
   /**
+   * @description componentDidMount call to check is user logged
+   */
+  componentDidMount() {
+    if (this.props.shouldCheckIsLogged) {
+      this.props.checkIsLogged();
+    }
+  };
+
+  /**
    * @description render
    * @memberOf App
    * @return {Object} JSX HTML Content
    */
   render() {
-    const isLogged = false;
+    const {isLogged} = this.props;
     return (
       <Router>
         <Route render={({location}) => (
           <div>
-            <Route path="/" key={'/'} component={MainDrawer}/>
+            <Route path="/" key={'/'} render={props => (<MainDrawer isLogged={isLogged} {...props} />)}/>
             <CSSTransitionGroup
               transitionEnterTimeout={300}
               transitionLeaveTimeout={300}
@@ -73,5 +85,7 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = propTypes;
 
 export default App;

@@ -10,7 +10,7 @@ import initialStore from './store/initialStore';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import App from './components/app/App';
+import AppContainer from './components/app/AppContainer';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -30,7 +30,7 @@ injectTapEventPlugin();
 const AppThemeProvider = () => (
   <Provider store={store}>
     <MuiThemeProvider>
-      <App muiTheme={getMuiTheme(darkBaseTheme)}/>
+      <AppContainer muiTheme={getMuiTheme(darkBaseTheme)}/>
     </MuiThemeProvider>
   </Provider>
 );
