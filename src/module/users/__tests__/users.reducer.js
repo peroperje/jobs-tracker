@@ -4,6 +4,8 @@ import {
   fetchSignUpSuccess,
   fetchLoginRequest,
   fetchLoginSuccess,
+  checkIsLoggedRequest,
+  checkIsLoggedSuccess,
   fetchFailure
 } from '../users.action';
 
@@ -125,14 +127,17 @@ describe('User Reducer', () => {
     });
     describe('Login', () => {
       describe('Fetch Login Request', () => {
+
         it('Should has is Fetching true', () => {
           const initState = userState();
-          const action = fetchLoginRequest({})
+          const action = fetchLoginRequest({});
           const state = user(initState, action);
-          expect(state.isFetching).toBeTruthy()
+          expect(state.isFetching).toBeTruthy();
         });
+
       });
       describe('Fetch Login Success', () => {
+
         it('Should have user data', () => {
           const initState = userState();
           const action = {
@@ -144,15 +149,59 @@ describe('User Reducer', () => {
           const state = user(initState, fetchLoginSuccess(action));
           expect(state).toEqual(expectedState);
         });
+
       });
     });
+    describe('Check is logged', () => {
+
+      describe('Request', () => {
+
+        const initState = userState({
+          _id: 'hkjsahkdsa',
+          firstName: 'jldalda',
+          surName: 'jhashdkjhkas'
+        });
+        const action = checkIsLoggedRequest();
+        const state = user(initState, action);
+        const expectedState = userState({
+          isFetching: true
+        });
+
+        it('Check is logged request', () => {
+          expect(state).toEqual(expectedState);
+        });
+        isDefined(state);
+      });
+      describe('Success', () => {
+
+        const initState = userState();
+        const userData = {
+          _id: '5454',
+          firstName: 'jhdsakdask',
+          surName: 'jdhaskjah'
+        };
+        const action = checkIsLoggedSuccess(userData);
+        const state = user(initState, action);
+        const expectedData = userState(userData);
+
+        it('Check is logged success', () => {
+          expect(state).toEqual(expectedData);
+        });
+
+        isDefined(state);
+
+      });
+    });
+
     describe('Test state when action is FETCH_FAILURE ', () => {
+
       const initState = userState({
         isFetching: true
       });
       const errMessage = 'Error message';
       const action = fetchFailure(errMessage);
       const state = user(initState, action);
+
       it('isFetching should be false', () => {
         expect(state.isFetching).toBe(false);
       });
@@ -162,6 +211,7 @@ describe('User Reducer', () => {
       });
 
       isDefined(state);
+
     });
   });
 });
