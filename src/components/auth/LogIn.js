@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 
 // component
 import InputText from './../form-utils/InputText';
+import FormHeader from './../form-utils/FormHeader';
 
 const propTypes = {
   isFetching: PropTypes.bool.isRequired,
@@ -22,12 +23,12 @@ const propTypes = {
 };
 
 // Todo refactoring validation
-const validate = values => {
+export const validate = values => {
   const error = {};
   const fieldToValidate = ['email', 'password'];
   fieldToValidate.forEach((key) => {
     if (!values[key]) {
-      error[key] = 'Requried';
+      error[key] = 'Required';
     }
   });
 
@@ -75,7 +76,7 @@ export class LogIn extends Component {
     if (!isFetching) {
       return (
         <Paper style={style.paper} zDepth={5}>
-          <h2>Login</h2>
+          <FormHeader title="Login"/>
           <form onSubmit={handleSubmit(this.props.handleSubmitLogin)}>
             <div>
               <Field
