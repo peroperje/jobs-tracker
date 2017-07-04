@@ -11,14 +11,9 @@ const signup = (data) => request({
   url: 'users/',
   method: 'POST',
   data: data
-}).then(res => {
-//todo move this to saga
-  if (typeof res.headers !== 'undefined') {
-    jwtStorage.setJWT(res.headers['x-auth']);
-  }
-  return res.data;
 })
-  .catch(err => Promise.reject(err));
+  .then(response => ({response}))
+  .catch(error => ({error}));
 
 /**
  * @description Makes api call for login user
@@ -30,8 +25,8 @@ const login = (data) => request({
   method: 'POST',
   data: data
 })
-  .then(res => res)
-  .catch(e => Promise.reject(e));
+  .then(response => ({response}))
+  .catch(error => ({error}));
 
 /**
  * @description Makes api call for me (check is use logged)
@@ -41,8 +36,8 @@ const me = () => request({
   url: 'users/me',
   method: 'POST'
 })
-  .then(res => res)
-  .catch(e => Promise.reject(e));
+  .then(response => ({response}))
+  .catch(error => {error});
 
 export {
   signup,

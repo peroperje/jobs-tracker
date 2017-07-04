@@ -26,7 +26,7 @@ export function* signUp(action) {
   } catch (e) {
     const errorMesssage = e.data || 'Server error';
     yield put(fetchFailure(errorMesssage));
-    yield call(delay,4000);
+    yield call(delay, 4000);
     yield put(cleanFetchError());
   }
 }
@@ -36,15 +36,26 @@ export function* signUp(action) {
  * @param {Object} action FETCH_LOGIN_REQUEST action
  */
 export function* logIn(action) {
-  try {
-    const res = yield call(login, action.payload);
-    yield put(fetchLoginSuccess(res.data));
-  } catch (e) {
-    const errorMesssage = e.data || 'Server error';
+  const {response, error} = yield call(login, action.payload);
+  console.log('response',response);
+  if (response) {
+    console.log('response',response);
+    yield put(fetchLoginSuccess(response.data));
+  } else {
+    const errorMesssage = typeof error.data !== 'undefined'?error.data : 'Server error';
     yield put(fetchFailure(errorMesssage));
-    yield call(delay,4000);
+    yield call(delay, 4000);
     yield put(cleanFetchError());
   }
+  /*try {
+   const res = yield call(login, action.payload);
+   yield put(fetchLoginSuccess(res.data));
+   } catch (e) {
+   const errorMesssage = e.data || 'Server error';
+   yield put(fetchFailure(errorMesssage));
+   yield call(delay,4000);
+   yield put(cleanFetchError());
+   }*/
 }
 
 /**
@@ -57,7 +68,7 @@ export function* isLogged() {
   } catch (e) {
 
     yield put(fetchFailure('Server Error'));
-    yield call(delay,4000);
+    yield call(delay, 4000);
     yield put(cleanFetchError());
   }
 }
