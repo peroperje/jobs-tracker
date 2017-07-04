@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {CSSTransitionGroup} from 'react-transition-group';
 
 // component
+import AuthRoute from '../../HoCs/AuthRoute';
 import JobsListContainer from '../jobs/list/JobsListContainer';
 import Home from '../static/Home';
 import About from '../static/About';
@@ -29,6 +30,7 @@ class App extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
+    const isLogged = false;
     return (
       <Router>
         <Route render={({location}) => (
@@ -43,10 +45,25 @@ class App extends Component {
             >
               <Switch key={location.key} location={location}>
                 <Route exact path="/" component={Home}/>
-                <Route path="/jobs" component={JobsListContainer}/>
+                <AuthRoute
+                  shouldRedirect={!isLogged}
+                  redirectTo="/login"
+                  path="/jobs"
+                  component={JobsListContainer}
+                />
                 <Route path="/about" component={About}/>
-                <Route path="/login" component={LoginContainer}/>
-                <Route path="/signup" component={SignUpContainer}/>
+                <AuthRoute
+                  shouldRedirect={isLogged}
+                  redirectTo="/jobs"
+                  path="/login"
+                  component={LoginContainer}
+                />
+                <AuthRoute
+                  shouldRedirect={isLogged}
+                  redirectTo="/jobs"
+                  path="/signup"
+                  component={SignUpContainer}
+                />
               </Switch>
             </CSSTransitionGroup>
           </div>

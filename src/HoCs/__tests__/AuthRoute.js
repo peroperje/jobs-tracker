@@ -12,7 +12,7 @@ describe('AuthRoute', () => {
         <BrowserRouter>
           <AuthRoute
             component={About}
-            access={true}
+            shouldRedirect={false}
             redirectTo="/signup"
           />
         </BrowserRouter>
@@ -24,7 +24,7 @@ describe('AuthRoute', () => {
         <BrowserRouter>
           <AuthRoute
             component={About}
-            access={false}
+            shouldRedirect={true}
             redirectTo="/signup"
           />
         </BrowserRouter>

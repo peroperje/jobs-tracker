@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   component: PropTypes.func.isRequired,
-  access: PropTypes.bool.isRequired,
+  shouldRedirect: PropTypes.bool.isRequired,
   redirectTo: PropTypes.string.isRequired
 };
 
@@ -14,12 +14,12 @@ const propTypes = {
  * @return {XML}
  * @constructor
  */
-function Auth({component: Component, access, redirectTo, ...rest}) {
+function Auth({component: Component, shouldRedirect, redirectTo, ...rest}) {
   return (
     <Route
       {...rest}
       render={(props) => {
-        if (access === true) {
+        if (shouldRedirect !== true) {
           return (<Component {...props} />);
         }
         return (<Redirect to={{pathname: redirectTo, state: {from: props.location}}}/>);
