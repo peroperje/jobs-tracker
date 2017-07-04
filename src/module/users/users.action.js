@@ -3,6 +3,8 @@ import {
   FETCH_SIGNUP_SUCCESS,
   FETCH_LOGIN_REQUEST,
   FETCH_LOGIN_SUCCESS,
+  CHECK_IS_LOGGED_REQUEST,
+  CHECK_IS_LOGGED_SUCCESS,
   FETCH_FAILURE
 } from './users.constant';
 
@@ -59,6 +61,24 @@ const fetchLoginSuccess = (data) => ({
 });
 
 /**
+ * @description create action for check is logged request
+ * @return {Object} action
+ */
+const checkIsLoggedRequest = () => ({
+  type: CHECK_IS_LOGGED_REQUEST
+});
+
+/**
+ * @description create action for check is logged success
+ * @param {Object} data user data
+ * @return {Object} action
+ */
+const checkIsLoggedSuccess = (data) => ({
+  type: CHECK_IS_LOGGED_SUCCESS,
+  payload: data
+});
+
+/**
  * @description action creator fetch  failure
  * @param {String} err error message
  * @return {Object} action
@@ -75,5 +95,7 @@ export {
   fetchSignUpSuccess,
   fetchLoginRequest,
   fetchLoginSuccess,
+  checkIsLoggedRequest,
+  checkIsLoggedSuccess,
   fetchFailure
 };

@@ -40,7 +40,7 @@ describe('Users constants', () => {
     it('Should defined CHECK_IS_LOGGED_SUCCESS', () => {
       expect(uCosnt.CHECK_IS_LOGGED_SUCCESS).toBeDefined();
     });
-    
+
   });
 
 });

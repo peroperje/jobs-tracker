@@ -3,6 +3,8 @@ import {
   FETCH_SIGNUP_SUCCESS,
   FETCH_LOGIN_REQUEST,
   FETCH_LOGIN_SUCCESS,
+  CHECK_IS_LOGGED_REQUEST,
+  CHECK_IS_LOGGED_SUCCESS,
   FETCH_FAILURE
 } from '../users.constant';
 import {
@@ -10,6 +12,8 @@ import {
   fetchSignUpSuccess,
   fetchLoginRequest,
   fetchLoginSuccess,
+  checkIsLoggedRequest,
+  checkIsLoggedSuccess,
   fetchFailure
 } from '../users.action';
 
@@ -100,6 +104,25 @@ describe('Users Actions', () => {
       });
     });
 
+  });
+  describe('Check is logged', () => {
+
+    it('Should create check is logged request action', () => {
+      expect(checkIsLoggedRequest()).toEqual({type: CHECK_IS_LOGGED_REQUEST});
+    });
+
+    it('Should create check is logged success action', () => {
+      const userData = {
+        _id: '445465',
+        firstName: 'hfsdfsd',
+        surName: 'hjsahdkssa',
+        email: 'kasddkhaskj'
+      };
+      expect(checkIsLoggedSuccess(userData)).toEqual({
+        type:CHECK_IS_LOGGED_SUCCESS,
+        payload:userData
+      })
+    });
   });
   describe('Fetch failure', () => {
     it('Should create fetch failure action', () => {
