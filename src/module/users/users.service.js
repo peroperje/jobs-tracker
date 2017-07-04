@@ -1,6 +1,4 @@
 import request from '../../service/request';
-import jwtStorage from '../../store/jwtStorage';
-
 
 /**
  * @description Makes api call for sign up
@@ -37,7 +35,7 @@ const me = () => request({
   method: 'POST'
 })
   .then(response => ({response}))
-  .catch(error => {error});
+  .catch(error => ({error}));
 
 export {
   signup,

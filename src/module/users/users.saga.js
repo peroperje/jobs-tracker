@@ -15,16 +15,19 @@ import {
   CHECK_IS_LOGGED_REQUEST
 } from './users.constant';
 
+import jwtStorage from '../../store/jwtStorage';
+
 /**
  * @description worker for Signup action
  * @param {Object} action Action object
  */
 export function* signUp(action) {
-  try {
-    const res = yield call(signup, action.payload.data);
-    yield put(fetchSignUpSuccess(res.data));
-  } catch (e) {
-    const errorMesssage = e.data || 'Server error';
+  const {response, error} = yield call(signup, action.payload.data);
+  if (response) {
+    jwtStorage.setJWT(response.headers['x-auth']);
+    yield put(fetchSignUpSuccess(response.data));
+  } else {
+    const errorMesssage = error.data || 'Server error';
     yield put(fetchFailure(errorMesssage));
     yield call(delay, 4000);
     yield put(cleanFetchError());
@@ -36,40 +39,36 @@ export function* signUp(action) {
  * @param {Object} action FETCH_LOGIN_REQUEST action
  */
 export function* logIn(action) {
+
   const {response, error} = yield call(login, action.payload);
-  console.log('response',response);
   if (response) {
-    console.log('response',response);
+    jwtStorage.setJWT(response.headers['x-auth']);
     yield put(fetchLoginSuccess(response.data));
   } else {
-    const errorMesssage = typeof error.data !== 'undefined'?error.data : 'Server error';
+    const errorMesssage = typeof error.data !== 'undefined' ? error.data : 'Server error';
     yield put(fetchFailure(errorMesssage));
     yield call(delay, 4000);
     yield put(cleanFetchError());
   }
-  /*try {
-   const res = yield call(login, action.payload);
-   yield put(fetchLoginSuccess(res.data));
-   } catch (e) {
-   const errorMesssage = e.data || 'Server error';
-   yield put(fetchFailure(errorMesssage));
-   yield call(delay,4000);
-   yield put(cleanFetchError());
-   }*/
 }
 
 /**
  * @description saga worker for me() request
  */
 export function* isLogged() {
-  try {
-    const res = yield call(me);
-    yield put(checkIsLoggedSuccess(res.data));
-  } catch (e) {
+  const {response, error} = yield call(me);
+  if (response) {
 
-    yield put(fetchFailure('Server Error'));
+    jwtStorage.setJWT(response.headers['x-auth']);
+    yield put(checkIsLoggedSuccess(response.data));
+
+  } else {
+
+    const errorMesssage = typeof error.data !== 'undefined' ? error.data : 'Server error';
+    yield put(fetchFailure(errorMesssage));
     yield call(delay, 4000);
     yield put(cleanFetchError());
+
   }
 }
 
