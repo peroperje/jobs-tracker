@@ -1,5 +1,12 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {Route, Redirect} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  component: PropTypes.func.isRequired,
+  access: PropTypes.bool.isRequired,
+  redirectTo: PropTypes.string.isRequired
+};
 
 /**
  * @function Auth
@@ -12,15 +19,16 @@ function Auth({component: Component, access, redirectTo, ...rest}) {
     <Route
       {...rest}
       render={(props) => {
-        if(access === true){
-        <Component {...props} />
-      } else {
-        <Redirect to={{pathname: redirectTo, state: {from: props.location}}}/>
+        if (access === true) {
+          return (<Component {...props} />);
         }
-      }
+        return (<Redirect to={{pathname: redirectTo, state: {from: props.location}}}/>);
+        
+      }}
     />
 
   );
 }
+ Auth.propTypes = propTypes;
 
 export default Auth;
