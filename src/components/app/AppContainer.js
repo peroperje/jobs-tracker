@@ -3,6 +3,7 @@ import jwtStorage from '../../store/jwtStorage';
 
 //component
 import App from './App';
+import {me} from '../../module/users/users.service';
 
 const mapStateToProps = (state) => {
   let isLogged = false;
@@ -20,6 +21,9 @@ const mapDispatchToProps = () => ({
   checkIsLogged: () => {
     //TODO dispatch action
     console.log('poziva da vidi da li je logovan');
+    me()
+      .then(res=>console.log('res me',res))
+      .catch(e=>console.log('error me ',e))
   }
 });
 

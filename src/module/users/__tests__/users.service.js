@@ -1,5 +1,5 @@
 jest.mock('../../../service/request');
-import {login, signup} from '../users.service';
+import {login, signup, me} from '../users.service';
 
 describe('Login', () => {
   it('Should call request success', (done) => {
@@ -30,5 +30,18 @@ describe('Login', () => {
       });
 
     });
+  });
+  describe('Me', () => {
+    it('Should call me route', (done) => {
+      me()
+        .then((res) => {
+          expect(res).toEqual({
+            url: 'users/me',
+            method: 'POST'
+          });
+          done();
+        }).catch();
+    });
+
   });
 });

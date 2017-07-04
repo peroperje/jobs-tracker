@@ -37,7 +37,15 @@ const login = (data) => request({
   return res.data;
 }).catch(e => e);
 
+const me = () => request({
+  url: 'users/me',
+  method: 'POST'
+})
+  .then(res => res.data)
+  .catch(e => e);
+
 export {
   signup,
-  login
+  login,
+  me
 };

@@ -1,3 +1,4 @@
+jest.mock('../../../store/jwtStorage');
 import {call, put} from 'redux-saga/effects';
 
 import {fetchSignUpSuccess, fetchLoginSuccess, fetchFailure} from '../users.action';
