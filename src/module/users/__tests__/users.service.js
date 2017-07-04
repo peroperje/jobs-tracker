@@ -5,7 +5,7 @@ describe('Login', () => {
   it('Should call request success', (done) => {
     const data = {email: 'rope@ptt.yu', password: '4546'};
     login(data).then((res) => {
-      expect(res).toEqual({
+      expect(res.data).toEqual({
         url: 'users/login',
         method: 'POST',
         data: data
@@ -35,12 +35,12 @@ describe('Login', () => {
     it('Should call me route', (done) => {
       me()
         .then((res) => {
-          expect(res).toEqual({
+          expect(res.data).toEqual({
             url: 'users/me',
             method: 'POST'
           });
           done();
-        }).catch();
+        });
     });
 
   });

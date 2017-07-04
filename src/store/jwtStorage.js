@@ -24,7 +24,7 @@ const setJWT = (value) => localStorage.setItem(JWT, value);
  */
 const exists = () => {
   const item = getJWT(JWT);
-  return item.length > 0;
+  return item !== null;
 };
 
 export default {

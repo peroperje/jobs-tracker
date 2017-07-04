@@ -5,7 +5,8 @@ import {
   FETCH_LOGIN_SUCCESS,
   CHECK_IS_LOGGED_REQUEST,
   CHECK_IS_LOGGED_SUCCESS,
-  FETCH_FAILURE
+  FETCH_FAILURE,
+  CLEAR_FETCH_FAILURE_ERROR
 } from '../users.constant';
 import {
   fetchSignUp,
@@ -14,7 +15,8 @@ import {
   fetchLoginSuccess,
   checkIsLoggedRequest,
   checkIsLoggedSuccess,
-  fetchFailure
+  fetchFailure,
+  cleanFetchError
 } from '../users.action';
 
 describe('Users Actions', () => {
@@ -119,9 +121,9 @@ describe('Users Actions', () => {
         email: 'kasddkhaskj'
       };
       expect(checkIsLoggedSuccess(userData)).toEqual({
-        type:CHECK_IS_LOGGED_SUCCESS,
-        payload:userData
-      })
+        type: CHECK_IS_LOGGED_SUCCESS,
+        payload: userData
+      });
     });
   });
   describe('Fetch failure', () => {
@@ -134,6 +136,10 @@ describe('Users Actions', () => {
         }
       };
       expect(fetchFailure(err)).toEqual(action);
+    });
+    it('Should create action for clean fetch error', () => {
+      const action = cleanFetchError();
+      expect(action).toEqual({type: CLEAR_FETCH_FAILURE_ERROR});
     });
   });
 });

@@ -5,7 +5,8 @@ import {
   FETCH_LOGIN_SUCCESS,
   CHECK_IS_LOGGED_REQUEST,
   CHECK_IS_LOGGED_SUCCESS,
-  FETCH_FAILURE
+  FETCH_FAILURE,
+  CLEAR_FETCH_FAILURE_ERROR
 } from './users.constant';
 
 /**
@@ -90,6 +91,10 @@ const fetchFailure = (err) => ({
   }
 });
 
+const cleanFetchError = ()=>({
+  type:CLEAR_FETCH_FAILURE_ERROR
+});
+
 export {
   fetchSignUp,
   fetchSignUpSuccess,
@@ -97,5 +102,6 @@ export {
   fetchLoginSuccess,
   checkIsLoggedRequest,
   checkIsLoggedSuccess,
-  fetchFailure
+  fetchFailure,
+  cleanFetchError
 };

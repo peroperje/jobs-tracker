@@ -6,7 +6,8 @@ import {
   fetchLoginSuccess,
   checkIsLoggedRequest,
   checkIsLoggedSuccess,
-  fetchFailure
+  fetchFailure,
+  cleanFetchError
 } from '../users.action';
 
 describe('User Reducer', () => {
@@ -213,5 +214,16 @@ describe('User Reducer', () => {
       isDefined(state);
 
     });
+
+    describe('Clean Fetch Error', () => {
+      it('Should clean error fetching message', () => {
+        const initState = userState({errorFetching: 'Some error'});
+        const action = cleanFetchError();
+        const state = user(initState,action);
+        const expextedState = {...initState, ...{errorFetching: null}};
+        expect(state).toEqual(expextedState);
+      });
+    });
+
   });
 });

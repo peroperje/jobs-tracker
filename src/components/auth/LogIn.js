@@ -46,7 +46,7 @@ export const validate = values => {
 const style = {
   paper: {
     width: 500,
-    height: 400,
+    height: 450,
     position: 'absolute',
     left: 0,
     right: 0,

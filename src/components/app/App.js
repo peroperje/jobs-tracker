@@ -11,12 +11,15 @@ import About from '../static/About';
 import MainDrawer from '../navigation/MainDrawer';
 import LoginContainer from '../auth/LoginContainer';
 import SignUpContainer from '../auth/SignUpContainer';
+import Snackbar from 'material-ui/Snackbar';
+
 import './App.css';
 
 const propTypes = {
   isLogged: PropTypes.bool.isRequired,
   shouldCheckIsLogged: PropTypes.bool.isRequired,
-  checkIsLogged: PropTypes.func.isRequired
+  checkIsLogged: PropTypes.func.isRequired,
+  errorMessage: PropTypes.oneOfType([PropTypes.number,PropTypes.bool])
 };
 
 /**
@@ -42,7 +45,7 @@ class App extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
-    const {isLogged} = this.props;
+    const {isLogged,errorMessage} = this.props;
     return (
       <Router>
         <Route render={({location}) => (
@@ -78,6 +81,10 @@ class App extends Component {
                 />
               </Switch>
             </CSSTransitionGroup>
+            <Snackbar
+              open={!!errorMessage}
+              message={errorMessage}
+            />
           </div>
         )}
         />

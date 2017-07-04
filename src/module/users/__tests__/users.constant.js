@@ -41,6 +41,10 @@ describe('Users constants', () => {
       expect(uCosnt.CHECK_IS_LOGGED_SUCCESS).toBeDefined();
     });
 
+    it('Should be defined CLEAR_FETCH_FAILURE_ERROR', () => {
+      expect(uCosnt.CLEAR_FETCH_FAILURE_ERROR).toBeDefined();
+    });
+
   });
 
 });

@@ -5,7 +5,8 @@ import {
   FETCH_LOGIN_SUCCESS,
   CHECK_IS_LOGGED_REQUEST,
   CHECK_IS_LOGGED_SUCCESS,
-  FETCH_FAILURE
+  FETCH_FAILURE,
+  CLEAR_FETCH_FAILURE_ERROR
 } from './users.constant';
 
 /**
@@ -75,6 +76,8 @@ function user(state = {}, action) {
           errorFetching: payload.errorFetching
         }
       };
+    case CLEAR_FETCH_FAILURE_ERROR:
+      return {...state, ...{errorFetching: null}}
     default:
       return state;
   }

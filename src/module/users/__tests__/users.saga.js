@@ -25,19 +25,21 @@ describe('User Saga', () => {
       });
 
       it('Should put Fetch SignUp action', () => {
-        const returnedData = {
-          _id: '45465',
-          firstName: 'petar',
-          surName: 'borovcanin'
+        const res = {
+          data: {
+            _id: '45465',
+            firstName: 'petar',
+            surName: 'borovcanin'
+          }
         };
-        const action = fetchSignUpSuccess(returnedData);
-        expect(gen.next(returnedData).value).toEqual(put(action));
+        const action = fetchSignUpSuccess(res.data);
+        expect(gen.next(res).value).toEqual(put(action));
       });
     });
 
     describe('Saga signUp worker failure', () => {
       const gen = signUp({});
-      const err = new Error('Cannot read property \'data\' of undefined');
+      const err = new Error('Server error');
       it('Should put fetch sign up failure action', () => {
         expect(gen.next().value).toEqual(put(fetchFailure(err.message)));
       });
@@ -56,18 +58,20 @@ describe('User Saga', () => {
         expect(gen.next().value).toEqual(call(login, action.payload));
       });
       it('Should dispatch success action', () => {
-        const returnedData = {
-          _id: '45465',
-          firstName: 'petar',
-          surName: 'borovcanin'
+        const res = {
+          data: {
+            _id: '45465',
+            firstName: 'petar',
+            surName: 'borovcanin'
+          }
         };
-        expect(gen.next(returnedData).value).toEqual(put(fetchLoginSuccess(returnedData)));
+        expect(gen.next(res).value).toEqual(put(fetchLoginSuccess(res.data)));
       });
     });
     describe('Saga login worker failure', () => {
       it('Should dispatch failure action', () => {
         const gen = logIn();
-        const err = 'Cannot read property \'payload\' of undefined';
+        const err = 'Server error';
         expect(gen.next().value).toEqual(put(fetchFailure(err)));
       });
     });
