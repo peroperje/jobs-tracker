@@ -20,7 +20,7 @@ const setJWT = (value) => localStorage.setItem(JWT, value);
 /**
  * @description remove jwt from localStorage
  */
-const removeJWT = ()=>{
+const removeJWT = () => {
   localStorage.removeItem(JWT);
 };
 
@@ -37,5 +37,6 @@ const exists = () => {
 export default {
   getJWT,
   setJWT,
+  removeJWT,
   exists
 };

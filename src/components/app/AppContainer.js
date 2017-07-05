@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import jwtStorage from '../../store/jwtStorage';
 
 //component
-import {checkIsLoggedRequest} from '../../module/users/users.action';
+import {checkIsLoggedRequest,logOut} from '../../module/users/users.action';
 import App from './App';
 
 
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(checkIsLoggedRequest());
   },
   logOut: () => {
-console.log('logout dispatch action');
+    dispatch(logOut());
   }
 });
 

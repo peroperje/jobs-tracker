@@ -230,13 +230,13 @@ describe('User Reducer', () => {
       it('Should reset user data', () => {
 
         const initState = userState({
-          _id:'54545',
-          firstName:'4jlkdasjlsa',
-          surName:'hdjshdsasa'
+          _id: '54545',
+          firstName: '4jlkdasjlsa',
+          surName: 'hdjshdsasa'
         });
         const action = logOut();
         const state = user(initState, action);
-        const expectedState =  userState();
+        const expectedState = userState();
         expect(state).toEqual(expectedState);
       });
     });

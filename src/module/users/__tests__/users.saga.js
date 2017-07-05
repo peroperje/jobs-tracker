@@ -1,4 +1,5 @@
 jest.mock('../../../store/jwtStorage');
+import jwtStorage from '../../../store/jwtStorage';
 import {delay} from 'redux-saga';
 import {call, put} from 'redux-saga/effects';
 
@@ -9,7 +10,7 @@ import {
   fetchFailure,
   cleanFetchError
 } from '../users.action';
-import {signUp, logIn, isLogged} from '../users.saga';
+import {signUp, logIn, isLogged,logout} from '../users.saga';
 import {signup, login, me} from '../users.service';
 
 
@@ -150,5 +151,14 @@ describe('User Saga', () => {
       });
 
     });
+  });
+
+  describe('Logout', () => {
+    it('Should clear jwt token form localstorage', () => {
+const gen =logout();
+expect(gen.next().value).toEqual(call([jwtStorage,'removeJWT']));
+
+    });
+
   });
 });
