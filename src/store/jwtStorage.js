@@ -18,6 +18,13 @@ const getJWT = () => localStorage.getItem(JWT);
 const setJWT = (value) => localStorage.setItem(JWT, value);
 
 /**
+ * @description remove jwt from localStorage
+ */
+const removeJWT = ()=>{
+  localStorage.removeItem(JWT);
+};
+
+/**
  * @description Check is jwt token exist in localStorage
  * @param {String} itemName item name
  * @return {Boolean}
