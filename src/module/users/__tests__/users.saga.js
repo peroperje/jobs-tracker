@@ -80,7 +80,7 @@ describe('User Saga', () => {
   });
 
   describe('Login', () => {
-  
+
     const action = {
       payload: {
         email: 'rope@ptt.yu',

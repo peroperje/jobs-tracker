@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-dev":  "concurrently --kill-others \"node server/server.js\" \"yarn run start\"",
+    "serve":  "concurrently --kill-others \"node server/server.js\" \"yarn run start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "doc": "jsdoc src/ -r -t node_modules/minami ",
