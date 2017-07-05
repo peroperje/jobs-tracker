@@ -45,6 +45,10 @@ describe('Users constants', () => {
       expect(uCosnt.CLEAR_FETCH_FAILURE_ERROR).toBeDefined();
     });
 
+    it('Should has defined LOGOUT', () => {
+      expect(uCosnt.LOGOUT).toBeDefined();
+    });
+
   });
 
 });
