@@ -28,6 +28,7 @@
     "validator": "^7.2.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.0",
     "enzyme": "^2.9.1",
     "jest-enzyme": "^3.4.0",
     "jsdoc": "^3.4.3",
@@ -39,6 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-dev":  "concurrently --kill-others \"node server/server.js\" \"yarn run start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "doc": "jsdoc src/ -r -t node_modules/minami ",
