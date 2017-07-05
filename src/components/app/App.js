@@ -19,12 +19,11 @@ const propTypes = {
   isLogged: PropTypes.bool.isRequired,
   shouldCheckIsLogged: PropTypes.bool.isRequired,
   checkIsLogged: PropTypes.func.isRequired,
-  errorMessage: PropTypes.oneOfType([PropTypes.number,PropTypes.bool])
+  errorMessage: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 /**
  * @class App
- * @memberOf App
  * @extends React.Component
  * @description Render FilterLinks
  */
@@ -37,7 +36,7 @@ class App extends Component {
     if (this.props.shouldCheckIsLogged) {
       this.props.checkIsLogged();
     }
-  };
+  }
 
   /**
    * @description render
@@ -45,12 +44,21 @@ class App extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
-    const {isLogged,errorMessage} = this.props;
+    const {isLogged, errorMessage,logOut} = this.props;
     return (
       <Router>
         <Route render={({location}) => (
           <div>
-            <Route path="/" key={'/'} render={props => (<MainDrawer isLogged={isLogged} {...props} />)}/>
+            <Route
+              path="/"
+              render={props => (
+                <MainDrawer
+                  handleLogout={logOut}
+                  isLogged={isLogged}
+                  {...props}
+                />
+              )}
+            />
             <CSSTransitionGroup
               transitionEnterTimeout={300}
               transitionLeaveTimeout={300}

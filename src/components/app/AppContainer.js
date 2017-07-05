@@ -25,6 +25,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   checkIsLogged: () => {
     dispatch(checkIsLoggedRequest());
+  },
+  logOut: () => {
+console.log('logout dispatch action');
   }
 });
 

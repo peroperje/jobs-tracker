@@ -27,23 +27,34 @@ class MainDrawer extends Component {
     this.setState(prevState => ({openDrawer: !prevState.openDrawer}));
   };
 
-  renderLogged = ()=>{
+  /**
+   * @description Handle logout. close Drawer and call props function
+   */
+  handleLogout = () => {
+    this.toggleDrawer();
+    this.props.handleLogout();
+  };
+
+  renderLogged = () => {
     return (
-      <Link to="/jobs" style={{textDecoration: 'none'}}>
-        <MenuItem onTouchTap={this.toggleDrawer}>Jobs</MenuItem>
-      </Link>
+      <div>
+        <Link to="/jobs" style={{textDecoration: 'none'}}>
+          <MenuItem onTouchTap={this.toggleDrawer}>Jobs</MenuItem>
+        </Link>
+        <MenuItem onTouchTap={this.handleLogout}>Logout</MenuItem>
+      </div>
     );
   };
 
-  renderNonLogged = ()=>{
+  renderNonLogged = () => {
     return (
       <div>
-    <Link to="/login" style={{textDecoration: 'none'}}>
-      <MenuItem onTouchTap={this.toggleDrawer}>Login</MenuItem>
-    </Link>
-    <Link to="/signup" style={{textDecoration: 'none'}}>
-      <MenuItem onTouchTap={this.toggleDrawer}>SignUp</MenuItem>
-    </Link>
+        <Link to="/login" style={{textDecoration: 'none'}}>
+          <MenuItem onTouchTap={this.toggleDrawer}>Login</MenuItem>
+        </Link>
+        <Link to="/signup" style={{textDecoration: 'none'}}>
+          <MenuItem onTouchTap={this.toggleDrawer}>SignUp</MenuItem>
+        </Link>
       </div>
     );
   };

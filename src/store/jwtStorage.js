@@ -2,7 +2,7 @@
  * @description The storage item name or jwt token
  * @type {string}
  */
-const JWT = 'JWT';
+const JWT = 'jobs-tracking-token';
 
 /**
  * @description get item from localStorage
