@@ -14,6 +14,7 @@
     "material-ui": "^0.18.1",
     "mongodb": "^2.2.28",
     "mongoose": "^4.10.5",
+    "normalizr": "^3.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -24,6 +25,7 @@
     "redux": "^3.6.0",
     "redux-form": "^6.7.0",
     "redux-saga": "^0.15.4",
+    "reselect": "^3.0.1",
     "styled-components": "^2.0.0",
     "validator": "^7.2.0"
   },
@@ -40,7 +42,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "serve":  "concurrently --kill-others \"node server/server.js\" \"yarn run start\"",
+    "serve": "concurrently --kill-others \"node server/server.js\" \"yarn run start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "doc": "jsdoc src/ -r -t node_modules/minami ",
