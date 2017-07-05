@@ -15,7 +15,9 @@ import {signup, login, me} from '../users.service';
 
 
 describe('User Saga', () => {
+
   describe('SignUp', () => {
+
     const action = {
       payload: {
         data: {
@@ -38,8 +40,11 @@ describe('User Saga', () => {
         }
       }
     };
+
     describe('Saga signUp worker success ', () => {
+
       const gen = signUp(action);
+
       it('Should call signup service', () => {
         expect(gen.next(res).value).toEqual(call(signup, action.payload.data));
       });
@@ -49,11 +54,14 @@ describe('User Saga', () => {
         const action = fetchSignUpSuccess(res.response.data);
         expect(gen.next(res).value).toEqual(put(action));
       });
+
     });
 
     describe('Saga signUp worker failure', () => {
+
       const gen = signUp(action);
       const err = {error: {data: 'opps'}};
+
       it('Should put fetch sign up failure action', () => {
         gen.next(err);
         expect(gen.next(err).value).toEqual(put(fetchFailure(err.error.data)));
@@ -68,15 +76,20 @@ describe('User Saga', () => {
       });
 
     });
+
   });
+
   describe('Login', () => {
+  
     const action = {
       payload: {
         email: 'rope@ptt.yu',
         password: '45546465'
       }
     };
+
     describe('Saga login worker success', () => {
+
       const gen = logIn(action);
       const res = {
         response: {
@@ -90,30 +103,43 @@ describe('User Saga', () => {
           }
         }
       };
+
       it('Should call login service success', () => {
         expect(gen.next().value).toEqual(call(login, action.payload));
       });
+
       it('Should dispatch success action', () => {
         expect(gen.next(res).value).toEqual(put(fetchLoginSuccess(res.response.data)));
       });
+
     });
+
     describe('Saga login worker failure', () => {
+
       const gen = logIn(action);
       const err = {error: {data: 'email do not exist'}};
       gen.next(err);
+
       it('Should dispatch failure action', () => {
         expect(gen.next(err).value).toEqual(put(fetchFailure(err.error.data)));
       });
+
       it('Should wait 4 s before cean error message', () => {
         expect(gen.next().value).toEqual(call(delay, 4000));
       });
+
       it('Should clean error message', () => {
         expect(gen.next().value).toEqual(put(cleanFetchError()));
       });
+
     });
+
   });
+
   describe('IsLogged', () => {
+
     describe('IsLogged success', () => {
+
       const gen = isLogged();
       const res = {
         response: {
@@ -127,13 +153,17 @@ describe('User Saga', () => {
           }
         }
       };
+
       it('Call me api', () => {
         expect(gen.next(res).value).toEqual(call(me));
       });
+
       it('Should emit success action', () => {
         expect(gen.next(res).value).toEqual(put(checkIsLoggedSuccess(res.response.data)));
       });
+
     });
+
     describe('isLogged fail', () => {
 
       const gen = isLogged();
@@ -143,23 +173,29 @@ describe('User Saga', () => {
       it('Should emit action for fail', () => {
         expect(gen.next(err).value).toEqual(put(fetchFailure(err.error.data)));
       });
+
       it('Should wait 4s before clean fetch error message', () => {
         expect(gen.next().value).toEqual(call(delay, 4000));
       });
+
       it('Shoud emit action for clear fetch error message', () => {
         expect(gen.next().value).toEqual(put(cleanFetchError()));
       });
 
     });
+
   });
 
   describe('Logout', () => {
+
     it('Should clear jwt token form localstorage', () => {
 
       const gen = logout();
+
       expect(gen.next().value).toEqual(call(jwtStorage.removeJWT));
 
     });
 
   });
+
 });
