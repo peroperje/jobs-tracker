@@ -7,8 +7,7 @@ import {
   fetchLoginSuccess,
   checkIsLoggedSuccess,
   fetchFailure,
-  cleanFetchError,
-  logOut
+  cleanFetchError
 } from './users.action';
 import {
   FETCH_SIGNUP_REQUEST,
@@ -78,7 +77,7 @@ export function* isLogged() {
  * @description worker for logout
  */
 export function* logout() {
-  yield call([jwtStorage, 'removeJWT']);
+  yield call(jwtStorage.removeJWT);
 };
 
 /**
@@ -88,6 +87,6 @@ export function* watchSignUp() {
   yield takeLatest(FETCH_SIGNUP_REQUEST, signUp);
   yield takeLatest(FETCH_LOGIN_REQUEST, logIn);
   yield takeLatest(CHECK_IS_LOGGED_REQUEST, isLogged);
-  yield takeLatest(LOGOUT, logOut);
+  yield takeLatest(LOGOUT, logout);
 }
 

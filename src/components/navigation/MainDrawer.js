@@ -64,6 +64,7 @@ class MainDrawer extends Component {
    * @return {Object} JSX HTML Content
    */
   render() {
+
     const {isLogged} = this.props;
     return (
       <div>

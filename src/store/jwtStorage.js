@@ -21,6 +21,7 @@ const setJWT = (value) => localStorage.setItem(JWT, value);
  * @description remove jwt from localStorage
  */
 const removeJWT = () => {
+  console.log('pozvan je ciscenje tokena');
   localStorage.removeItem(JWT);
 };
 

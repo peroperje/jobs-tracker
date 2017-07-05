@@ -10,7 +10,7 @@ import {
   fetchFailure,
   cleanFetchError
 } from '../users.action';
-import {signUp, logIn, isLogged,logout} from '../users.saga';
+import {signUp, logIn, isLogged, logout} from '../users.saga';
 import {signup, login, me} from '../users.service';
 
 
@@ -155,8 +155,9 @@ describe('User Saga', () => {
 
   describe('Logout', () => {
     it('Should clear jwt token form localstorage', () => {
-const gen =logout();
-expect(gen.next().value).toEqual(call([jwtStorage,'removeJWT']));
+
+      const gen = logout();
+      expect(gen.next().value).toEqual(call(jwtStorage.removeJWT));
 
     });
 
