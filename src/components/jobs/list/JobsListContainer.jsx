@@ -40,9 +40,11 @@ const filterByStatus = (jobs, jobVisibilityFilter) => {
  * @param {Object} ownProps The Component JobListContainer props
  * @return {Array} Filtered jobs
  */
-const mapStateToPops = (state, ownProps) => ({
-  jobs: filterByStatus(state.jobs, state.jobsVisibilityFilter)
-});
+const mapStateToPops = (state, ownProps) => {
+
+  return {
+  jobs: filterByStatus(state.jobs.items, state.jobsVisibilityFilter)
+}};
 
 /**
  * @description Map Dispatch to props

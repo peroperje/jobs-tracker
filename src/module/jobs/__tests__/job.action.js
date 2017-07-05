@@ -5,7 +5,7 @@ import initialState from '../../../store/initialStore';
 describe('Job Atction', () => {
   let state;
   beforeEach(() => {
-    state = initialState.jobs;
+    state = initialState.jobs.items;
   });
   test('Should create new Actions for addJob ', () => {
 

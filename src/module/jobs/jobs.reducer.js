@@ -40,16 +40,7 @@ function job(job = {}, action) {
       return job;
   }
 }
-
-/**
- * @description Jobs reducer
- * @memberOf jobslist
- * @function action
- * @param {Array} state  Array of action objects
- * @param {Object} action Action object
- * @return {Array} New store
- */
-function jobs(state = [], action) {
+function jobItem(state = [], action) {
   const {type} = action;
   switch (type) {
     case ADD_JOB:
@@ -60,6 +51,27 @@ function jobs(state = [], action) {
       return state.map(jobItem => job(jobItem, action));
     case DELETE_JOB:
       return state.filter(jobItem => job(jobItem, action));
+    default:
+      return state;
+  }
+}
+
+/**
+ * @description Jobs reducer
+ * @memberOf jobslist
+ * @function action
+ * @param {Array} state  Array of action objects
+ * @param {Object} action Action object
+ * @return {Array} New store
+ */
+function jobs(state = {}, action) {
+  const {type} = action;
+  switch (type) {
+    case ADD_JOB:
+    case UPDATE_JOB:
+    case CHANGE_STATUS:
+    case DELETE_JOB:
+      return {...state,...{items: jobItem(state.items,action)}};
     default:
       return state;
   }

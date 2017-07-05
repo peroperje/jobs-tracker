@@ -1,15 +1,25 @@
 import uniqid from 'uniqid';
-import {ADD_JOB, UPDATE_JOB, DELETE_JOB, CHANGE_STATUS, SET_VISIBILITY_FILTER, jobsFilter} from '../jobs.constant';
+import {
+  ADD_JOB,
+  UPDATE_JOB,
+  DELETE_JOB,
+  CHANGE_STATUS,
+  SET_VISIBILITY_FILTER,
+  jobsFilter
+} from '../jobs.constant';
+import {deleteJob} from '../jobs.action';
 import {jobs, jobsVisibilityFilter} from '../jobs.reducer';
 import initialStore from '../../../store/initialStore';
 
 describe('Jobs Reducer', () => {
+
   let state;
   beforeEach(() => {
     state = initialStore.jobs;
   });
 
-  test('Should add new job', () => {
+  it('Should add new job', () => {
+
     const jobToAdd = Object.assign({}, state[0], {
       id: uniqid(),
       title: 'Job added by testing'
@@ -19,12 +29,14 @@ describe('Jobs Reducer', () => {
       payload: jobToAdd
     };
     const newState = jobs(state, action);
-    expect(newState).toContain(action.payload);
+    expect(newState.items).toContain(action.payload);
+
   });
 
-  test('Should update job data by id', () => {
-    const {id, ...data} = state[0];
-    const {id: idForUpdate} = state[2];
+  it('Should update job data by id', () => {
+
+    const {id, ...data} = state.items[0];
+    const {id: idForUpdate} = state.items[2];
     const action = {
       type: UPDATE_JOB,
       payload: {
@@ -33,39 +45,41 @@ describe('Jobs Reducer', () => {
       }
     };
     const newState = jobs(state, action);
-    expect(newState[2].id).not.toEqual(id);
-    expect(newState[2]).toMatchObject(data);
+
+    expect(newState.items[2].id).not.toEqual(id);
+    expect(newState.items[2]).toMatchObject(data);
+
   });
 
-  test('Should delete job', () => {
-    const jobForDelete = state[2];
-    const action = {
-      type: DELETE_JOB,
-      payload: {
-        id: jobForDelete.id
-      }
-    };
+  it('Should delete job', () => {
+
+    const {id} = state.items[0]
+    const action = deleteJob(id);
     const newState = jobs(state, action);
-    expect(newState).not.toContainEqual(jobForDelete);
-    expect(newState.length).toBe(state.length - 1);
+
+    expect(newState.items.length).toBe(2);
+
   });
 
-  test('Should change job status', () => {
+  it('Should change job status', () => {
+
     const action = {
       type: CHANGE_STATUS,
       payload: {
-        id: state[0].id
+        id: state.items[0].id
       }
     };
     const newState = jobs(state, action);
-    expect(newState[0].active).toBe(!state[0].active);
+
+    expect(newState.items[0].active).toBe(!state.items[0].active);
+
   });
 
 
 });
 
 describe('Visibility filter', () => {
-  test('Should change visibility filter', () => {
+  it('Should change visibility filter', () => {
     const action = {
       type: SET_VISIBILITY_FILTER,
       payload: {

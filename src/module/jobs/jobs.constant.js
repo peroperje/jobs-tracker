@@ -1,6 +1,23 @@
 /**
- * @namespace jobslist
+ * @description const for fetch jobs request
+ * @const {string}
+ * @default
  */
+const FETCH_JOBS_REQUEST = 'FETCH_JOBS_REQUEST';
+
+/**
+ * @description const for fetch jobs success
+ * @const {string}
+ * @default
+ */
+const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
+
+/**
+ * @description const for fetch job failure
+ * @const {string}
+ * @default
+ */
+const FETCH_JOBS_FAILURE = 'FETCH_JOBS_FAILURE';
 
 /**
  * @description Add job constant
@@ -56,6 +73,9 @@ const jobsFilter = {
 
 
 export {
+  FETCH_JOBS_REQUEST,
+  FETCH_JOBS_SUCCESS,
+  FETCH_JOBS_FAILURE,
   ADD_JOB,
   UPDATE_JOB,
   DELETE_JOB,
