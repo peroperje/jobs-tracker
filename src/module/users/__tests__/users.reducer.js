@@ -7,7 +7,8 @@ import {
   checkIsLoggedRequest,
   checkIsLoggedSuccess,
   fetchFailure,
-  cleanFetchError
+  cleanFetchError,
+  logOut
 } from '../users.action';
 
 describe('User Reducer', () => {
@@ -219,11 +220,25 @@ describe('User Reducer', () => {
       it('Should clean error fetching message', () => {
         const initState = userState({errorFetching: 'Some error'});
         const action = cleanFetchError();
-        const state = user(initState,action);
+        const state = user(initState, action);
         const expextedState = {...initState, ...{errorFetching: null}};
         expect(state).toEqual(expextedState);
       });
     });
 
+    describe('Logout', () => {
+      it('Should reset user data', () => {
+
+        const initState = userState({
+          _id:'54545',
+          firstName:'4jlkdasjlsa',
+          surName:'hdjshdsasa'
+        });
+        const action = logOut();
+        const state = user(initState, action);
+        const expectedState =  userState();
+        expect(state).toEqual(expectedState);
+      });
+    });
   });
 });

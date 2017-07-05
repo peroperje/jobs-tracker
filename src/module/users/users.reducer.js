@@ -6,7 +6,8 @@ import {
   CHECK_IS_LOGGED_REQUEST,
   CHECK_IS_LOGGED_SUCCESS,
   FETCH_FAILURE,
-  CLEAR_FETCH_FAILURE_ERROR
+  CLEAR_FETCH_FAILURE_ERROR,
+  LOGOUT
 } from './users.constant';
 
 /**
@@ -77,7 +78,9 @@ function user(state = {}, action) {
         }
       };
     case CLEAR_FETCH_FAILURE_ERROR:
-      return {...state, ...{errorFetching: null}}
+      return {...state, ...{errorFetching: null}};
+    case LOGOUT:
+      return setUserData(state, {_id: null, firstName: null, surName: null});
     default:
       return state;
   }
