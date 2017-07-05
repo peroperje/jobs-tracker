@@ -6,7 +6,8 @@ import {
   CHECK_IS_LOGGED_REQUEST,
   CHECK_IS_LOGGED_SUCCESS,
   FETCH_FAILURE,
-  CLEAR_FETCH_FAILURE_ERROR
+  CLEAR_FETCH_FAILURE_ERROR,
+  LOGOUT
 } from '../users.constant';
 import {
   fetchSignUp,
@@ -16,7 +17,8 @@ import {
   checkIsLoggedRequest,
   checkIsLoggedSuccess,
   fetchFailure,
-  cleanFetchError
+  cleanFetchError,
+  logOut
 } from '../users.action';
 
 describe('Users Actions', () => {
@@ -126,6 +128,7 @@ describe('Users Actions', () => {
       });
     });
   });
+
   describe('Fetch failure', () => {
     it('Should create fetch failure action', () => {
       const err = 'Something is wrong';
@@ -141,5 +144,16 @@ describe('Users Actions', () => {
       const action = cleanFetchError();
       expect(action).toEqual({type: CLEAR_FETCH_FAILURE_ERROR});
     });
+  });
+
+  describe('Logout', () => {
+
+    it('Should create logout action', () => {
+
+      const action = logOut();
+      expect(action).toEqual({type: LOGOUT});
+
+    });
+
   });
 });

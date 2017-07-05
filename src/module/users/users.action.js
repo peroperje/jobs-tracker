@@ -6,7 +6,8 @@ import {
   CHECK_IS_LOGGED_REQUEST,
   CHECK_IS_LOGGED_SUCCESS,
   FETCH_FAILURE,
-  CLEAR_FETCH_FAILURE_ERROR
+  CLEAR_FETCH_FAILURE_ERROR,
+  LOGOUT
 } from './users.constant';
 
 /**
@@ -91,8 +92,20 @@ const fetchFailure = (err) => ({
   }
 });
 
-const cleanFetchError = ()=>({
-  type:CLEAR_FETCH_FAILURE_ERROR
+/**
+ * @description Create action for clear user fetch error
+ * @return {Object} action object
+ */
+const cleanFetchError = () => ({
+  type: CLEAR_FETCH_FAILURE_ERROR
+});
+
+/**
+ * @description create logout action
+ * @return {Object} action
+ */
+const logOut = () => ({
+  type: LOGOUT
 });
 
 export {
@@ -103,5 +116,6 @@ export {
   checkIsLoggedRequest,
   checkIsLoggedSuccess,
   fetchFailure,
-  cleanFetchError
+  cleanFetchError,
+  logOut
 };
