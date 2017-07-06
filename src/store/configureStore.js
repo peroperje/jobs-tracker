@@ -14,6 +14,7 @@ const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+  initialStore.jobs.items = [];
   const store = createStore(
     reducers,
     initialStore,

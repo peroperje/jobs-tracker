@@ -1,12 +1,17 @@
-/**
- *@namespace jobslist
- */
+//TODO refactoring JobList container
 
 
 import {connect} from 'react-redux';
 import uniqid from 'uniqid';
 
-import {setVisibilityFilter, changeStatus, deleteJob, addJob, updateJob} from './../../../module/jobs/jobs.action';
+import {
+  fetchJobsRequest,
+  setVisibilityFilter,
+  changeStatus,
+  deleteJob,
+  addJob,
+  updateJob
+} from './../../../module/jobs/jobs.action';
 import {jobsFilter} from './../../../module/jobs/jobs.constant';
 import JobsList from './JobsList';
 
@@ -62,6 +67,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onClickDelete: (id) => {
     dispatch(deleteJob(id));
   },
+  fetchJobs : ()=>{
+    dispatch(fetchJobsRequest());
+  },
+
+  //todo refactoring code bad smell
   handleSubmitJobForm: (jobData) => {
     if (!jobData._id) {
       jobData._id = uniqid();

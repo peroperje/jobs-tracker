@@ -12,7 +12,7 @@ export function* jobRequest() {
   const {response, error} = yield call(getJobs);
 
   if (response) {
-    yield put(fetchJobsSuccess(response.data));
+    yield put(fetchJobsSuccess(response.data.jobs));
   } else {
     yield put(fetchJobsFailure(error.data));
   }

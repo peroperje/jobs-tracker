@@ -18,7 +18,7 @@ import IconButton from 'material-ui/IconButton';
  * @type {Object}
  */
 const propTypes = {
-  id: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   URL: PropTypes.string.isRequired,
   clientLocation: PropTypes.string.isRequired,

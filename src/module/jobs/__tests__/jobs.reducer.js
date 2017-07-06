@@ -34,11 +34,12 @@ describe('Jobs Reducer', () => {
 
     describe('Fecth job success action', () => {
       const beginigState = initialStore.jobs;
+
       const action = fetchJobsSuccess(beginigState.items);
-      const state = jobs(beginigState, action);
+      const state = jobs({...beginigState, ...{items: []}}, action);
 
       it('Should has same state as init store ', () => {
-        expect(state).toEqual(beginigState);
+        expect(state.items).toEqual(beginigState.items);
       });
 
       it('isFetching property should has false', () => {
@@ -48,6 +49,20 @@ describe('Jobs Reducer', () => {
       it('errorFetching should be null', () => {
         expect(state.errorFetching).toBeNull();
       });
+    });
+
+    describe('Fetch job failure action', () => {
+
+      it('Should has error message', () => {
+
+        const errorMessage = 'oppps';
+        const action = fetchJobsFailure(errorMessage);
+        const state = jobs(initState, action);
+
+        expect(state.errorFetching).toBe(errorMessage)
+
+      });
+
     });
 
   });

@@ -54,7 +54,7 @@ function jobItem(state = [], action) {
   const {type} = action;
   switch (type) {
     case FETCH_JOBS_SUCCESS:
-      return [...[], ...action.payload];
+      return [...state, ...action.payload];
     case ADD_JOB:
       return [...state, job({}, action)];
     case UPDATE_JOB:
@@ -95,6 +95,8 @@ function jobs(state = {}, action) {
           errorFetching: null
         }
       };
+    case FETCH_JOBS_FAILURE:
+      return {...state, ...{isFetching: false, errorFetching: action.payload.errorFetching}}
     default:
       return state;
   }

@@ -10,7 +10,7 @@ const {Job} = require('./job.model');
  */
 const getJobs = (req, res) => {
   Job.find()
-    .then(jobs => res.send({jobs}))
+    .then(items => res.send(items))
     .catch(err => res.status(400).send(err));
 };
 

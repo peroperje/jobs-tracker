@@ -1,7 +1,4 @@
-/**
- *@namespace jobslist
- */
-
+//Todo make this simple
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
@@ -27,6 +24,13 @@ class JobsList extends Component {
     job: {},
     search: ''
   };
+
+  componentDidMount() {
+    const {jobs,fetchJobs} = this.props;
+    if(jobs.length === 0){
+      fetchJobs();
+    }
+  }
 
   /**
    * @description Handle open dialog click
