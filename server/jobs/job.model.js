@@ -33,6 +33,10 @@ const JobSchema = mongoose.Schema({
   active: {
     type: Boolean,
     default: true
+  },
+  _creator:{
+    type: mongoose.Schema.ObjectId,
+    required:true
   }
 });
 

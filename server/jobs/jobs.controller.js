@@ -9,7 +9,9 @@ const {Job} = require('./job.model');
  * @param {Object} res express request object
  */
 const getJobs = (req, res) => {
-  Job.find()
+  Job.find({
+    _creator: req.cUser._id
+  })
     .then(items => res.send(items))
     .catch(err => res.status(400).send(err));
 };
@@ -18,14 +20,16 @@ const getJobs = (req, res) => {
  * @descriptin Return single object by id
  * @param {Object} req express request object
  * @param {Object} res express response object
+ * @return {Object} response object
  */
 const getJob = (req, res) => {
   const id = req.params._id;
   if (!ObjectId.isValid(id)) {
-   return  res.status(404).send('Not Found');
+    return res.status(404).send('Not Found');
   }
   Job.findOne({
-    _id: id
+    _id: id,
+    _creator: req.cUser._id
   })
     .then(job => {
       if (!job) {
@@ -42,7 +46,9 @@ const getJob = (req, res) => {
  * @param {Object} res express response object
  */
 const addJob = (req, res) => {
-  const job = new Job(req.body);
+  const userData = Object.assign({}, req.body, {_creator: req.cUser._id});
+  const job = new Job(userData);
+
   job.save()
     .then(doc => res.send(doc))
     .catch(err => res.status(400).send(err));
@@ -61,7 +67,7 @@ const updateJob = (req, res) => {
   }, {
     new: true
   })
-    .then(job=>{
+    .then(job => {
       if (!job) {
         return res.status(400).send('Not found');
       }
@@ -74,6 +80,7 @@ const updateJob = (req, res) => {
  * @description Delete job
  * @param {Object} req express request object
  * @param {Object} res express response object
+ * @return {Object} response
  */
 const deleteJob = (req, res) => {
   const id = req.params._id;

@@ -1,12 +1,13 @@
 const {Router} = require('express');
 const {getJobs, getJob, updateJob, addJob, deleteJob} = require('./jobs.controller');
+const {authenticate} = require('../middleware/authenticate');
 
 const router = new Router();
 
-router.route('/jobs').get(getJobs);
-router.route('/jobs/:id').get(getJob);
-router.route('/jobs/:id').patch(updateJob);
-router.route('/jobs').post(addJob);
-router.route('/jobs/:id').delete(deleteJob);
+router.route('/jobs').all(authenticate).get(getJobs);
+router.route('/jobs/:id').all(authenticate).get(getJob);
+router.route('/jobs/:id').all(authenticate).patch(updateJob);
+router.route('/jobs').all(authenticate).post(addJob);
+router.route('/jobs/:id').all(authenticate).delete(deleteJob);
 
 module.exports = router;
