@@ -31,7 +31,8 @@ const initState = {
         active: false
       }
     ],
-    isFetching: false
+    isFetching: false,
+    errorFetching: null
   },
   jobsVisibilityFilter: null,
   user: {
