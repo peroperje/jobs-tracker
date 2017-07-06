@@ -13,15 +13,15 @@ const getJWT = () => localStorage.getItem(JWT);
 /**
  * @description Set value for jwt token to localStorage
  * @param {String} value item value
- * @return {*}
  */
-const setJWT = (value) => localStorage.setItem(JWT, value);
+const setJWT = (value) => {
+  localStorage.setItem(JWT, value);
+};
 
 /**
  * @description remove jwt from localStorage
  */
 const removeJWT = () => {
-  console.log('pozvan je ciscenje tokena');
   localStorage.removeItem(JWT);
 };
 

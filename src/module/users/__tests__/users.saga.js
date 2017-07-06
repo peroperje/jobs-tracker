@@ -105,7 +105,14 @@ describe('User Saga', () => {
       };
 
       it('Should call login service success', () => {
-        expect(gen.next().value).toEqual(call(login, action.payload));
+        expect(gen.next(res).value).toEqual(call(login, action.payload));
+      });
+
+      it('Should set jwt token', () => {
+        expect(gen.next(res).value)
+          .toEqual(
+            call(jwtStorage.setJWT, res.response.headers['x-auth'])
+          );
       });
 
       it('Should dispatch success action', () => {

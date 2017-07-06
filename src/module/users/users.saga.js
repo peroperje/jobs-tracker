@@ -43,13 +43,17 @@ export function* logIn(action) {
 
   const {response, error} = yield call(login, action.payload);
   if (response) {
-    jwtStorage.setJWT(response.headers['x-auth']);
+
+    yield call(jwtStorage.setJWT, response.headers['x-auth']);
     yield put(fetchLoginSuccess(response.data));
+
   } else {
+
     const errorMesssage = typeof error.data !== 'undefined' ? error.data : 'Server error';
     yield put(fetchFailure(errorMesssage));
     yield call(delay, 4000);
     yield put(cleanFetchError());
+
   }
 }
 
@@ -60,7 +64,6 @@ export function* isLogged() {
   const {response, error} = yield call(me);
   if (response) {
 
-    jwtStorage.setJWT(response.headers['x-auth']);
     yield put(checkIsLoggedSuccess(response.data));
 
   } else {

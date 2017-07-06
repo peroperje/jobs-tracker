@@ -71,7 +71,7 @@ describe('User selector', () => {
           errorFetchingUser: null
         }
       };
-      expect(errorFetchingUser(state)).toBeNull();
+      expect(errorFetchingUser(state)).toBeFalsy();
     });
 
   });
