@@ -1,6 +1,8 @@
 import request from '../../service/request';
 
-
+/**
+ * @description Make api call for jobs
+ */
 const getJobs = () => request({
   url: 'jobs/',
   method: 'GET'
