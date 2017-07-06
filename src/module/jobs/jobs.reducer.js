@@ -6,7 +6,9 @@ import {
   FETCH_JOBS_REQUEST,
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
+  FETCH_ADD_JOB_REQUEST,
   FETCH_ADD_JOB_SUCCESS,
+  FETCH_ADD_JOB_FAILURE,
   UPDATE_JOB,
   CHANGE_STATUS,
   DELETE_JOB,
@@ -79,14 +81,17 @@ function jobItem(state = [], action) {
 function jobs(state = {}, action) {
   const {type} = action;
   switch (type) {
-    case FETCH_ADD_JOB_SUCCESS:
+
     case UPDATE_JOB:
     case CHANGE_STATUS:
     case DELETE_JOB:
       return {...state, ...{items: jobItem(state.items, action)}};
+
     case FETCH_JOBS_REQUEST:
+    case FETCH_ADD_JOB_REQUEST:
       return {...state, ...{isFetching: true, errorFetching: null}};
     case FETCH_JOBS_SUCCESS:
+    case FETCH_ADD_JOB_SUCCESS:
       return {
         ...state,
         ...{
@@ -96,7 +101,8 @@ function jobs(state = {}, action) {
         }
       };
     case FETCH_JOBS_FAILURE:
-      return {...state, ...{isFetching: false, errorFetching: action.payload.errorFetching}}
+    case FETCH_ADD_JOB_FAILURE:
+      return {...state, ...{isFetching: false, errorFetching: action.payload.errorFetching}};
     default:
       return state;
   }

@@ -7,7 +7,8 @@ import {
   SET_VISIBILITY_FILTER,
   jobsFilter
 } from '../jobs.constant';
-import {deleteJob, fetchJobsRequest, fetchJobsSuccess, fetchJobsFailure} from '../jobs.action';
+
+import * as jobsAction from '../jobs.action';
 import {jobs, jobsVisibilityFilter} from '../jobs.reducer';
 import initialStore from '../../../store/initialStore';
 
@@ -21,7 +22,7 @@ describe('Jobs Reducer', () => {
   describe('Fetch Jobs', () => {
 
     it('Fetch jobs request', () => {
-      const action = fetchJobsRequest();
+      const action = jobsAction.fetchJobsRequest();
       const state = jobs(initState, action);
 
       expect(state).toEqual({
@@ -35,7 +36,7 @@ describe('Jobs Reducer', () => {
     describe('Fecth job success action', () => {
       const beginigState = initialStore.jobs;
 
-      const action = fetchJobsSuccess(beginigState.items);
+      const action = jobsAction.fetchJobsSuccess(beginigState.items);
       const state = jobs({...beginigState, ...{items: []}}, action);
 
       it('Should has same state as init store ', () => {
@@ -56,7 +57,7 @@ describe('Jobs Reducer', () => {
       it('Should has error message', () => {
 
         const errorMessage = 'oppps';
-        const action = fetchJobsFailure(errorMessage);
+        const action = jobsAction.fetchJobsFailure(errorMessage);
         const state = jobs(initState, action);
 
         expect(state.errorFetching).toBe(errorMessage)
@@ -67,20 +68,50 @@ describe('Jobs Reducer', () => {
 
   });
 
-  it('Should add new job', () => {
+  describe('Add New Job', () => {
 
-    const jobToAdd = Object.assign({}, initState[0], {
-      _id: uniqid(),
-      title: 'Job added by testing'
+    describe('Fetch add job request', () => {
+
+      const action = jobsAction.fetchAddJobRequest();
+      const state = jobs(initState, action);
+
+      it('isFetching should has value true', () => {
+        expect(state.isFetching).toBeTruthy();
+      });
+
+      it('errorFetching should has value null', () => {
+        expect(state.errorFetching).toBeNull();
+      });
+
     });
-    const action = {
-      type: FETCH_ADD_JOB_SUCCESS,
-      payload: jobToAdd
-    };
-    const newState = jobs(initState, action);
-    expect(newState.items).toContain(action.payload);
+
+    describe('Fetch add job success', () => {
+
+      const initJobsState = {
+        ...initialStore.jobs, ...{
+          isFetching: true
+        }
+      };
+      const data = initJobsState.items[0];
+      const action = jobsAction.fetchAddJobSuccess(data);
+      const state = jobs(initJobsState, action);
+
+      it('Should add new job', () => {
+        expect(state.items.length).toBe(initJobsState.items.length + 1);
+      });
+
+      it('isFetching should be false', () => {
+        expect(state.isFetching).toBeFalsy();
+      });
+
+      it('errorFetching should has value null', () => {
+        expect(state.errorFetching).toBeNull();
+      });
+
+    });
 
   });
+
 
   it('Should update job data by _id', () => {
 
@@ -103,7 +134,7 @@ describe('Jobs Reducer', () => {
   it('Should delete job', () => {
 
     const {_id} = initState.items[0];
-    const action = deleteJob(_id);
+    const action = jobsAction.deleteJob(_id);
     const newState = jobs(initState, action);
 
     expect(newState.items.length).toBe(2);
