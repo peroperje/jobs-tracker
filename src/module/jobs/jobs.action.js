@@ -37,7 +37,7 @@ privateMethods.addJob = (job) => ({
 privateMethods.updateJob = (id, job) => ({
   type: UPDATE_JOB,
   payload: {
-    id: id,
+    _id: id,
     data: job
   }
 });
@@ -52,7 +52,7 @@ privateMethods.updateJob = (id, job) => ({
 privateMethods.changeStatus = (id) => ({
   type: CHANGE_STATUS,
   payload: {
-    id: id
+    _id: id
   }
 });
 
@@ -66,7 +66,7 @@ privateMethods.changeStatus = (id) => ({
 privateMethods.deleteJob = (id) => ({
   type: DELETE_JOB,
   payload: {
-    id: id
+    _id: id
   }
 });
 

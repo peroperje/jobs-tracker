@@ -63,8 +63,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(deleteJob(id));
   },
   handleSubmitJobForm: (jobData) => {
-    if (!jobData.id) {
-      jobData.id = uniqid();
+    if (!jobData._id) {
+      jobData._id = uniqid();
       jobData.active = true;
       dispatch(addJob(jobData));
     } else {

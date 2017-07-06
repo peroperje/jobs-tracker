@@ -34,7 +34,7 @@ class JobsList extends Component {
    * @param {Boolean | String} jobID Job ID if open edit form
    */
   handleOpenFormDialog = (jobID = false) => {
-    const job = jobID ? this.props.jobs.find(j => j.id === jobID) : {};
+    const job = jobID ? this.props.jobs.find(j => j._id === jobID) : {};
     this.setState({openDialog: true, job: job});
   };
 
@@ -94,7 +94,7 @@ class JobsList extends Component {
     };
     const jobsFilteredBySearch = this.filterJobsBySearch();
     const rows = jobsFilteredBySearch.map((job) => (<JobsTableRow
-      key={job.id}
+      key={job._id}
       {...job}
       onClickDelete={this.props.onClickDelete}
       onClickArchive={this.props.onClickArchive}

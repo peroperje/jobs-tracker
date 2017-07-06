@@ -21,7 +21,7 @@ describe('Jobs Reducer', () => {
   it('Should add new job', () => {
 
     const jobToAdd = Object.assign({}, state[0], {
-      id: uniqid(),
+      _id: uniqid(),
       title: 'Job added by testing'
     });
     const action = {
@@ -33,28 +33,28 @@ describe('Jobs Reducer', () => {
 
   });
 
-  it('Should update job data by id', () => {
+  it('Should update job data by _id', () => {
 
-    const {id, ...data} = state.items[0];
-    const {id: idForUpdate} = state.items[2];
+    const {_id, ...data} = state.items[0];
+    const {_id: idForUpdate} = state.items[2];
     const action = {
       type: UPDATE_JOB,
       payload: {
-        id: idForUpdate,
+        _id: idForUpdate,
         data: data
       }
     };
     const newState = jobs(state, action);
 
-    expect(newState.items[2].id).not.toEqual(id);
+    expect(newState.items[2]._id).not.toEqual(_id);
     expect(newState.items[2]).toMatchObject(data);
 
   });
 
   it('Should delete job', () => {
 
-    const {id} = state.items[0]
-    const action = deleteJob(id);
+    const {_id} = state.items[0]
+    const action = deleteJob(_id);
     const newState = jobs(state, action);
 
     expect(newState.items.length).toBe(2);
@@ -66,7 +66,7 @@ describe('Jobs Reducer', () => {
     const action = {
       type: CHANGE_STATUS,
       payload: {
-        id: state.items[0].id
+        _id: state.items[0]._id
       }
     };
     const newState = jobs(state, action);

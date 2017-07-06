@@ -15,25 +15,25 @@ describe('Job Atction', () => {
   });
 
   test('Should create new action for updateJob', () => {
-    const action = job.updateJob(state[1].id, state[0]);
-    const {type, payload: {id, data}} = action;
+    const action = job.updateJob(state[1]._id, state[0]);
+    const {type, payload: {_id, data}} = action;
     expect(type).toBe(UPDATE_JOB);
-    expect(id).toBe(state[1].id);
+    expect(_id).toBe(state[1]._id);
     expect(data).toEqual(state[0]);
   });
 
   test('Should create action for changeStatus', () => {
-    const action = job.changeStatus(state[0].id);
-    const {type, payload: {id}} = action;
+    const action = job.changeStatus(state[0]._id);
+    const {type, payload: {_id}} = action;
     expect(type).toBe(CHANGE_STATUS);
-    expect(id).toBe(state[0].id);
+    expect(_id).toBe(state[0]._id);
   });
 
   test('Should create new action for deleteJob', () => {
-    const action = job.deleteJob(state[0].id);
-    const {type, payload: {id}} = action;
+    const action = job.deleteJob(state[0]._id);
+    const {type, payload: {_id}} = action;
     expect(type).toBe(DELETE_JOB);
-    expect(id).toBe(state[0].id);
+    expect(_id).toBe(state[0]._id);
 
   });
 

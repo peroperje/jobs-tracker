@@ -4,7 +4,7 @@ const initState = {
   jobs: {
     items: [
       {
-        id: uniqid(),
+        _id: uniqid(),
         title: 'React',
         URL: 'http://google.com',
         clientLocation: 'Serbia, Belgrade',
@@ -13,7 +13,7 @@ const initState = {
         active: true
       },
       {
-        id: uniqid(),
+        _id: uniqid(),
         title: 'Redux 2',
         URL: 'http://google.ts',
         clientLocation: 'London, UK',
@@ -22,7 +22,7 @@ const initState = {
         active: true
       },
       {
-        id: uniqid(),
+        _id: uniqid(),
         title: 'Node',
         URL: 'http://nodejs.org',
         clientLocation: 'New York, USA',

@@ -20,7 +20,7 @@ const getJobs = (req, res) => {
  * @param {Object} res express response object
  */
 const getJob = (req, res) => {
-  const id = req.params.id;
+  const id = req.params._id;
   if (!ObjectId.isValid(id)) {
    return  res.status(404).send('Not Found');
   }
@@ -49,7 +49,7 @@ const addJob = (req, res) => {
 };
 
 const updateJob = (req, res) => {
-  const id = req.params.id;
+  const id = req.params._id;
   const body = req.body;
   if (!ObjectId.isValid(id)) {
     return res.status(400).send('Not found');
@@ -76,7 +76,7 @@ const updateJob = (req, res) => {
  * @param {Object} res express response object
  */
 const deleteJob = (req, res) => {
-  const id = req.params.id;
+  const id = req.params._id;
 
   if (!ObjectId.isValid(id)) {
     return res.status(400).send('Not Found');

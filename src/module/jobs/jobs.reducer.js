@@ -24,15 +24,15 @@ function job(job = {}, action) {
     case ADD_JOB:
       return payload;
     case UPDATE_JOB:
-      if (payload.id === job.id) {
-        // added {id:payload.id} to avoid overwrite id by payload
-        return Object.assign({}, job, payload.data, {id: payload.id});
+      if (payload._id === job._id) {
+        // added {_id:payload._id} to avoid overwrite _id by payload
+        return Object.assign({}, job, payload.data, {id: payload._id});
       }
       return job;
     case DELETE_JOB:
-      return payload.id !== job.id;
+      return payload._id !== job._id;
     case CHANGE_STATUS:
-      if (job.id === payload.id) {
+      if (job._id === payload._id) {
         return {...job, active: !job.active};
       }
       return job;

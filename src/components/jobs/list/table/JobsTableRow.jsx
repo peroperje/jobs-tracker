@@ -55,7 +55,7 @@ class JobsTableRow extends Component {
    * @memberOf jobslist.JobsTableRow
    */
   handleClickArchive() {
-    this.props.onClickArchive(this.props.id);
+    this.props.onClickArchive(this.props._id);
   }
 
   /**
@@ -63,7 +63,7 @@ class JobsTableRow extends Component {
    * @memberOf jobslist.JobsTableRow
    */
   handleClickDelete() {
-    this.props.onClickDelete(this.props.id);
+    this.props.onClickDelete(this.props._id);
   }
 
   /**
@@ -71,7 +71,7 @@ class JobsTableRow extends Component {
    * @memberOf jobslist.JobsTableRow
    */
   handleClickEdit() {
-    this.props.onClickEdit(this.props.id);
+    this.props.onClickEdit(this.props._id);
   }
 
   /**
