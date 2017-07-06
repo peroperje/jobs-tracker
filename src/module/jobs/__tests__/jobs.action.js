@@ -1,13 +1,16 @@
 import * as job from '../jobs.action';
 import {
+  FETCH_JOBS_REQUEST,
+  FETCH_JOBS_SUCCESS,
+  FETCH_JOBS_FAILURE,
+  FETCH_ADD_JOB_REQUEST,
   FETCH_ADD_JOB_SUCCESS,
+  FETCH_ADD_JOB_FAILURE,
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,
-  SET_VISIBILITY_FILTER,
-  FETCH_JOBS_REQUEST,
-  FETCH_JOBS_SUCCESS,
-  FETCH_JOBS_FAILURE
+  SET_VISIBILITY_FILTER
+
 } from '../jobs.constant';
 import initialState from '../../../store/initialStore';
 
@@ -55,6 +58,47 @@ describe('Jobs Actions', () => {
 
       expect(action).toEqual(expectedAction);
 
+    });
+
+  });
+
+  describe('Fetch Add Job', () => {
+
+    it('Should create action for request', () => {
+
+      const action = job.fetchAddJobRequest();
+
+      expect(action).toEqual({
+        type: FETCH_ADD_JOB_REQUEST
+      });
+
+    });
+
+    it('Should create action for fetch job success', () => {
+
+      const data = {
+        _id: '5645645465'
+      };
+      const action = job.fetchAddJobSuccess(data);
+
+      expect(action).toEqual({
+        type: FETCH_ADD_JOB_SUCCESS,
+        payload: data
+      });
+
+    });
+
+    it('Should create action for fetch job failure', () => {
+
+      const errMessage = 'Opps';
+      const action = job.fetchAddJobFailure(errMessage);
+
+      expect(action).toEqual({
+        type: FETCH_ADD_JOB_FAILURE,
+        payload: {
+          errMessage: errMessage
+        }
+      });
     });
 
   });

@@ -1,12 +1,14 @@
 import {
+  FETCH_JOBS_REQUEST,
+  FETCH_JOBS_SUCCESS,
+  FETCH_JOBS_FAILURE,
+  FETCH_ADD_JOB_REQUEST,
   FETCH_ADD_JOB_SUCCESS,
+  FETCH_ADD_JOB_FAILURE,
   UPDATE_JOB,
   CHANGE_STATUS,
   DELETE_JOB,
-  SET_VISIBILITY_FILTER,
-  FETCH_JOBS_REQUEST,
-  FETCH_JOBS_SUCCESS,
-  FETCH_JOBS_FAILURE
+  SET_VISIBILITY_FILTER
 } from './jobs.constant';
 
 /**
@@ -37,6 +39,38 @@ const fetchJobsSuccess = (data) => ({
  */
 const fetchJobsFailure = (e) => ({
   type: FETCH_JOBS_FAILURE,
+  payload: {
+    errorFetching: e
+  }
+});
+
+/**
+ * @description create the action for fetch add job request
+ * @function fetchAddJobRequest
+ * @return {Object} the action
+ */
+const fetchAddJobRequest = () => ({
+  type: FETCH_ADD_JOB_REQUEST
+});
+
+/**
+ * @description Create the action for fetch add job success
+ * @function fetchAddJobSuccess
+ * @param {Object} data new job data object
+ * @return {Object} action object
+ */
+const fetchAddJobSuccess = (data) => ({
+  type: FETCH_ADD_JOB_SUCCESS,
+  payload: data
+});
+
+/**
+ * @description Create the action for fetch add job failure
+ * @param {String} e error message
+ * @return {Object} the action object
+ */
+const fetchAddJobFailure = (e) => ({
+  type: FETCH_ADD_JOB_FAILURE,
   payload: {
     errorFetching: e
   }
@@ -112,6 +146,9 @@ export {
   fetchJobsRequest,
   fetchJobsSuccess,
   fetchJobsFailure,
+  fetchAddJobRequest,
+  fetchAddJobSuccess,
+  fetchAddJobFailure,
   addJob,
   updateJob,
   changeStatus,
