@@ -96,7 +96,7 @@ describe('Jobs Actions', () => {
       expect(action).toEqual({
         type: FETCH_ADD_JOB_FAILURE,
         payload: {
-          errMessage: errMessage
+          errorFetching: errMessage
         }
       });
     });

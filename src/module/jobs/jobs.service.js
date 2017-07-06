@@ -2,6 +2,7 @@ import request from '../../service/request';
 
 /**
  * @description Make api call for jobs
+ * @return {Promise}
  */
 const getJobs = () => request({
   url: 'jobs/',
@@ -10,6 +11,20 @@ const getJobs = () => request({
   .then(response => ({response}))
   .catch(error => ({error}));
 
+/**
+ * @description makes api call for create new job
+ * @param {Object} data job object data
+ * @return {Promise}
+ */
+const addJob = (data) => request({
+  url: 'jobs',
+  method: 'POST',
+  data
+})
+  .then(response => ({response}))
+  .catch(error => ({error}));
+
 export {
-  getJobs
+  getJobs,
+  addJob
 };

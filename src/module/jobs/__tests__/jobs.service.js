@@ -1,6 +1,6 @@
 jest.mock('../../../service/request');
 
-import {getJobs} from '../jobs.service';
+import {getJobs, addJob} from '../jobs.service';
 
 describe('Jobs Service', () => {
 
@@ -15,6 +15,27 @@ describe('Jobs Service', () => {
 
       getJobs().then(({response}) => {
         expect(response).toEqual(expectedRequest);
+      });
+
+    });
+
+  });
+
+  describe('addJob', () => {
+
+    it('Should make add job api call', () => {
+
+
+      const data = {_id: '4565456465'};
+      const expected = {
+        response: {
+          url: 'jobs',
+          method: 'POST',
+          data
+        }
+      };
+      addJob(data).then((res) => {
+        expect(res).toEqual(expected);
       });
 
     });
