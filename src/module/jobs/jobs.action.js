@@ -1,5 +1,5 @@
 import {
-  ADD_JOB,
+  FETCH_ADD_JOB_SUCCESS,
   UPDATE_JOB,
   CHANGE_STATUS,
   DELETE_JOB,
@@ -50,7 +50,7 @@ const fetchJobsFailure = (e) => ({
  * @return {Object} return "redux" action
  */
 const addJob = (job) => ({
-  type: ADD_JOB,
+  type: FETCH_ADD_JOB_SUCCESS,
   payload: job
 });
 

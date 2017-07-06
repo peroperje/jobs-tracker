@@ -6,7 +6,7 @@ import {
   FETCH_JOBS_REQUEST,
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
-  ADD_JOB,
+  FETCH_ADD_JOB_SUCCESS,
   UPDATE_JOB,
   CHANGE_STATUS,
   DELETE_JOB,
@@ -24,7 +24,7 @@ import {
 function job(job = {}, action) {
   const {type, payload} = action;
   switch (type) {
-    case ADD_JOB:
+    case FETCH_ADD_JOB_SUCCESS:
       return payload;
     case UPDATE_JOB:
       if (payload._id === job._id) {
@@ -55,7 +55,7 @@ function jobItem(state = [], action) {
   switch (type) {
     case FETCH_JOBS_SUCCESS:
       return [...state, ...action.payload];
-    case ADD_JOB:
+    case FETCH_ADD_JOB_SUCCESS:
       return [...state, job({}, action)];
     case UPDATE_JOB:
       return state.map(jobItem => job(jobItem, action));
@@ -79,7 +79,7 @@ function jobItem(state = [], action) {
 function jobs(state = {}, action) {
   const {type} = action;
   switch (type) {
-    case ADD_JOB:
+    case FETCH_ADD_JOB_SUCCESS:
     case UPDATE_JOB:
     case CHANGE_STATUS:
     case DELETE_JOB:

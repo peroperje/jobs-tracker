@@ -20,12 +20,26 @@ const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
 const FETCH_JOBS_FAILURE = 'FETCH_JOBS_FAILURE';
 
 /**
+ * @description const for fetch add job request
+ * @const {string}
+ * @default
+ */
+const FETCH_ADD_JOB_REQUEST = 'FETCH_ADD_JOB_REQUEST';
+
+/**
  * @description Add job constant
  * @memberOf jobslist
  * @const {string}
  * @default
  */
-const ADD_JOB = 'ADD_JOB';
+const FETCH_ADD_JOB_SUCCESS = 'FETCH_ADD_JOB_SUCCESS';
+
+/**
+ * @description const for fetch add job failure
+ * @const {string}
+ * @default
+ */
+const FETCH_ADD_JOB_FAILURE = 'FETCH_ADD_JOB_FAILURE';
 
 /**
  * @description Update job constant
@@ -76,7 +90,9 @@ export {
   FETCH_JOBS_REQUEST,
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
-  ADD_JOB,
+  FETCH_ADD_JOB_REQUEST,
+  FETCH_ADD_JOB_SUCCESS,
+  FETCH_ADD_JOB_FAILURE,
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,

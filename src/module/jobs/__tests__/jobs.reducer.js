@@ -1,6 +1,6 @@
 import uniqid from 'uniqid';
 import {
-  ADD_JOB,
+  FETCH_ADD_JOB_SUCCESS,
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,
@@ -74,7 +74,7 @@ describe('Jobs Reducer', () => {
       title: 'Job added by testing'
     });
     const action = {
-      type: ADD_JOB,
+      type: FETCH_ADD_JOB_SUCCESS,
       payload: jobToAdd
     };
     const newState = jobs(initState, action);

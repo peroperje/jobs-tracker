@@ -1,6 +1,6 @@
 import * as job from '../jobs.action';
 import {
-  ADD_JOB,
+  FETCH_ADD_JOB_SUCCESS,
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,
@@ -62,7 +62,7 @@ describe('Jobs Actions', () => {
   it('Should create new Actions for addJob ', () => {
 
     const action = job.addJob(state[0]);
-    expect(action.type).toBe(ADD_JOB);
+    expect(action.type).toBe(FETCH_ADD_JOB_SUCCESS);
     expect(action.payload).toEqual(state[0]);
   });
 
