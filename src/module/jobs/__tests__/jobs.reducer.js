@@ -7,20 +7,54 @@ import {
   SET_VISIBILITY_FILTER,
   jobsFilter
 } from '../jobs.constant';
-import {deleteJob} from '../jobs.action';
+import {deleteJob, fetchJobsRequest, fetchJobsSuccess, fetchJobsFailure} from '../jobs.action';
 import {jobs, jobsVisibilityFilter} from '../jobs.reducer';
 import initialStore from '../../../store/initialStore';
 
 describe('Jobs Reducer', () => {
 
-  let state;
+  let initState;
   beforeEach(() => {
-    state = initialStore.jobs;
+    initState = initialStore.jobs;
+  });
+
+  describe('Fetch Jobs', () => {
+
+    it('Fetch jobs request', () => {
+      const action = fetchJobsRequest();
+      const state = jobs(initState, action);
+
+      expect(state).toEqual({
+        items: initState.items,
+        isFetching: true,
+        errorFetching: null
+      });
+
+    });
+
+    describe('Fecth job success action', () => {
+      const beginigState = initialStore.jobs;
+      const action = fetchJobsSuccess(beginigState.items);
+      const state = jobs(beginigState, action);
+
+      it('Should has same state as init store ', () => {
+        expect(state).toEqual(beginigState);
+      });
+
+      it('isFetching property should has false', () => {
+        expect(state.isFetching).toBeFalsy();
+      });
+
+      it('errorFetching should be null', () => {
+        expect(state.errorFetching).toBeNull();
+      });
+    });
+
   });
 
   it('Should add new job', () => {
 
-    const jobToAdd = Object.assign({}, state[0], {
+    const jobToAdd = Object.assign({}, initState[0], {
       _id: uniqid(),
       title: 'Job added by testing'
     });
@@ -28,15 +62,15 @@ describe('Jobs Reducer', () => {
       type: ADD_JOB,
       payload: jobToAdd
     };
-    const newState = jobs(state, action);
+    const newState = jobs(initState, action);
     expect(newState.items).toContain(action.payload);
 
   });
 
   it('Should update job data by _id', () => {
 
-    const {_id, ...data} = state.items[0];
-    const {_id: idForUpdate} = state.items[2];
+    const {_id, ...data} = initState.items[0];
+    const {_id: idForUpdate} = initState.items[2];
     const action = {
       type: UPDATE_JOB,
       payload: {
@@ -44,7 +78,7 @@ describe('Jobs Reducer', () => {
         data: data
       }
     };
-    const newState = jobs(state, action);
+    const newState = jobs(initState, action);
 
     expect(newState.items[2]._id).not.toEqual(_id);
     expect(newState.items[2]).toMatchObject(data);
@@ -53,9 +87,9 @@ describe('Jobs Reducer', () => {
 
   it('Should delete job', () => {
 
-    const {_id} = state.items[0]
+    const {_id} = initState.items[0];
     const action = deleteJob(_id);
-    const newState = jobs(state, action);
+    const newState = jobs(initState, action);
 
     expect(newState.items.length).toBe(2);
 
@@ -66,12 +100,12 @@ describe('Jobs Reducer', () => {
     const action = {
       type: CHANGE_STATUS,
       payload: {
-        _id: state.items[0]._id
+        _id: initState.items[0]._id
       }
     };
-    const newState = jobs(state, action);
+    const newState = jobs(initState, action);
 
-    expect(newState.items[0].active).toBe(!state.items[0].active);
+    expect(newState.items[0].active).toBe(!initState.items[0].active);
 
   });
 

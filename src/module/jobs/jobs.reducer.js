@@ -3,6 +3,9 @@
  */
 
 import {
+  FETCH_JOBS_REQUEST,
+  FETCH_JOBS_SUCCESS,
+  FETCH_JOBS_FAILURE,
   ADD_JOB,
   UPDATE_JOB,
   CHANGE_STATUS,
@@ -40,9 +43,18 @@ function job(job = {}, action) {
       return job;
   }
 }
+
+/**
+ * @description jobItem reducer
+ * @param {Array} state jobs.items - list of job objects
+ * @param {Object} action an action
+ * @return {Array } the slice of state
+ */
 function jobItem(state = [], action) {
   const {type} = action;
   switch (type) {
+    case FETCH_JOBS_SUCCESS:
+      return [...[], ...action.payload];
     case ADD_JOB:
       return [...state, job({}, action)];
     case UPDATE_JOB:
@@ -60,7 +72,7 @@ function jobItem(state = [], action) {
  * @description Jobs reducer
  * @memberOf jobslist
  * @function action
- * @param {Array} state  Array of action objects
+ * @param {Object} state  Jobs object
  * @param {Object} action Action object
  * @return {Array} New store
  */
@@ -71,7 +83,18 @@ function jobs(state = {}, action) {
     case UPDATE_JOB:
     case CHANGE_STATUS:
     case DELETE_JOB:
-      return {...state,...{items: jobItem(state.items,action)}};
+      return {...state, ...{items: jobItem(state.items, action)}};
+    case FETCH_JOBS_REQUEST:
+      return {...state, ...{isFetching: true, errorFetching: null}};
+    case FETCH_JOBS_SUCCESS:
+      return {
+        ...state,
+        ...{
+          items: jobItem(state.items, action),
+          isFetching: false,
+          errorFetching: null
+        }
+      };
     default:
       return state;
   }
