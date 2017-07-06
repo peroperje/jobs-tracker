@@ -2,10 +2,15 @@ jest.mock('../../../store/jwtStorage');
 
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-import {FETCH_JOBS_REQUEST,FETCH_ADD_JOB_REQUEST} from '../jobs.constant';
-import {getJobs} from '../jobs.service';
-import {fetchJobsSuccess, fetchJobsFailure} from '../jobs.action';
-import {jobRequest,addJobRequest, watchJobs} from '../jobs.saga';
+import {FETCH_JOBS_REQUEST, FETCH_ADD_JOB_REQUEST} from '../jobs.constant';
+import {getJobs, addJob} from '../jobs.service';
+import {
+  fetchJobsSuccess,
+  fetchJobsFailure,
+  fetchAddJobSuccess,
+  fetchAddJobFailure
+} from '../jobs.action';
+import {jobRequest, addJobRequest, watchJobs} from '../jobs.saga';
 
 describe('Jobs Saga', () => {
 
@@ -20,7 +25,7 @@ describe('Jobs Saga', () => {
       });
 
       it('Should call addJobRequest', () => {
-expect(genWatcher.next().value).toEqual(takeEvery(FETCH_ADD_JOB_REQUEST,addJobRequest));
+        expect(genWatcher.next().value).toEqual(takeEvery(FETCH_ADD_JOB_REQUEST, addJobRequest));
       });
 
     });
@@ -71,6 +76,48 @@ expect(genWatcher.next().value).toEqual(takeEvery(FETCH_ADD_JOB_REQUEST,addJobRe
 
       });
 
+    });
+
+    describe('Fetch add job worker', () => {
+
+      const action = {payload: {title: 'Some title'}};
+
+      describe('Successful', () => {
+
+        const gen = addJobRequest(action);
+        const res = {
+          response: {
+            data: {
+              _id: '45464564',
+              title: 'Some title'
+            }
+          }
+        };
+
+        it('Should call add job app', () => {
+          expect(gen.next(res).value).toEqual(call(addJob, action.payload));
+        });
+
+        it('Should emit success action', () => {
+          expect(gen.next(res).value).toEqual(put(fetchAddJobSuccess(res.response.data)));
+        });
+
+      });
+
+      describe('Failed', () => {
+        const gen = addJobRequest(action);
+        const err = {
+          error: {
+            data: {
+              _id: '45464564',
+              title: 'Some title'
+            }
+          }
+        };
+        gen.next(err);
+        expect(gen.next(err).value).toEqual(put(fetchAddJobFailure(err.error.data)));
+
+      });
     });
 
   });

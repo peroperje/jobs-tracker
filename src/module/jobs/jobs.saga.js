@@ -31,7 +31,7 @@ export function* jobRequest() {
 export function* addJobRequest(action) {
   const {response, error} = yield call(addJob, action.payload);
   if (response) {
-    yield put(fetchJobsSuccess(response.data));
+    yield put(fetchAddJobSuccess(response.data));
   } else {
     yield put(fetchAddJobFailure(error.data));
   }
