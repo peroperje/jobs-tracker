@@ -1,8 +1,13 @@
 import {takeEvery, call, put} from 'redux-saga/effects';
 
-import {FETCH_JOBS_REQUEST} from './jobs.constant';
-import {fetchJobsSuccess, fetchJobsFailure} from './jobs.action';
-import {getJobs} from './jobs.service';
+import {FETCH_JOBS_REQUEST, FETCH_ADD_JOB_REQUEST} from './jobs.constant';
+import {
+  fetchJobsSuccess,
+  fetchJobsFailure,
+  fetchAddJobSuccess,
+  fetchAddJobFailure
+} from './jobs.action';
+import {getJobs, addJob} from './jobs.service';
 
 /**
  * @description Fect jobs data
@@ -20,8 +25,22 @@ export function* jobRequest() {
 }
 
 /**
+ * @description add job worker
+ * @param {Object} action object
+ */
+export function* addJobRequest(action) {
+  const {response, error} = yield call(addJob, action.payload);
+  if (response) {
+    yield put(fetchJobsSuccess(response.data));
+  } else {
+    yield put(fetchAddJobFailure(error.data));
+  }
+}
+
+/**
  * @description saga watcher for jobs action
  */
 export function* watchJobs() {
   yield takeEvery(FETCH_JOBS_REQUEST, jobRequest);
+  yield takeEvery(FETCH_ADD_JOB_REQUEST, addJobRequest);
 }

@@ -65,11 +65,12 @@ describe('Jobs Actions', () => {
   describe('Fetch Add Job', () => {
 
     it('Should create action for request', () => {
-
-      const action = job.fetchAddJobRequest();
+      const data = {_id: '54566'};
+      const action = job.fetchAddJobRequest(data);
 
       expect(action).toEqual({
-        type: FETCH_ADD_JOB_REQUEST
+        type: FETCH_ADD_JOB_REQUEST,
+        payload: data
       });
 
     });
