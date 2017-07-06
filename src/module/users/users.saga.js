@@ -84,9 +84,9 @@ export function* logout() {
 };
 
 /**
- * @description watcher for SignUp action
+ * @description watcher for user action
  */
-export function* watchSignUp() {
+export function* watchUser() {
   yield takeLatest(FETCH_SIGNUP_REQUEST, signUp);
   yield takeLatest(FETCH_LOGIN_REQUEST, logIn);
   yield takeLatest(CHECK_IS_LOGGED_REQUEST, isLogged);

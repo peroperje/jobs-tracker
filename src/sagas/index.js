@@ -1,10 +1,10 @@
 import {all, fork} from 'redux-saga/effects';
 
-import {watchSignUp} from '../module/users/users.saga';
+import {watchUser} from '../module/users/users.saga';
 
 function* rootSaga() {
   yield all([
-    fork(watchSignUp)
+    fork(watchUser)
   ]);
 }
 
