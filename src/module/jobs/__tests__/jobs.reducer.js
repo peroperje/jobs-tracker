@@ -60,7 +60,7 @@ describe('Jobs Reducer', () => {
         const action = jobsAction.fetchJobsFailure(errorMessage);
         const state = jobs(initState, action);
 
-        expect(state.errorFetching).toBe(errorMessage)
+        expect(state.errorFetching).toBe(errorMessage);
 
       });
 
@@ -88,9 +88,8 @@ describe('Jobs Reducer', () => {
     describe('Fetch add job success', () => {
 
       const initJobsState = {
-        ...initialStore.jobs, ...{
-          isFetching: true
-        }
+        ...initialStore.jobs,
+        ...{isFetching: true}
       };
       const data = initJobsState.items[0];
       const action = jobsAction.fetchAddJobSuccess(data);
