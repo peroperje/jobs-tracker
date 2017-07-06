@@ -34,9 +34,7 @@ describe('Jobs Saga', () => {
 
       const res = {
         response: {
-          data: {
-            jobs: [{_id: '546464'}, {_id: '11546464'}]
-          }
+          data: [{_id: '546464'}, {_id: '11546464'}]
         }
       };
       const err = {
@@ -61,7 +59,7 @@ describe('Jobs Saga', () => {
         const gen = jobRequest();
         gen.next(res);
         const nextPoint = gen.next(res).value;
-        const putResult = put(fetchJobsSuccess(res.response.data.jobs));
+        const putResult = put(fetchJobsSuccess(res.response.data));
 
         expect(nextPoint).toEqual(putResult);
 

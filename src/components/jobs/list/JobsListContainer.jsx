@@ -6,10 +6,10 @@ import uniqid from 'uniqid';
 
 import {
   fetchJobsRequest,
+  fetchAddJobRequest,
   setVisibilityFilter,
   changeStatus,
   deleteJob,
-  addJob,
   updateJob
 } from './../../../module/jobs/jobs.action';
 import {jobsFilter} from './../../../module/jobs/jobs.constant';
@@ -74,9 +74,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   //todo refactoring code bad smell
   handleSubmitJobForm: (jobData) => {
     if (!jobData._id) {
-      jobData._id = uniqid();
+      /*jobData._id = uniqid();
       jobData.active = true;
-      dispatch(addJob(jobData));
+      dispatch(addJob(jobData));*/
+      dispatch(fetchAddJobRequest(jobData));
     } else {
       const {id, ...data} = jobData;
       dispatch(updateJob(id, data));
