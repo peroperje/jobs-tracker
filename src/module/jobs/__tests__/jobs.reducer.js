@@ -111,6 +111,16 @@ describe('Jobs Reducer', () => {
 
   });
 
+  describe('Clean Jobs state', () => {
+    it('Should clean jobs state ', () => {
+      const action = jobsAction.cleanJobsState();
+      const state = jobs(initState, action);
+      const expextedState = {...initState, ...{items: []}}
+      expect(state).toEqual(expextedState);
+    });
+
+  });
+
 
   it('Should update job data by _id', () => {
 

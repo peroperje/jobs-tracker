@@ -13,7 +13,8 @@ import {
   CHANGE_STATUS,
   DELETE_JOB,
   SET_VISIBILITY_FILTER,
-  jobsFilter
+  jobsFilter,
+  CLEAR_JOBS_STATE
 } from './jobs.constant';
 
 /**
@@ -47,12 +48,12 @@ function job(job = {}, action) {
 }
 
 /**
- * @description jobItem reducer
+ * @description jobItems reducer
  * @param {Array} state jobs.items - list of job objects
  * @param {Object} action an action
  * @return {Array } the slice of state
  */
-function jobItem(state = [], action) {
+function jobItems(state = [], action) {
   const {type} = action;
   switch (type) {
     case FETCH_JOBS_SUCCESS:
@@ -85,7 +86,7 @@ function jobs(state = {}, action) {
     case UPDATE_JOB:
     case CHANGE_STATUS:
     case DELETE_JOB:
-      return {...state, ...{items: jobItem(state.items, action)}};
+      return {...state, ...{items: jobItems(state.items, action)}};
 
     case FETCH_JOBS_REQUEST:
     case FETCH_ADD_JOB_REQUEST:
@@ -95,14 +96,22 @@ function jobs(state = {}, action) {
       return {
         ...state,
         ...{
-          items: jobItem(state.items, action),
+          items: jobItems(state.items, action),
           isFetching: false,
           errorFetching: null
         }
       };
     case FETCH_JOBS_FAILURE:
     case FETCH_ADD_JOB_FAILURE:
-      return {...state, ...{isFetching: false, errorFetching: action.payload.errorFetching}};
+      return {
+        ...state,
+        ...{
+          isFetching: false,
+          errorFetching: action.payload.errorFetching
+        }
+      };
+    case CLEAR_JOBS_STATE:
+      return {...state,...{items:[]}}
     default:
       return state;
   }
