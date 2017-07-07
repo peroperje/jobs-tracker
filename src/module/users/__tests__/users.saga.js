@@ -10,6 +10,7 @@ import {
   fetchFailure,
   cleanFetchError
 } from '../users.action';
+import {cleanJobsState} from '../../jobs/jobs.action';
 import {signUp, logIn, isLogged, logout} from '../users.saga';
 import {signup, login, me} from '../users.service';
 
@@ -46,7 +47,10 @@ describe('User Saga', () => {
       const gen = signUp(action);
 
       it('Should call signup service', () => {
-        expect(gen.next(res).value).toEqual(call(signup, action.payload.data));
+
+        const expected = gen.next(res).value;
+        const received = call(signup, action.payload.data);
+        expect(expected).toEqual(received);
       });
 
       it('Should put Fetch SignUp action', () => {
@@ -68,7 +72,11 @@ describe('User Saga', () => {
       });
 
       it('Should wait 4s before clear data', () => {
-        expect(gen.next().value).toEqual(call(delay, 4000));
+
+        const expected = gen.next().value;
+        const recived = call(delay, 4000);
+
+        expect(expected).toEqual(recived);
       });
 
       it('Should clear fetch error message', () => {
@@ -195,12 +203,14 @@ describe('User Saga', () => {
 
   describe('Logout', () => {
 
+    const gen = logout();
+
     it('Should clear jwt token form localstorage', () => {
-
-      const gen = logout();
-
       expect(gen.next().value).toEqual(call(jwtStorage.removeJWT));
+    });
 
+    it('Should emit action for clean jobs state', () => {
+      expect(gen.next().value).toEqual(put(cleanJobsState()));
     });
 
   });

@@ -1,7 +1,10 @@
 import {delay} from 'redux-saga';
 import {takeLatest, put, call} from 'redux-saga/effects';
 
+// service
 import {signup, login, me} from './users.service';
+
+// action
 import {
   fetchSignUpSuccess,
   fetchLoginSuccess,
@@ -9,6 +12,9 @@ import {
   fetchFailure,
   cleanFetchError
 } from './users.action';
+import {cleanJobsState} from '../jobs/jobs.action';
+
+// constants
 import {
   FETCH_SIGNUP_REQUEST,
   FETCH_LOGIN_REQUEST,
@@ -16,6 +22,7 @@ import {
   LOGOUT
 } from './users.constant';
 
+// local storage manager
 import jwtStorage from '../../store/jwtStorage';
 
 /**
@@ -81,7 +88,8 @@ export function* isLogged() {
  */
 export function* logout() {
   yield call(jwtStorage.removeJWT);
-};
+  yield put(cleanJobsState());
+}
 
 /**
  * @description watcher for user action
