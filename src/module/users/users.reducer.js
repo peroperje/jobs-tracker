@@ -53,13 +53,13 @@ const setUserData = (state, payload) => {
 function user(state = {}, action) {
   const {type, payload} = action;
   switch (type) {
+
     case FETCH_SIGNUP_REQUEST:
-      return setFetching(state);
-    case FETCH_SIGNUP_SUCCESS:
-      return setUserData(state, payload);
     case FETCH_LOGIN_REQUEST:
       return setFetching(state);
+    case FETCH_SIGNUP_SUCCESS:
     case FETCH_LOGIN_SUCCESS:
+    case CHECK_IS_LOGGED_SUCCESS:
       return setUserData(state, payload);
     case CHECK_IS_LOGGED_REQUEST:
       return setFetching(setUserData(state, {
@@ -67,8 +67,6 @@ function user(state = {}, action) {
         firstName: null,
         surName: null
       }));
-    case CHECK_IS_LOGGED_SUCCESS:
-      return setUserData(state, payload);
     case FETCH_FAILURE:
       return {
         ...state,
