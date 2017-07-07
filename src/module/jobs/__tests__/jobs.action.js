@@ -9,7 +9,8 @@ import {
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,
-  SET_VISIBILITY_FILTER
+  SET_VISIBILITY_FILTER,
+  CLEAR_JOBS_STATE
 
 } from '../jobs.constant';
 import initialState from '../../../store/initialStore';
@@ -139,6 +140,23 @@ describe('Jobs Actions', () => {
     const {type, payload: {jobsVisibilityFilter}} = action;
     expect(type).toBe(SET_VISIBILITY_FILTER);
     expect(jobsVisibilityFilter).toBe(true);
+  });
+
+  describe('Clean Jobs State', () => {
+
+    it('Shouldl be defined', () => {
+
+      expect(job.cleanJobsState).toBeDefined();
+
+    });
+
+    it('Should create action', () => {
+
+      const action = job.cleanJobsState();
+      expect(action).toEqual({type: CLEAR_JOBS_STATE});
+
+    });
+
   });
 
 

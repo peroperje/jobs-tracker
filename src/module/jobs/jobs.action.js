@@ -8,7 +8,8 @@ import {
   UPDATE_JOB,
   CHANGE_STATUS,
   DELETE_JOB,
-  SET_VISIBILITY_FILTER
+  SET_VISIBILITY_FILTER,
+  CLEAR_JOBS_STATE
 } from './jobs.constant';
 
 /**
@@ -47,7 +48,7 @@ const fetchJobsFailure = (e) => ({
 /**
  * @description create the action for fetch add job request
  * @function fetchAddJobRequest
- * @param {Object} new job data
+ * @param {Object} data new job data
  * @return {Object} the action
  */
 const fetchAddJobRequest = (data) => ({
@@ -144,6 +145,14 @@ const setVisibilityFilter = (filter) => ({
   }
 });
 
+/**
+ * @description Create action for clean jobs state
+ * @return {Object} the action
+ */
+const cleanJobsState = () => ({
+  type: CLEAR_JOBS_STATE
+});
+
 export {
   fetchJobsRequest,
   fetchJobsSuccess,
@@ -155,5 +164,6 @@ export {
   updateJob,
   changeStatus,
   deleteJob,
-  setVisibilityFilter
+  setVisibilityFilter,
+  cleanJobsState
 };
