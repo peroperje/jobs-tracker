@@ -85,6 +85,12 @@ const jobsFilter = {
   SHOW_ARHIVED: 'SHOW_ARHIVED'
 };
 
+/**
+ * @description clear all jobs items
+ * @const {string}
+ * @default
+ */
+const CLEAR_JOBS_STATE = 'CLEAR_JOBS_STATE';
 
 export {
   FETCH_JOBS_REQUEST,
@@ -97,5 +103,6 @@ export {
   DELETE_JOB,
   CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
-  jobsFilter
+  jobsFilter,
+  CLEAR_JOBS_STATE
 };

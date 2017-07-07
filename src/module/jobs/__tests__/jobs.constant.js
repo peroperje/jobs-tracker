@@ -29,5 +29,9 @@ describe('Jobs Constant', () => {
       expect(jobsConstants.FETCH_ADD_JOB_FAILURE).toBeDefined();
     });
 
+    it('Should be defined CLEAR_JOBS_STATE', () => {
+      expect(jobsConstants.CLEAR_JOBS_STATE).toBeDefined();
+    });
+
   });
 });
