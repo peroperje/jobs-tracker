@@ -8,10 +8,8 @@ const client = axios.create({
   baseURL: 'http://localhost:3000/api/'
 });
 
-const jwt = jwtStorage.getJWT();
-if(jwt){
-  client.defaults.headers.common['x-auth'] = jwt;
-}
+
+
 
 /**
  * @description Request Wrapper with default success/error actions
@@ -44,6 +42,11 @@ const request = function (options) {
     return Promise.reject(error.response || error.message);
   };
 
+  const jwt = jwtStorage.getJWT();
+
+  if(jwt){
+    client.defaults.headers.common['x-auth'] = jwt;
+  }
   return client(options)
     .then(onSuccess)
     .catch(onError);
