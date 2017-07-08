@@ -79,18 +79,6 @@ const addJobRequestFailure = (e) => ({
   }
 });
 
-
-/**
- * @description Add Job action
- * @function addJob
- * @param {Object} job The job object
- * @return {Object} return "redux" action
- */
-const addJob = (job) => ({
-  type: ADD_JOB_REQUEST_SUCCESS,
-  payload: job
-});
-
 /**
  * @description Update Job with provided ID
  * @function updateJob
@@ -160,7 +148,6 @@ export {
   addJobRequest,
   addJobRequestSuccess,
   addJobRequestFailure,
-  addJob,
   updateJob,
   changeStatus,
   deleteJob,

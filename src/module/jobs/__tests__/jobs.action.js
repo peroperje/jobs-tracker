@@ -63,7 +63,7 @@ describe('Jobs Actions', () => {
 
   });
 
-  describe('Fetch Add Job', () => {
+  describe('Add Job Request', () => {
 
     it('Should create action for request', () => {
       const data = {_id: '54566'};
@@ -105,12 +105,7 @@ describe('Jobs Actions', () => {
 
   });
 
-  it('Should create new Actions for addJob ', () => {
 
-    const action = job.addJob(state[0]);
-    expect(action.type).toBe(ADD_JOB_REQUEST_SUCCESS);
-    expect(action.payload).toEqual(state[0]);
-  });
 
   it('Should create new action for updateJob', () => {
     const action = job.updateJob(state[1]._id, state[0]);
