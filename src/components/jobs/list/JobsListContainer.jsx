@@ -10,7 +10,7 @@ import {
   setVisibilityFilter,
   changeStatus,
   deleteJob,
-  updateJob
+  updateJobRequest
 } from './../../../module/jobs/jobs.action';
 import {jobsFilter} from './../../../module/jobs/jobs.constant';
 import JobsList from './JobsList';
@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       dispatch(addJobRequest(jobData));
     } else {
       const {id, ...data} = jobData;
-      dispatch(updateJob(id, data));
+      dispatch(updateJobRequest(id, data));
     }
   }
 });

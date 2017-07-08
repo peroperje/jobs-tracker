@@ -7,6 +7,8 @@ import {
   ADD_JOB_REQUEST_SUCCESS,
   ADD_JOB_REQUEST_FAILURE,
   UPDATE_JOB_REQUEST,
+  UPDATE_JOB_REQUEST_SUCCESS,
+  UPDATE_JOB_REQUEST_FAILURE,
   DELETE_JOB,
   CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
@@ -105,14 +107,70 @@ describe('Jobs Actions', () => {
 
   });
 
+  describe('Update Job', () => {
 
+    it('Should be defined action creator for update job request', () => {
 
-  it('Should create new action for updateJob', () => {
-    const action = job.updateJob(state[1]._id, state[0]);
-    const {type, payload: {_id, data}} = action;
-    expect(type).toBe(UPDATE_JOB_REQUEST);
-    expect(_id).toBe(state[1]._id);
-    expect(data).toEqual(state[0]);
+      expect(job.updateJobRequest()).toBeDefined();
+
+    });
+
+    it('Should create action for update job request', () => {
+
+      const {_id, ...data} = state[0];
+      const action = job.updateJobRequest(_id, data);
+      const expectedAction = {
+        type: UPDATE_JOB_REQUEST,
+        payload: {
+          _id: _id,
+          data
+        }
+      };
+
+      expect(action).toEqual(expectedAction);
+
+    });
+
+    it('Should be defined action creator update job request success', () => {
+      expect(job.updateJobRequestSuccess).toBeDefined();
+    });
+
+    it('Should create action for update job request success', () => {
+
+      const {_id, data} = state[0];
+      const action = job.updateJobRequestSuccess(_id, data);
+      const expectedAction = {
+        type: UPDATE_JOB_REQUEST_SUCCESS,
+        payload: {
+          _id,
+          data
+        }
+
+      };
+
+      expect(action).toEqual(expectedAction);
+
+    });
+
+    it('Should be defined action update job request failure', () => {
+      expect(job.updateJobRequestFailure).toBeDefined();
+    });
+
+    it('Should create action for update job request failure', () => {
+
+      const err = 'Opps';
+      const action = job.updateJobRequestFailure(err);
+      const expectedAction = {
+        type: UPDATE_JOB_REQUEST_FAILURE,
+        payload: {
+          errorFetching: err
+        }
+      };
+
+      expect(action).toEqual(expectedAction);
+
+    });
+
   });
 
   it('Should create action for changeStatus', () => {

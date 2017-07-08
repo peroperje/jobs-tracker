@@ -6,6 +6,8 @@ import {
   ADD_JOB_REQUEST_SUCCESS,
   ADD_JOB_REQUEST_FAILURE,
   UPDATE_JOB_REQUEST,
+  UPDATE_JOB_REQUEST_SUCCESS,
+  UPDATE_JOB_REQUEST_FAILURE,
   CHANGE_STATUS,
   DELETE_JOB,
   SET_VISIBILITY_FILTER,
@@ -81,16 +83,42 @@ const addJobRequestFailure = (e) => ({
 
 /**
  * @description Update Job with provided ID
- * @function updateJob
+ * @function updateJobRequest
  * @param {Number} id Job ID
  * @param {Object} job Object with job properties for update
  * @return {Object} the update redux action
  */
-const updateJob = (id, job) => ({
+const updateJobRequest = (_id, data) => ({
   type: UPDATE_JOB_REQUEST,
   payload: {
-    _id: id,
-    data: job
+    _id,
+    data
+  }
+});
+
+/**
+ * @description create action for update job request success
+ * @param {String} _id id of job
+ * @param {Object} data updated job data
+ * @return {Object} action
+ */
+const updateJobRequestSuccess = (_id, data) => ({
+  type: UPDATE_JOB_REQUEST_SUCCESS,
+  payload: {
+    _id,
+    data
+  }
+});
+
+/**
+ * @description create action for update job request failure
+ * @param {String} errorFetching An error message
+ * @return {Object} the action object
+ */
+const updateJobRequestFailure = (errorFetching) => ({
+  type: UPDATE_JOB_REQUEST_FAILURE,
+  payload: {
+    errorFetching
   }
 });
 
@@ -148,7 +176,9 @@ export {
   addJobRequest,
   addJobRequestSuccess,
   addJobRequestFailure,
-  updateJob,
+  updateJobRequest,
+  updateJobRequestSuccess,
+  updateJobRequestFailure,
   changeStatus,
   deleteJob,
   setVisibilityFilter,
