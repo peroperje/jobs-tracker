@@ -72,7 +72,7 @@ describe('Jobs Reducer', () => {
 
     describe('Fetch add job request', () => {
 
-      const action = jobsAction.fetchAddJobRequest();
+      const action = jobsAction.addJobRequest();
       const state = jobs(initState, action);
 
       it('isFetching should has value true', () => {

@@ -47,11 +47,11 @@ const fetchJobsFailure = (e) => ({
 
 /**
  * @description create the action for fetch add job request
- * @function fetchAddJobRequest
+ * @function addJobRequest
  * @param {Object} data new job data
  * @return {Object} the action
  */
-const fetchAddJobRequest = (data) => ({
+const addJobRequest = (data) => ({
   type: ADD_JOB_REQUEST,
   payload: data
 });
@@ -157,7 +157,7 @@ export {
   fetchJobsRequest,
   fetchJobsSuccess,
   fetchJobsFailure,
-  fetchAddJobRequest,
+  addJobRequest,
   fetchAddJobSuccess,
   fetchAddJobFailure,
   addJob,

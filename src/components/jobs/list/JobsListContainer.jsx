@@ -6,7 +6,7 @@ import uniqid from 'uniqid';
 
 import {
   fetchJobsRequest,
-  fetchAddJobRequest,
+  addJobRequest,
   setVisibilityFilter,
   changeStatus,
   deleteJob,
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       /*jobData._id = uniqid();
       jobData.active = true;
       dispatch(addJob(jobData));*/
-      dispatch(fetchAddJobRequest(jobData));
+      dispatch(addJobRequest(jobData));
     } else {
       const {id, ...data} = jobData;
       dispatch(updateJob(id, data));
