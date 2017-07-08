@@ -1,6 +1,6 @@
 import uniqid from 'uniqid';
 import {
-  FETCH_ADD_JOB_SUCCESS,
+  ADD_JOB_REQUEST_SUCCESS,
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,
@@ -92,7 +92,7 @@ describe('Jobs Reducer', () => {
         ...{isFetching: true}
       };
       const data = initJobsState.items[0];
-      const action = jobsAction.fetchAddJobSuccess(data);
+      const action = jobsAction.addJobRequestSuccess(data);
       const state = jobs(initJobsState, action);
 
       it('Should add new job', () => {

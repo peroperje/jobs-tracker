@@ -32,14 +32,14 @@ const ADD_JOB_REQUEST = 'ADD_JOB_REQUEST';
  * @const {string}
  * @default
  */
-const FETCH_ADD_JOB_SUCCESS = 'FETCH_ADD_JOB_SUCCESS';
+const ADD_JOB_REQUEST_SUCCESS = 'ADD_JOB_REQUEST_SUCCESS';
 
 /**
  * @description const for fetch add job failure
  * @const {string}
  * @default
  */
-const FETCH_ADD_JOB_FAILURE = 'FETCH_ADD_JOB_FAILURE';
+const ADD_JOB_REQUEST_FAILURE = 'ADD_JOB_REQUEST_FAILURE';
 
 /**
  * @description Update job constant
@@ -97,8 +97,8 @@ export {
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
   ADD_JOB_REQUEST,
-  FETCH_ADD_JOB_SUCCESS,
-  FETCH_ADD_JOB_FAILURE,
+  ADD_JOB_REQUEST_SUCCESS,
+  ADD_JOB_REQUEST_FAILURE,
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,

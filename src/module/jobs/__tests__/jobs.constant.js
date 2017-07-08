@@ -21,12 +21,12 @@ describe('Jobs Constant', () => {
 
     });
 
-    it('Should has be defined FETCH_ADD_JOB_SUCCESS', () => {
-      expect(jobsConstants.FETCH_ADD_JOB_SUCCESS).toBeDefined();
+    it('Should has be defined ADD_JOB_REQUEST_SUCCESS', () => {
+      expect(jobsConstants.ADD_JOB_REQUEST_SUCCESS).toBeDefined();
     });
 
-    it('Should be defined FETCH_ADD_JOB_FAILURE', () => {
-      expect(jobsConstants.FETCH_ADD_JOB_FAILURE).toBeDefined();
+    it('Should be defined ADD_JOB_REQUEST_FAILURE', () => {
+      expect(jobsConstants.ADD_JOB_REQUEST_FAILURE).toBeDefined();
     });
 
     it('Should be defined CLEAR_JOBS_STATE', () => {

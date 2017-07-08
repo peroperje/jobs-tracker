@@ -7,8 +7,8 @@ import {getJobs, addJob} from '../jobs.service';
 import {
   fetchJobsSuccess,
   fetchJobsFailure,
-  fetchAddJobSuccess,
-  fetchAddJobFailure
+  addJobRequestSuccess,
+  addJobRequestFailure
 } from '../jobs.action';
 import {jobRequest, addJobRequest, watchJobs} from '../jobs.saga';
 
@@ -97,7 +97,7 @@ describe('Jobs Saga', () => {
         });
 
         it('Should emit success action', () => {
-          expect(gen.next(res).value).toEqual(put(fetchAddJobSuccess(res.response.data)));
+          expect(gen.next(res).value).toEqual(put(addJobRequestSuccess(res.response.data)));
         });
 
       });
@@ -113,7 +113,7 @@ describe('Jobs Saga', () => {
           }
         };
         gen.next(err);
-        expect(gen.next(err).value).toEqual(put(fetchAddJobFailure(err.error.data)));
+        expect(gen.next(err).value).toEqual(put(addJobRequestFailure(err.error.data)));
 
       });
     });

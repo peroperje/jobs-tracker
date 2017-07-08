@@ -4,8 +4,8 @@ import {
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
   ADD_JOB_REQUEST,
-  FETCH_ADD_JOB_SUCCESS,
-  FETCH_ADD_JOB_FAILURE,
+  ADD_JOB_REQUEST_SUCCESS,
+  ADD_JOB_REQUEST_FAILURE,
   UPDATE_JOB,
   DELETE_JOB,
   CHANGE_STATUS,
@@ -81,10 +81,10 @@ describe('Jobs Actions', () => {
       const data = {
         _id: '5645645465'
       };
-      const action = job.fetchAddJobSuccess(data);
+      const action = job.addJobRequestSuccess(data);
 
       expect(action).toEqual({
-        type: FETCH_ADD_JOB_SUCCESS,
+        type: ADD_JOB_REQUEST_SUCCESS,
         payload: data
       });
 
@@ -93,10 +93,10 @@ describe('Jobs Actions', () => {
     it('Should create action for fetch job failure', () => {
 
       const errMessage = 'Opps';
-      const action = job.fetchAddJobFailure(errMessage);
+      const action = job.addJobRequestFailure(errMessage);
 
       expect(action).toEqual({
-        type: FETCH_ADD_JOB_FAILURE,
+        type: ADD_JOB_REQUEST_FAILURE,
         payload: {
           errorFetching: errMessage
         }
@@ -108,7 +108,7 @@ describe('Jobs Actions', () => {
   it('Should create new Actions for addJob ', () => {
 
     const action = job.addJob(state[0]);
-    expect(action.type).toBe(FETCH_ADD_JOB_SUCCESS);
+    expect(action.type).toBe(ADD_JOB_REQUEST_SUCCESS);
     expect(action.payload).toEqual(state[0]);
   });
 

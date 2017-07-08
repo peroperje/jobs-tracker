@@ -3,8 +3,8 @@ import {
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
   ADD_JOB_REQUEST,
-  FETCH_ADD_JOB_SUCCESS,
-  FETCH_ADD_JOB_FAILURE,
+  ADD_JOB_REQUEST_SUCCESS,
+  ADD_JOB_REQUEST_FAILURE,
   UPDATE_JOB,
   CHANGE_STATUS,
   DELETE_JOB,
@@ -58,12 +58,12 @@ const addJobRequest = (data) => ({
 
 /**
  * @description Create the action for fetch add job success
- * @function fetchAddJobSuccess
+ * @function addJobRequestSuccess
  * @param {Object} data new job data object
  * @return {Object} action object
  */
-const fetchAddJobSuccess = (data) => ({
-  type: FETCH_ADD_JOB_SUCCESS,
+const addJobRequestSuccess = (data) => ({
+  type: ADD_JOB_REQUEST_SUCCESS,
   payload: data
 });
 
@@ -72,8 +72,8 @@ const fetchAddJobSuccess = (data) => ({
  * @param {String} e error message
  * @return {Object} the action object
  */
-const fetchAddJobFailure = (e) => ({
-  type: FETCH_ADD_JOB_FAILURE,
+const addJobRequestFailure = (e) => ({
+  type: ADD_JOB_REQUEST_FAILURE,
   payload: {
     errorFetching: e
   }
@@ -87,7 +87,7 @@ const fetchAddJobFailure = (e) => ({
  * @return {Object} return "redux" action
  */
 const addJob = (job) => ({
-  type: FETCH_ADD_JOB_SUCCESS,
+  type: ADD_JOB_REQUEST_SUCCESS,
   payload: job
 });
 
@@ -158,8 +158,8 @@ export {
   fetchJobsSuccess,
   fetchJobsFailure,
   addJobRequest,
-  fetchAddJobSuccess,
-  fetchAddJobFailure,
+  addJobRequestSuccess,
+  addJobRequestFailure,
   addJob,
   updateJob,
   changeStatus,

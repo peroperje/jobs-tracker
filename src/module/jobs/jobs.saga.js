@@ -4,8 +4,8 @@ import {FETCH_JOBS_REQUEST, ADD_JOB_REQUEST} from './jobs.constant';
 import {
   fetchJobsSuccess,
   fetchJobsFailure,
-  fetchAddJobSuccess,
-  fetchAddJobFailure
+  addJobRequestSuccess,
+  addJobRequestFailure
 } from './jobs.action';
 import {getJobs, addJob} from './jobs.service';
 
@@ -31,9 +31,9 @@ export function* jobRequest() {
 export function* addJobRequest(action) {
   const {response, error} = yield call(addJob, action.payload);
   if (response) {
-    yield put(fetchAddJobSuccess(response.data));
+    yield put(addJobRequestSuccess(response.data));
   } else {
-    yield put(fetchAddJobFailure(error.data));
+    yield put(addJobRequestFailure(error.data));
   }
 }
 
