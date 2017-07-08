@@ -1,7 +1,7 @@
 import uniqid from 'uniqid';
 import {
   ADD_JOB_REQUEST_SUCCESS,
-  UPDATE_JOB,
+  UPDATE_JOB_REQUEST,
   DELETE_JOB,
   CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
@@ -127,7 +127,7 @@ describe('Jobs Reducer', () => {
     const {_id, ...data} = initState.items[0];
     const {_id: idForUpdate} = initState.items[2];
     const action = {
-      type: UPDATE_JOB,
+      type: UPDATE_JOB_REQUEST,
       payload: {
         _id: idForUpdate,
         data: data

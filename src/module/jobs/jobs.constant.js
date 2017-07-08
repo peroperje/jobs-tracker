@@ -43,11 +43,24 @@ const ADD_JOB_REQUEST_FAILURE = 'ADD_JOB_REQUEST_FAILURE';
 
 /**
  * @description Update job constant
- * @memberOf jobslist
  * @const {string}
  * @default
  */
-const UPDATE_JOB = 'UPDATE_JOB';
+const UPDATE_JOB_REQUEST = 'UPDATE_JOB_REQUEST';
+
+/**
+ * @description const for update job success
+ * @const {string}
+ * @default
+ */
+const UPDATE_JOB_REQUEST_SUCCESS = 'UPDATE_JOB_REQUEST_SUCCESS';
+
+/**
+ * @description const for update job failure
+ * @const {string}
+ * @default
+ */
+const UPDATE_JOB_REQUEST_FAILURE = 'UPDATE_JOB_REQUEST_FAILURE';
 
 /**
  * @description Delete job constant
@@ -99,7 +112,9 @@ export {
   ADD_JOB_REQUEST,
   ADD_JOB_REQUEST_SUCCESS,
   ADD_JOB_REQUEST_FAILURE,
-  UPDATE_JOB,
+  UPDATE_JOB_REQUEST,
+  UPDATE_JOB_REQUEST_SUCCESS,
+  UPDATE_JOB_REQUEST_FAILURE,
   DELETE_JOB,
   CHANGE_STATUS,
   SET_VISIBILITY_FILTER,

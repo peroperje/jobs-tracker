@@ -6,7 +6,7 @@ import {
   ADD_JOB_REQUEST,
   ADD_JOB_REQUEST_SUCCESS,
   ADD_JOB_REQUEST_FAILURE,
-  UPDATE_JOB,
+  UPDATE_JOB_REQUEST,
   DELETE_JOB,
   CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
@@ -110,7 +110,7 @@ describe('Jobs Actions', () => {
   it('Should create new action for updateJob', () => {
     const action = job.updateJob(state[1]._id, state[0]);
     const {type, payload: {_id, data}} = action;
-    expect(type).toBe(UPDATE_JOB);
+    expect(type).toBe(UPDATE_JOB_REQUEST);
     expect(_id).toBe(state[1]._id);
     expect(data).toEqual(state[0]);
   });

@@ -9,7 +9,7 @@ import {
   ADD_JOB_REQUEST,
   ADD_JOB_REQUEST_SUCCESS,
   ADD_JOB_REQUEST_FAILURE,
-  UPDATE_JOB,
+  UPDATE_JOB_REQUEST,
   CHANGE_STATUS,
   DELETE_JOB,
   SET_VISIBILITY_FILTER,
@@ -29,7 +29,7 @@ function job(job = {}, action) {
   switch (type) {
     case ADD_JOB_REQUEST_SUCCESS:
       return payload;
-    case UPDATE_JOB:
+    case UPDATE_JOB_REQUEST:
       if (payload._id === job._id) {
         // added {_id:payload._id} to avoid overwrite _id by payload
         return Object.assign({}, job, payload.data, {id: payload._id});
@@ -60,7 +60,7 @@ function jobItems(state = [], action) {
       return [...state, ...action.payload];
     case ADD_JOB_REQUEST_SUCCESS:
       return [...state, job({}, action)];
-    case UPDATE_JOB:
+    case UPDATE_JOB_REQUEST:
       return state.map(jobItem => job(jobItem, action));
     case CHANGE_STATUS:
       return state.map(jobItem => job(jobItem, action));
@@ -83,7 +83,7 @@ function jobs(state = {}, action) {
   const {type} = action;
   switch (type) {
 
-    case UPDATE_JOB:
+    case UPDATE_JOB_REQUEST:
     case CHANGE_STATUS:
     case DELETE_JOB:
       return {...state, ...{items: jobItems(state.items, action)}};

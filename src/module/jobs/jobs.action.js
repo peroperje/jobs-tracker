@@ -5,7 +5,7 @@ import {
   ADD_JOB_REQUEST,
   ADD_JOB_REQUEST_SUCCESS,
   ADD_JOB_REQUEST_FAILURE,
-  UPDATE_JOB,
+  UPDATE_JOB_REQUEST,
   CHANGE_STATUS,
   DELETE_JOB,
   SET_VISIBILITY_FILTER,
@@ -87,7 +87,7 @@ const addJobRequestFailure = (e) => ({
  * @return {Object} the update redux action
  */
 const updateJob = (id, job) => ({
-  type: UPDATE_JOB,
+  type: UPDATE_JOB_REQUEST,
   payload: {
     _id: id,
     data: job
