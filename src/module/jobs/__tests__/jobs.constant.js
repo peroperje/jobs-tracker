@@ -16,8 +16,8 @@ describe('Jobs Constant', () => {
       expect(jobsConstants.FETCH_JOBS_FAILURE).toBeDefined();
     });
 
-    it('Should has be defined FETCH_ADD_JOB_REQUEST', () => {
-      expect(jobsConstants.FETCH_ADD_JOB_REQUEST).toBeDefined();
+    it('Should has be defined ADD_JOB_REQUEST', () => {
+      expect(jobsConstants.ADD_JOB_REQUEST).toBeDefined();
 
     });
 

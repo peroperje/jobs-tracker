@@ -6,7 +6,7 @@ import {
   FETCH_JOBS_REQUEST,
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
-  FETCH_ADD_JOB_REQUEST,
+  ADD_JOB_REQUEST,
   FETCH_ADD_JOB_SUCCESS,
   FETCH_ADD_JOB_FAILURE,
   UPDATE_JOB,
@@ -89,7 +89,7 @@ function jobs(state = {}, action) {
       return {...state, ...{items: jobItems(state.items, action)}};
 
     case FETCH_JOBS_REQUEST:
-    case FETCH_ADD_JOB_REQUEST:
+    case ADD_JOB_REQUEST:
       return {...state, ...{isFetching: true, errorFetching: null}};
     case FETCH_JOBS_SUCCESS:
     case FETCH_ADD_JOB_SUCCESS:

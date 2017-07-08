@@ -2,7 +2,7 @@ jest.mock('../../../store/jwtStorage');
 
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-import {FETCH_JOBS_REQUEST, FETCH_ADD_JOB_REQUEST} from '../jobs.constant';
+import {FETCH_JOBS_REQUEST, ADD_JOB_REQUEST} from '../jobs.constant';
 import {getJobs, addJob} from '../jobs.service';
 import {
   fetchJobsSuccess,
@@ -25,7 +25,7 @@ describe('Jobs Saga', () => {
       });
 
       it('Should call addJobRequest', () => {
-        expect(genWatcher.next().value).toEqual(takeEvery(FETCH_ADD_JOB_REQUEST, addJobRequest));
+        expect(genWatcher.next().value).toEqual(takeEvery(ADD_JOB_REQUEST, addJobRequest));
       });
 
     });

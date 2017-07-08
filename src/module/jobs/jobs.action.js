@@ -2,7 +2,7 @@ import {
   FETCH_JOBS_REQUEST,
   FETCH_JOBS_SUCCESS,
   FETCH_JOBS_FAILURE,
-  FETCH_ADD_JOB_REQUEST,
+  ADD_JOB_REQUEST,
   FETCH_ADD_JOB_SUCCESS,
   FETCH_ADD_JOB_FAILURE,
   UPDATE_JOB,
@@ -52,7 +52,7 @@ const fetchJobsFailure = (e) => ({
  * @return {Object} the action
  */
 const fetchAddJobRequest = (data) => ({
-  type: FETCH_ADD_JOB_REQUEST,
+  type: ADD_JOB_REQUEST,
   payload: data
 });
 

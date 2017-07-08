@@ -1,6 +1,6 @@
 import {takeEvery, call, put, take} from 'redux-saga/effects';
 
-import {FETCH_JOBS_REQUEST, FETCH_ADD_JOB_REQUEST} from './jobs.constant';
+import {FETCH_JOBS_REQUEST, ADD_JOB_REQUEST} from './jobs.constant';
 import {
   fetchJobsSuccess,
   fetchJobsFailure,
@@ -43,6 +43,6 @@ export function* addJobRequest(action) {
 export function* watchJobs() {
 
    yield takeEvery(FETCH_JOBS_REQUEST, jobRequest);
-   yield takeEvery(FETCH_ADD_JOB_REQUEST, addJobRequest);
+   yield takeEvery(ADD_JOB_REQUEST, addJobRequest);
 
 }
