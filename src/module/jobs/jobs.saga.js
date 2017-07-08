@@ -45,7 +45,7 @@ export function* addJobRequest(action) {
  */
 export function* updateJobRequest(action) {
   const {_id, data} = action.payload;
-  const {response, error} = yield call(updateJob, [_id, data]);
+  const {response, error} = yield call(updateJob, _id, data);
   if (response) {
     const {_id, ...data} = response.data;
     yield put(updateJobRequestSuccess(_id, data));

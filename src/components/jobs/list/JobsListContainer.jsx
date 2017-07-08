@@ -67,20 +67,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onClickDelete: (id) => {
     dispatch(deleteJob(id));
   },
-  fetchJobs : ()=>{
+  fetchJobs: () => {
     dispatch(fetchJobsRequest());
   },
-
-  //todo refactoring code bad smell
   handleSubmitJobForm: (jobData) => {
     if (!jobData._id) {
-      /*jobData._id = uniqid();
-      jobData.active = true;
-      dispatch(addJob(jobData));*/
       dispatch(addJobRequest(jobData));
     } else {
-      const {id, ...data} = jobData;
-      dispatch(updateJobRequest(id, data));
+      const {_id, ...data} = jobData;
+      dispatch(updateJobRequest(_id, data));
     }
   }
 });

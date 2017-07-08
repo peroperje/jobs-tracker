@@ -61,7 +61,8 @@ const updateJob = (req, res) => {
     return res.status(400).send('Not found');
   }
   Job.findOneAndUpdate({
-    _id: id
+    _id: id,
+    _creator: req.cUser._id
   }, {
     $set: body
   }, {

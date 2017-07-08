@@ -131,7 +131,7 @@ describe('Jobs Saga', () => {
       const gen = updateJobRequest(action);
 
       it('Should make api call', () => {
-        expect(gen.next([_id, data]).value).toEqual(call(updateJob, [_id, data]));
+        expect(gen.next([_id, data]).value).toEqual(call(updateJob, _id, data));
       });
 
       it('Should emit success action', () => {
