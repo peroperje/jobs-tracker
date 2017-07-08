@@ -1,18 +1,20 @@
 import {takeEvery, call, put, take} from 'redux-saga/effects';
 
-import {FETCH_JOBS_REQUEST, ADD_JOB_REQUEST} from './jobs.constant';
+import {FETCH_JOBS_REQUEST, ADD_JOB_REQUEST, UPDATE_JOB_REQUEST} from './jobs.constant';
 import {
   fetchJobsSuccess,
   fetchJobsFailure,
   addJobRequestSuccess,
-  addJobRequestFailure
+  addJobRequestFailure,
+  updateJobRequestSuccess,
+  updateJobRequestFailure
 } from './jobs.action';
-import {getJobs, addJob} from './jobs.service';
+import {getJobs, addJob, updateJob} from './jobs.service';
 
 /**
- * @description Fect jobs data
+ * @description Fetch jobs data
  */
-export function* jobRequest() {
+export function* jobsRequest() {
 
   const {response, error} = yield call(getJobs);
 
@@ -38,11 +40,27 @@ export function* addJobRequest(action) {
 }
 
 /**
+ * @description update job worker
+ * @param {Object} action action object
+ */
+export function* updateJobRequest(action) {
+  const {_id, data} = action.payload;
+  const {response, error} = yield call(updateJob, [_id, data]);
+  if (response) {
+    const {_id, ...data} = response.data;
+    yield put(updateJobRequestSuccess(_id, data));
+  } else {
+    yield put(updateJobRequestFailure(error.data));
+  }
+}
+
+/**
  * @description saga watcher for jobs action
  */
 export function* watchJobs() {
 
-   yield takeEvery(FETCH_JOBS_REQUEST, jobRequest);
-   yield takeEvery(ADD_JOB_REQUEST, addJobRequest);
+  yield takeEvery(FETCH_JOBS_REQUEST, jobsRequest);
+  yield takeEvery(ADD_JOB_REQUEST, addJobRequest);
+  yield takeEvery(UPDATE_JOB_REQUEST, updateJobRequest);
 
 }
