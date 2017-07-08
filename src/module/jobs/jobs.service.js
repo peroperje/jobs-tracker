@@ -24,7 +24,22 @@ const addJob = (data) => request({
   .then(response => ({response}))
   .catch(error => ({error}));
 
+/**
+ * @description Makes api call for update job
+ * @param {String} _id id of job
+ * @param {Object} data new data
+ * @return {Promise}
+ */
+const updateJob = (_id, data) => request({
+  url: `jobs/${_id}`,
+  method: 'PATCH',
+  data
+})
+  .then(response => ({response}))
+  .catch(error => ({error}));
+
 export {
   getJobs,
-  addJob
+  addJob,
+  updateJob
 };
