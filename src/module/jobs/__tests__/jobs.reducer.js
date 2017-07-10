@@ -155,6 +155,41 @@ describe('Jobs Reducer', () => {
 
   describe('Delete job', () => {
 
+    it('Delete job request', () => {
+
+      const {_id} = initState.items[0];
+      const action = jobsAction.deleteJobRequest(_id);
+      const state = jobs(initState, action);
+
+      expect(state).toEqual(expect.objectContaining({
+        isFetching: true,
+        errorFetching: null
+      }));
+
+    });
+
+    it('Delete job request success', () => {
+
+      const {_id} = initState.items[0];
+      const action = jobsAction.deleteJobRequestSuccess(_id);
+      const state = jobs(initState, action);
+
+      expect(state.items).not.toEqual(expect.arrayContaining(initState.items));
+    });
+
+    it('Delete jb request failure', () => {
+
+      const err = 'oppps';
+      const action = jobsAction.deleteJobRequestFailure(err);
+      const state = jobs(initState, action);
+
+      expect(state).toEqual(expect.objectContaining({
+        isFetching: false,
+        errorFetching: err
+      }));
+
+    });
+
   });
 
 });

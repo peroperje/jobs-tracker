@@ -13,6 +13,8 @@ import {
   UPDATE_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST_FAILURE,
   DELETE_JOB_REQUEST,
+  DELETE_JOB_REQUEST_SUCCESS,
+  DELETE_JOB_REQUEST_FAILURE,
   SET_VISIBILITY_FILTER,
   jobsFilter,
   CLEAR_JOBS_STATE
@@ -35,7 +37,7 @@ function job(job = {}, action) {
         return Object.assign({}, job, payload.data);
       }
       return job;
-    case DELETE_JOB_REQUEST:
+    case DELETE_JOB_REQUEST_SUCCESS:
       return payload._id !== job._id;
     default:
       return job;
@@ -57,7 +59,7 @@ function jobItems(state = [], action) {
       return [...state, job({}, action)];
     case UPDATE_JOB_REQUEST_SUCCESS:
       return state.map(jobItem => job(jobItem, action));
-    case DELETE_JOB_REQUEST:
+    case DELETE_JOB_REQUEST_SUCCESS:
       return state.filter(jobItem => job(jobItem, action));
     default:
       return state;
@@ -82,6 +84,7 @@ function jobs(state = {}, action) {
     case ADD_JOB_REQUEST:
       return {...state, ...{isFetching: true, errorFetching: null}};
     case UPDATE_JOB_REQUEST_SUCCESS:
+    case DELETE_JOB_REQUEST_SUCCESS:
     case FETCH_JOBS_SUCCESS:
     case ADD_JOB_REQUEST_SUCCESS:
       return {
@@ -93,6 +96,7 @@ function jobs(state = {}, action) {
         }
       };
     case UPDATE_JOB_REQUEST_FAILURE:
+    case DELETE_JOB_REQUEST_FAILURE:
     case FETCH_JOBS_FAILURE:
     case ADD_JOB_REQUEST_FAILURE:
       return {

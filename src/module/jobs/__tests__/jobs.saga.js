@@ -19,7 +19,7 @@ import initialStore from '../../../store/initialStore';
 
 describe('Jobs Saga', () => {
 
-  describe('Fetch jobs watcher', () => {
+  describe('Jobs watcher', () => {
 
     const genWatcher = watchJobs();
 
