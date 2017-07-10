@@ -1,7 +1,10 @@
 {
   "name": "jobs-tracker",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "engines": {
+    "node": "8.1.2"
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "bcryptjs": "^2.4.3",
@@ -41,7 +44,9 @@
     "uniqid": "^4.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build",
+    "start-client": "react-scripts start",
     "serve": "concurrently --kill-others \"node server/server.js\" \"yarn run start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
