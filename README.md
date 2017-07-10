@@ -6,7 +6,7 @@ A simple app for tracking offers of jobs
 - [Yarn](http://yargs.js.org/) or/and [npm](https://www.npmjs.com/)
 
 ## Installation
-- git clone git@github.com:peroperje/jobs-tracker.git
+- git clone https://github.com/peroperje/jobs-tracker.git
 - cd jobs-tracker
 - yarn
 
