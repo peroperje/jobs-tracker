@@ -9,7 +9,7 @@ import {
   addJobRequest,
   setVisibilityFilter,
   changeStatus,
-  deleteJob,
+  deleteJobRequest,
   updateJobRequest
 } from './../../../module/jobs/jobs.action';
 import {jobsFilter} from './../../../module/jobs/jobs.constant';
@@ -65,7 +65,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(updateJobRequest(_id, data));
   },
   onClickDelete: (id) => {
-    dispatch(deleteJob(id));
+    dispatch(deleteJobRequest(id));
   },
   fetchJobs: () => {
     dispatch(fetchJobsRequest());

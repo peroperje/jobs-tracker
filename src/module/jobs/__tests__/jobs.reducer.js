@@ -143,7 +143,7 @@ describe('Jobs Reducer', () => {
   it('Should delete job', () => {
 
     const {_id} = initState.items[0];
-    const action = jobsAction.deleteJob(_id);
+    const action = jobsAction.deleteJobRequest(_id);
     const newState = jobs(initState, action);
 
     expect(newState.items.length).toBe(2);

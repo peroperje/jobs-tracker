@@ -9,6 +9,8 @@ import {
   UPDATE_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST_FAILURE,
   DELETE_JOB_REQUEST,
+  DELETE_JOB_REQUEST_SUCCESS,
+  DELETE_JOB_REQUEST_FAILURE,
   SET_VISIBILITY_FILTER,
   CLEAR_JOBS_STATE
 } from './jobs.constant';
@@ -122,15 +124,41 @@ const updateJobRequestFailure = (errorFetching) => ({
 });
 
 /**
- * @description Delete job by id
- * @function deleteJob
+ * @description Create action for delete job request
+ * @function deleteJobRequest
  * @param {Number} id Job ID
  * @return {Object} the redux action
  */
-const deleteJob = (id) => ({
+const deleteJobRequest = (id) => ({
   type: DELETE_JOB_REQUEST,
   payload: {
     _id: id
+  }
+});
+
+/**
+ * @description Create Action for delete job request success
+ * @function deleteJobRequest
+ * @param {Number} id Job ID
+ * @return {Object} the redux action
+ */
+const deleteJobRequestSuccess = (id) => ({
+  type: DELETE_JOB_REQUEST_SUCCESS,
+  payload: {
+    _id: id
+  }
+});
+
+/**
+ * @description Create Action for delete job request failure
+ * @function deleteJobRequest
+ * @param {String} err error message
+ * @return {Object} the redux action
+ */
+const deleteJobRequestFailure = (err) => ({
+  type: DELETE_JOB_REQUEST_FAILURE,
+  payload: {
+    errorFetching: err
   }
 });
 
@@ -165,7 +193,9 @@ export {
   updateJobRequest,
   updateJobRequestSuccess,
   updateJobRequestFailure,
-  deleteJob,
+  deleteJobRequest,
+  deleteJobRequestSuccess,
+  deleteJobRequestFailure,
   setVisibilityFilter,
   cleanJobsState
 };

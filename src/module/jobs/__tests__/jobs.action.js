@@ -10,7 +10,8 @@ import {
   UPDATE_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST_FAILURE,
   DELETE_JOB_REQUEST,
-  CHANGE_STATUS,
+  DELETE_JOB_REQUEST_SUCCESS,
+  DELETE_JOB_REQUEST_FAILURE,
   SET_VISIBILITY_FILTER,
   CLEAR_JOBS_STATE
 
@@ -172,13 +173,37 @@ describe('Jobs Actions', () => {
     });
 
   });
+  describe('Delete Job', () => {
 
-  it('Should create new action for deleteJob', () => {
-    const action = job.deleteJob(state[0]._id);
-    const {type, payload: {_id}} = action;
-    expect(type).toBe(DELETE_JOB_REQUEST);
-    expect(_id).toBe(state[0]._id);
 
+    it('Should create new action for deleteJobRequest', () => {
+      const {_id} = state[0]._id;
+      const action = job.deleteJobRequest(_id);
+      expect(action).toEqual({
+        type: DELETE_JOB_REQUEST,
+        payload: {
+          _id
+        }
+      });
+    });
+
+    it('Should create action for delete job request success', () => {
+      const {_id} = state[0];
+      const action = job.deleteJobRequestSuccess(_id);
+      expect(action).toEqual({
+        type: DELETE_JOB_REQUEST_SUCCESS,
+        payload: {_id}
+      });
+    });
+
+    it('Should create action for delete job request failure', () => {
+      const err = 'Opps';
+      const action = job.deleteJobRequestFailure(err);
+      expect(action).toEqual({
+        type: DELETE_JOB_REQUEST_FAILURE,
+        payload: {errorFetching: err}
+      })
+    });
   });
 
   it('Should create action for visibility filter ', () => {
