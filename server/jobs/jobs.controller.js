@@ -90,7 +90,8 @@ const deleteJob = (req, res) => {
     return res.status(400).send('Not Found');
   }
   Job.findOneAndRemove({
-    _id: id
+    _id: id,
+    _creator: req.cUser._id
   })
     .then(job => {
       if (!job) {
