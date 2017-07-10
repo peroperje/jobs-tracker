@@ -45,5 +45,17 @@ describe('Jobs Constant', () => {
       expect(jobsConstants.UPDATE_JOB_REQUEST_FAILURE).toBeDefined();
     });
 
+    it('Should be defined DELETE_JOB_REQUEST', () => {
+      expect(jobsConstants.DELETE_JOB_REQUEST).toBeDefined();
+    });
+
+    it('Should be defined DELETE_JOB_REQUEST_SUCCESS', () => {
+      expect(jobsConstants.DELETE_JOB_REQUEST_SUCCESS).toBeDefined();
+    });
+
+    it('Should be defined DELETE_JOB_REQUEST_FAILURE', () => {
+      expect(jobsConstants.DELETE_JOB_REQUEST_FAILURE).toBeDefined();
+    });
+
   });
 });

@@ -9,7 +9,7 @@ import {
   UPDATE_JOB_REQUEST,
   UPDATE_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST_FAILURE,
-  DELETE_JOB,
+  DELETE_JOB_REQUEST,
   CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
   CLEAR_JOBS_STATE
@@ -176,7 +176,7 @@ describe('Jobs Actions', () => {
   it('Should create new action for deleteJob', () => {
     const action = job.deleteJob(state[0]._id);
     const {type, payload: {_id}} = action;
-    expect(type).toBe(DELETE_JOB);
+    expect(type).toBe(DELETE_JOB_REQUEST);
     expect(_id).toBe(state[0]._id);
 
   });

@@ -2,7 +2,7 @@ import uniqid from 'uniqid';
 import {
   ADD_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST,
-  DELETE_JOB,
+  DELETE_JOB_REQUEST,
   CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
   jobsFilter

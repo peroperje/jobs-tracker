@@ -8,7 +8,7 @@ import {
   UPDATE_JOB_REQUEST,
   UPDATE_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST_FAILURE,
-  DELETE_JOB,
+  DELETE_JOB_REQUEST,
   SET_VISIBILITY_FILTER,
   CLEAR_JOBS_STATE
 } from './jobs.constant';
@@ -128,7 +128,7 @@ const updateJobRequestFailure = (errorFetching) => ({
  * @return {Object} the redux action
  */
 const deleteJob = (id) => ({
-  type: DELETE_JOB,
+  type: DELETE_JOB_REQUEST,
   payload: {
     _id: id
   }

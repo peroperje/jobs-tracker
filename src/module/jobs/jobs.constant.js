@@ -64,11 +64,24 @@ const UPDATE_JOB_REQUEST_FAILURE = 'UPDATE_JOB_REQUEST_FAILURE';
 
 /**
  * @description Delete job constant
- * @memberOf jobslist
  * @const {string}
  * @default
  */
-const DELETE_JOB = 'DELETE_JOB';
+const DELETE_JOB_REQUEST = 'DELETE_JOB_REQUEST';
+
+/**
+ *@description The const for delete job request success
+ * @const {string}
+ * @default
+ */
+const DELETE_JOB_REQUEST_SUCCESS = 'DELETE_JOB_REQUEST_SUCCESS';
+
+/**
+ * @description The const for delete job request failure
+ * @const {string}
+ * @default
+ */
+const DELETE_JOB_REQUEST_FAILURE = 'DELETE_JOB_REQUEST_FAILURE';
 
 /**
  * @description Set visibility filter action constant
@@ -107,7 +120,9 @@ export {
   UPDATE_JOB_REQUEST,
   UPDATE_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST_FAILURE,
-  DELETE_JOB,
+  DELETE_JOB_REQUEST,
+  DELETE_JOB_REQUEST_SUCCESS,
+  DELETE_JOB_REQUEST_FAILURE,
   SET_VISIBILITY_FILTER,
   jobsFilter,
   CLEAR_JOBS_STATE
