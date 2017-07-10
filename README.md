@@ -1,9 +1,9 @@
 A simple app for tracking offers of jobs
 
 ## What you need to run app locally
-- [https://nodejs.org/en/] (Installed Node.js)
-- [https://www.mongodb.com/](Installed MongoDB)
-- [http://yargs.js.org/](Yarn) or/and [https://www.npmjs.com/](npm)
+- [Installed Node.js](https://nodejs.org/en/)
+- [Installed MongoDB](https://www.mongodb.com/)
+- [Yarn](http://yargs.js.org/) or/and [npm](https://www.npmjs.com/)
 
 ## Installation
 - git clone git@github.com:peroperje/jobs-tracker.git
