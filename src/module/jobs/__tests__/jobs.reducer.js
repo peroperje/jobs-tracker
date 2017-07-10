@@ -1,9 +1,5 @@
 import uniqid from 'uniqid';
 import {
-  ADD_JOB_REQUEST_SUCCESS,
-  UPDATE_JOB_REQUEST,
-  DELETE_JOB_REQUEST,
-  CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
   jobsFilter
 } from '../jobs.constant';
@@ -115,38 +111,49 @@ describe('Jobs Reducer', () => {
     it('Should clean jobs state ', () => {
       const action = jobsAction.cleanJobsState();
       const state = jobs(initState, action);
-      const expextedState = {...initState, ...{items: []}}
+      const expextedState = {...initState, ...{items: []}};
       expect(state).toEqual(expextedState);
     });
 
   });
 
+  describe('Update job', () => {
 
-  it('Should update job data by _id', () => {
+    it('Update job request ', () => {
+      const action = jobsAction.updateJobRequest(initState.items[0]._id);
+      const state = jobs(initState, action);
 
-    const {_id, ...data} = initState.items[0];
-    const {_id: idForUpdate} = initState.items[2];
-    const action = {
-      type: UPDATE_JOB_REQUEST,
-      payload: {
-        _id: idForUpdate,
-        data: data
-      }
-    };
-    const newState = jobs(initState, action);
+      expect(state).toEqual(expect.objectContaining({
+        isFetching: true,
+        errorFetching: null
+      }));
+    });
 
-    expect(newState.items[2]._id).not.toEqual(_id);
-    expect(newState.items[2]).toMatchObject(data);
+    it('Update job request success', () => {
+
+      const {_id, ...data} = initState.items[0];
+      const resivedData = {...data, ...{title: 'Must Be changed'}};
+      const action = jobsAction.updateJobRequestSuccess(_id, resivedData);
+      const state = jobs(initState, action);
+
+      expect(state.items[0]).toEqual(expect.objectContaining(resivedData));
+
+    });
+
+    it('Update job request failure', () => {
+      const error = 'Oppps';
+      const action = jobsAction.updateJobRequestFailure(error);
+      const state = jobs(initState, action);
+
+      expect(state).toEqual(expect.objectContaining({
+        errorFetching: error,
+        isFetching: false
+      }));
+    });
 
   });
 
-  it('Should delete job', () => {
-
-    const {_id} = initState.items[0];
-    const action = jobsAction.deleteJobRequest(_id);
-    const newState = jobs(initState, action);
-
-    expect(newState.items.length).toBe(2);
+  describe('Delete job', () => {
 
   });
 

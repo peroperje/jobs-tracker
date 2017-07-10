@@ -10,6 +10,8 @@ import {
   ADD_JOB_REQUEST_SUCCESS,
   ADD_JOB_REQUEST_FAILURE,
   UPDATE_JOB_REQUEST,
+  UPDATE_JOB_REQUEST_SUCCESS,
+  UPDATE_JOB_REQUEST_FAILURE,
   DELETE_JOB_REQUEST,
   SET_VISIBILITY_FILTER,
   jobsFilter,
@@ -28,10 +30,9 @@ function job(job = {}, action) {
   switch (type) {
     case ADD_JOB_REQUEST_SUCCESS:
       return payload;
-    case UPDATE_JOB_REQUEST:
+    case UPDATE_JOB_REQUEST_SUCCESS:
       if (payload._id === job._id) {
-        // added {_id:payload._id} to avoid overwrite _id by payload
-        return Object.assign({}, job, payload.data, {id: payload._id});
+        return Object.assign({}, job, payload.data);
       }
       return job;
     case DELETE_JOB_REQUEST:
@@ -54,7 +55,7 @@ function jobItems(state = [], action) {
       return [...state, ...action.payload];
     case ADD_JOB_REQUEST_SUCCESS:
       return [...state, job({}, action)];
-    case UPDATE_JOB_REQUEST:
+    case UPDATE_JOB_REQUEST_SUCCESS:
       return state.map(jobItem => job(jobItem, action));
     case DELETE_JOB_REQUEST:
       return state.filter(jobItem => job(jobItem, action));
@@ -77,10 +78,10 @@ function jobs(state = {}, action) {
 
     case UPDATE_JOB_REQUEST:
     case DELETE_JOB_REQUEST:
-      return {...state, ...{items: jobItems(state.items, action)}};
     case FETCH_JOBS_REQUEST:
     case ADD_JOB_REQUEST:
       return {...state, ...{isFetching: true, errorFetching: null}};
+    case UPDATE_JOB_REQUEST_SUCCESS:
     case FETCH_JOBS_SUCCESS:
     case ADD_JOB_REQUEST_SUCCESS:
       return {
@@ -91,6 +92,7 @@ function jobs(state = {}, action) {
           errorFetching: null
         }
       };
+    case UPDATE_JOB_REQUEST_FAILURE:
     case FETCH_JOBS_FAILURE:
     case ADD_JOB_REQUEST_FAILURE:
       return {
@@ -101,7 +103,7 @@ function jobs(state = {}, action) {
         }
       };
     case CLEAR_JOBS_STATE:
-      return {...state,...{items:[]}}
+      return {...state, ...{items: []}};
     default:
       return state;
   }
