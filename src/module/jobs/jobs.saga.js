@@ -1,15 +1,22 @@
 import {takeEvery, call, put, take} from 'redux-saga/effects';
 
-import {FETCH_JOBS_REQUEST, ADD_JOB_REQUEST, UPDATE_JOB_REQUEST} from './jobs.constant';
+import {
+  FETCH_JOBS_REQUEST,
+  ADD_JOB_REQUEST,
+  UPDATE_JOB_REQUEST,
+  DELETE_JOB_REQUEST
+} from './jobs.constant';
 import {
   fetchJobsSuccess,
   fetchJobsFailure,
   addJobRequestSuccess,
   addJobRequestFailure,
   updateJobRequestSuccess,
-  updateJobRequestFailure
+  updateJobRequestFailure,
+  deleteJobRequestSuccess,
+  deleteJobRequestFailure
 } from './jobs.action';
-import {getJobs, addJob, updateJob} from './jobs.service';
+import {getJobs, addJob, updateJob, deleteJob} from './jobs.service';
 
 /**
  * @description Fetch jobs data
@@ -55,6 +62,19 @@ export function* updateJobRequest(action) {
 }
 
 /**
+ * @description delete job worker
+ * @param {Object} action the action object
+ */
+export function* deleteJobRequest(action) {
+  const {response, error} = yield call(deleteJob, action.payload._id);
+  if (response) {
+    yield put(deleteJobRequestSuccess(action.payload._id));
+  } else {
+    yield put(deleteJobRequestFailure(error.data));
+  }
+}
+
+/**
  * @description saga watcher for jobs action
  */
 export function* watchJobs() {
@@ -62,5 +82,6 @@ export function* watchJobs() {
   yield takeEvery(FETCH_JOBS_REQUEST, jobsRequest);
   yield takeEvery(ADD_JOB_REQUEST, addJobRequest);
   yield takeEvery(UPDATE_JOB_REQUEST, updateJobRequest);
+  yield takeEvery(DELETE_JOB_REQUEST, deleteJobRequest);
 
 }

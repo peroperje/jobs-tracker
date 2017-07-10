@@ -8,7 +8,7 @@ import {
   UPDATE_JOB_REQUEST,
   DELETE_JOB_REQUEST
 } from '../jobs.constant';
-import {getJobs, addJob, updateJob} from '../jobs.service';
+import {getJobs, addJob, updateJob, deleteJob} from '../jobs.service';
 import {
   fetchJobsSuccess,
   fetchJobsFailure,
@@ -16,9 +16,18 @@ import {
   addJobRequestFailure,
   updateJobRequest as updateJobRequestAction,
   updateJobRequestSuccess,
-  updateJobRequestFailure
+  updateJobRequestFailure,
+  deleteJobRequest as deleteJobRequestAction,
+  deleteJobRequestSuccess,
+  deleteJobRequestFailure
 } from '../jobs.action';
-import {jobsRequest, addJobRequest, updateJobRequest, deleteJobRequest, watchJobs} from '../jobs.saga';
+import {
+  jobsRequest,
+  addJobRequest,
+  updateJobRequest,
+  deleteJobRequest,
+  watchJobs
+} from '../jobs.saga';
 
 import initialStore from '../../../store/initialStore';
 
@@ -40,8 +49,8 @@ describe('Jobs Saga', () => {
       expect(genWatcher.next().value).toEqual(takeEvery(UPDATE_JOB_REQUEST, updateJobRequest));
     });
 
-    xit('Should call deleteJobRequest', () => {
-      expect(genWatcher.next().value).toEqual(takeEvery(DELETE_JOB_REQUEST,deleteJobRequest));
+    it('Should call deleteJobRequest', () => {
+      expect(genWatcher.next().value).toEqual(takeEvery(DELETE_JOB_REQUEST, deleteJobRequest));
     });
 
   });
@@ -169,6 +178,53 @@ describe('Jobs Saga', () => {
       expect(nextSaga).toEqual(put(updateJobRequestFailure(err)));
 
     });
+  });
+
+  describe('Delete job worker', () => {
+    const {_id} = initialStore.jobs.items[0];
+    const action = deleteJobRequestAction(_id);
+
+    describe('Api call success', () => {
+      const gen = deleteJobRequest(action);
+      const res = {
+        response: {
+          data: {
+            _id
+          }
+        }
+      };
+
+      it('Should call delete job api', () => {
+
+        expect(gen.next(res).value).toEqual(call(deleteJob, _id));
+
+      });
+
+      it('Should emit success action', () => {
+
+        expect(gen.next(res).value)
+          .toEqual(put(deleteJobRequestSuccess(_id)));
+      });
+    });
+
+
+    it('Should emit failure action', () => {
+
+      const gen = deleteJobRequest(action);
+      const errorMessage = 'Opps';
+      const errRes = {
+        error: {
+          data: errorMessage
+        }
+      };
+
+      gen.next(errRes);
+
+      expect(gen.next(errRes).value)
+        .toEqual(put(deleteJobRequestFailure(errorMessage)));
+
+    });
+
   });
 
 });
