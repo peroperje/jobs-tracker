@@ -1,5 +1,8 @@
 A simple app for tracking offers of jobs
 
+## Demo
+[Demo app](https://damp-wave-50887.herokuapp.com/)
+
 ## What you need to run app locally
 - [Installed Node.js](https://nodejs.org/en/)
 - [Installed MongoDB](https://www.mongodb.com/)
