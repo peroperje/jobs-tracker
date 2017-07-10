@@ -61,8 +61,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onClickFilterLink: (filter) => {
     dispatch(setVisibilityFilter(filter));
   },
-  onClickArchive: (id) => {
-    dispatch(changeStatus(id));
+  onClickArchive: (_id,data) => {
+    dispatch(updateJobRequest(_id, data));
   },
   onClickDelete: (id) => {
     dispatch(deleteJob(id));

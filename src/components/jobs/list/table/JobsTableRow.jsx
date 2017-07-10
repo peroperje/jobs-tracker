@@ -55,7 +55,7 @@ class JobsTableRow extends Component {
    * @memberOf jobslist.JobsTableRow
    */
   handleClickArchive() {
-    this.props.onClickArchive(this.props._id);
+    this.props.onClickArchive(this.props._id, {active: !this.props.active});
   }
 
   /**

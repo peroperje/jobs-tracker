@@ -71,14 +71,6 @@ const UPDATE_JOB_REQUEST_FAILURE = 'UPDATE_JOB_REQUEST_FAILURE';
 const DELETE_JOB = 'DELETE_JOB';
 
 /**
- * @description Change status constant
- * @memberOf jobslist
- * @const {string}
- * @default
- */
-const CHANGE_STATUS = 'CHANGE_STATUS';
-
-/**
  * @description Set visibility filter action constant
  * @memberOf jobslist
  * @const {string}
@@ -116,7 +108,6 @@ export {
   UPDATE_JOB_REQUEST_SUCCESS,
   UPDATE_JOB_REQUEST_FAILURE,
   DELETE_JOB,
-  CHANGE_STATUS,
   SET_VISIBILITY_FILTER,
   jobsFilter,
   CLEAR_JOBS_STATE

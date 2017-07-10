@@ -150,21 +150,6 @@ describe('Jobs Reducer', () => {
 
   });
 
-  it('Should change job status', () => {
-
-    const action = {
-      type: CHANGE_STATUS,
-      payload: {
-        _id: initState.items[0]._id
-      }
-    };
-    const newState = jobs(initState, action);
-
-    expect(newState.items[0].active).toBe(!initState.items[0].active);
-
-  });
-
-
 });
 
 describe('Visibility filter', () => {

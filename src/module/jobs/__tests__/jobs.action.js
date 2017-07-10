@@ -173,13 +173,6 @@ describe('Jobs Actions', () => {
 
   });
 
-  it('Should create action for changeStatus', () => {
-    const action = job.changeStatus(state[0]._id);
-    const {type, payload: {_id}} = action;
-    expect(type).toBe(CHANGE_STATUS);
-    expect(_id).toBe(state[0]._id);
-  });
-
   it('Should create new action for deleteJob', () => {
     const action = job.deleteJob(state[0]._id);
     const {type, payload: {_id}} = action;
