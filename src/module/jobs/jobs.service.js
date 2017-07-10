@@ -38,8 +38,16 @@ const updateJob = (_id, data) => request({
   .then(response => ({response}))
   .catch(error => ({error}));
 
+const deleteJob = (_id) => request({
+  url: `jobs/${_id}`,
+  method: 'DELETE'
+})
+  .then(response => ({response}))
+  .catch(error => ({error}));
+
 export {
   getJobs,
   addJob,
-  updateJob
+  updateJob,
+  deleteJob
 };

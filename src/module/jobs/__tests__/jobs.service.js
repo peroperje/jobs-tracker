@@ -1,6 +1,6 @@
 jest.mock('../../../service/request');
 
-import {getJobs, addJob, updateJob} from '../jobs.service';
+import {getJobs, addJob, updateJob, deleteJob} from '../jobs.service';
 
 describe('Jobs Service', () => {
 
@@ -69,6 +69,28 @@ describe('Jobs Service', () => {
 
       updateJob(_id, data).then(({response}) => {
         expect(response).toEqual(expectedRequest);
+      });
+
+    });
+
+  });
+
+  describe('Delete Job', () => {
+
+    it('Should be defined', () => {
+      expect(deleteJob).toBeDefined();
+    });
+
+    it('Should call delete api ', () => {
+
+      const _id = '465465465';
+      const expextedRequest = {
+        url: `jobs/${_id}`,
+        method: 'DELETE'
+      };
+
+      deleteJob(_id).then(({response}) => {
+        expect(response).toEqual(expextedRequest);
       });
 
     });
