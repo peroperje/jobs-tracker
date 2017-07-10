@@ -8,7 +8,7 @@ const users = require('./users/users.routers');
 
 
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT;
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../build')));
