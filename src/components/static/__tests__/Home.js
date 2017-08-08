@@ -9,7 +9,9 @@ describe('Home component', () => {
 
   it('Home Snapshot', () => {
     const tree = renderer.create(
-          <TestProviderHelper><Home /></TestProviderHelper>
+      <TestProviderHelper>
+        <Home />
+      </TestProviderHelper>
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
