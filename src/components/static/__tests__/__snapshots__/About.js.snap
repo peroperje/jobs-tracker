@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About component About Snapshot  1`] = `
+<h1
+  style={
+    Object {
+      "textAlign": "center",
+    }
+  }
+>
+  About page
+</h1>
+`;
